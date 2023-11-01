@@ -1,0 +1,78 @@
+LOCUS       eforRed-lacO             957 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  Measurement: Leaky expression control consisting of eforRed under
+            control of the pT7-lacO promoter. Failure of repression by lacI will
+            appear as chromoprotein expression..
+ACCESSION   eforRed-lacO
+VERSION     eforRed-lacO
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [60]"
+     misc_feature    79..89
+                     /label="CAST 0 [TAAC]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     source          133..168
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    133..160
+                     /label="UTR1"
+     misc_feature    161..168
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    161..166
+                     /label="BsaI_Bind"
+     source          169..849
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     CDS             169..849
+                     /codon_start=1
+                     /label="eforRed"
+                     /translation="MSVIKQVMKTKLHLEGTVNGHDFTIEGKGEGKPYEGLQHMKMTVT
+                     KGAPLPFSVHILTPSHMYGSKPFNKYPADIPDYHKQSFPEGMSWERSMIFEDGGVCTAS
+                     NHSSINLQENCFIYDVKFHGVNLPPDGPVMQKTIAGWEPSVETLYVRDGMLKSDTAMVF
+                     KLKGGGHHRVDFKTTYKAKKPVKLPEFHFVEHRLELTKHDKDFTTWDQQEAAEGHFSPL
+                     PKALP"
+     misc_feature    850..867
+                     /label="CDS Suffix"
+     regulatory      868..906
+                     /label="T7hyb6 Terminator"
+     misc_feature    907..917
+                     /label="CAST 0 [GGAG]"
+     misc_feature    918..937
+                     /label="Dialout Reverse [0]"
+     misc_feature    938..957
+                     /label="Terminator Spacer"
+     misc_feature    1..957
+                     /label="pT7-lacO-UTR1-eforRed-tT7hyb6"
+ORIGIN
+        1 tcaggacagg ccgttcgagt tagggataac agggtaatag ctctcaggtc tagcatgtag
+       61 tagtatccga atcgctgccg tctcataact aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttaataattt tgtttaactt taagaaggag ggtctctaat gtccgtgatt
+      181 aaacaggtga tgaaaaccaa actgcacttg gaaggcaccg tgaacggtca cgatttcacc
+      241 atcgagggta aaggtgaagg taaaccgtat gaaggtctgc aacacatgaa aatgactgta
+      301 actaaaggtg ccccgctccc gttttccgtc cacatcctga ctccgtccca catgtacggt
+      361 agcaagccgt tcaataaata tccagcggat atcccggact atcacaagca gtctttcccg
+      421 gaaggcatga gctgggaacg ttctatgatc ttcgaagatg gcggtgtgtg caccgcttcc
+      481 aaccactctt ctatcaacct ccaggaaaat tgttttatct acgatgtgaa atttcatggt
+      541 gttaacctgc cgccggatgg cccggtaatg cagaaaacca ttgcaggttg ggaaccgagc
+      601 gtggaaacgc tgtacgtgcg tgacggtatg ctgaaatctg acactgcaat ggtattcaaa
+      661 cttaaggggg gtggtcacca ccgtgttgat ttcaagacta cctacaaagc taaaaaaccg
+      721 gtaaaactgc cggaatttca cttcgttgaa caccgtttgg aactgaccaa gcacgataaa
+      781 gacttcacga cttgggacca gcaagaagct gcggaaggcc atttctcccc tctgccgaaa
+      841 gcactgccat gaagagctta gagaccgaga taacagatac ttcggtatct gttatctgtt
+      901 ttttttggag tgagacgaaa cacgtggcaa acattcccta agcatcacac tgccgtc
+//

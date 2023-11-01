@@ -1,0 +1,93 @@
+LOCUS       EF-Tu                   1495 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Elongation factor Tu.
+ACCESSION   EF-Tu
+VERSION     EF-Tu
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [29]"
+     misc_feature    79..89
+                     /label="CAST 29 [CAAG]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     misc_feature    173..1354
+                     /label="EF-Tu"
+     CDS             173..1354
+                     /standard_name="EF-Tu"
+                     /translation="MSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGAAR
+                     AFDQIDNAPEEKARGITINTSHVEYDTPTRHYAHVDCPGHADYVKNMITGAAQMDGAIL
+                     VVAATDGPMPQTREHILLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDF
+                     PGDDTPIVRGSALKALEGDAEWEAKILELAGFLDSYIPEPERAIDKPFLLPIEDVFSIS
+                     GRGTVVTGRVERGIIKVGEEVEIVGIKETQKSTCTGVEMFRKLLDEGRAGENVGVLLRG
+                     IKREEIERGQVLAKPGTIKPHTKFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTG
+                     TIELPEGVEMVMPGDNIKMVVTLIHPIAMDDGLRFAIREGGRTVGAGVVAKVLG*"
+     CDS             1355..1369
+                     /label="Linker"
+                     /translation="GGGGS"
+     CDS             1370..1387
+                     /label="His6"
+                     /translation="HHHHHH"
+     misc_feature    1388..1405
+                     /label="CDS Suffix"
+     regulatory      1406..1444
+                     /label="T7hyb6 Terminator"
+     misc_feature    1445..1455
+                     /label="CAST 29 [ATAC]"
+     misc_feature    1456..1475
+                     /label="Dialout Reverse [0]"
+     misc_feature    1476..1495
+                     /label="Terminator Spacer"
+     misc_feature    1..1495
+                     /label="pT7-lacO-UTR1-EF-Tu-tT7hyb6"
+ORIGIN
+        1 agtttaggct atatttagat tagggataac agggtaatgc ctttcctcga tgaccatcac
+       61 ccgtatcgca taaggatgcg tctcacaagt aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgtcgaa
+      181 ggagaaattc gagcgtacaa aacctcacgt taatgtggga actattggtc atgtggatca
+      241 tggcaaaact actttgacgg ctgctattac cacagttctg gctaaaacat atggtggagc
+      301 ggcgcgggcc ttcgaccaga tcgataacgc gcctgaagaa aaggcgcggg gtatcactat
+      361 taatacgagc catgtagagt atgacacccc gacccgtcat tatgcccatg tggattgccc
+      421 gggccacgca gactacgtca aaaacatgat cacgggcgct gcccagatgg acggtgcgat
+      481 cttggtggtg gccgctaccg acggtcctat gccccagact cgtgaacata ttctgctggg
+      541 ccgtcaagta ggcgtaccct acatcatcgt ttttcttaac aagtgtgaca tggtcgacga
+      601 tgaagagttg ttggaactgg tcgaaatgga ggtccgcgaa ttgttgtctc aatacgactt
+      661 cccaggtgat gataccccga ttgtccgggg ttctgcattg aaagctcttg aaggagatgc
+      721 tgagtgggaa gctaagatct tggaactggc gggttttttg gacagttata ttccggagcc
+      781 ggaacgtgcg attgataaac cttttcttct gccgattgaa gatgtgttta gtattagcgg
+      841 gcgtggaact gtcgtgacgg gtcgtgtgga gcggggtatt atcaaggtag gcgaagaagt
+      901 agagatcgtt ggcattaaag aaactcaaaa atccacatgt accggcgttg aaatgttccg
+      961 caaactgctg gatgaaggcc gtgcggggga aaatgtgggc gttttgttgc gtggtattaa
+     1021 gcgcgaggag atcgaacgtg gacaggtgct ggctaagccc gggactatta aaccgcatac
+     1081 taaatttgag tctgaagttt atattctgtc caaggacgaa ggcggacgcc atactccttt
+     1141 ttttaaaggt taccgtccac aattctactt tcgcaccaca gatgtcaccg gtaccattga
+     1201 gctgcccgaa ggcgtagaaa tggtaatgcc aggtgataat attaaaatgg ttgttacgct
+     1261 gattcatcct attgccatgg acgatggcct gcgttttgcg attcgtgagg ggggtcgtac
+     1321 cgtgggtgca ggcgtcgtgg cgaaagtgct gggcggaggc ggtggatctc accatcacca
+     1381 ccatcattga agagcttaga gaccgagata acagatactt cggtatctgt tatctgtttt
+     1441 ttttatactg agacgaaaca cgtggcaaac attccctaag catcacactg ccgtc
+//

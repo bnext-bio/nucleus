@@ -1,0 +1,74 @@
+LOCUS       cjBlue                   949 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  Measurement: CjBlue blue chromoprotein under the T7 promoter..
+ACCESSION   cjBlue
+VERSION     cjBlue
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [56]"
+     misc_feature    79..89
+                     /label="CAST 0 [TAAC]"
+     primer_bind     90..109
+                     /label="pT7"
+     source          110..145
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    110..137
+                     /label="UTR1"
+     misc_feature    138..145
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    138..143
+                     /label="BsaI_Bind"
+     source          146..841
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     CDS             146..841
+                     /codon_start=1
+                     /label="cjBlue"
+                     /translation="MASKISDNVRIKLYMEGTVNNHHFMCEAEGEGKPYEGTQMENIKV
+                     TKGGPLPFSFDILTPNCQYGSVAITKYTSGIPDYFKQSFPEGFTWERTTIYEDGAYLTT
+                     QQETKLDGNCLVYNIKILGCNFPPNGPVMQKKTQGWEPCCEMRYTRDGVLCGQTLMALK
+                     CADGNHLTCHLRTTYRSKKAAKALQMPPFHFSDHRPEIVKVSENGTLFEQHESSVARYC
+                     QTCPSKLGHN"
+     misc_feature    842..859
+                     /label="CDS Suffix"
+     regulatory      860..898
+                     /label="T7hyb6 Terminator"
+     misc_feature    899..909
+                     /label="CAST 0 [GGAG]"
+     misc_feature    910..929
+                     /label="Dialout Reverse [0]"
+     misc_feature    930..949
+                     /label="Terminator Spacer"
+     misc_feature    1..949
+                     /label="pT7-UTR1-cjBlue-tT7hyb6"
+ORIGIN
+        1 ggttcgcgta ctctcacgct tagggataac agggtaatac actgtgtaaa ataactagag
+       61 gacaccagac caatgaagcg tctcataact aatacgactc actataggga ataattttgt
+      121 ttaactttaa gaaggagggt ctctaatggc gtccaaaatc tccgacaacg tccgcattaa
+      181 gctgtacatg gaaggcaccg ttaacaacca ccatttcatg tgtgaagcgg aaggcgaagg
+      241 taaaccatac gaaggcaccc agatggaaaa catcaaagta actaaaggtg gccctctgcc
+      301 gtttagcttc gacattctga ccccgaactg ccaatacggt tctgtggcta tcaccaaata
+      361 tacgtctggt atcccggatt actttaaaca gtcatttccg gaaggcttta cctgggagcg
+      421 taccacgatc tatgaggatg gtgcatacct gaccacccag caggaaacga aattagatgg
+      481 caactgcctg gtatataaca tcaaaattct gggctgcaac ttcccgccga acggcccggt
+      541 tatgcagaaa aaaacgcagg ggtgggagcc atgctgcgag atgcgttata cccgcgacgg
+      601 cgttctctgc ggccaaaccc tgatggcact gaaatgcgca gatggcaacc atctgacctg
+      661 ccatctgcgt acgacctacc gtagcaaaaa agcagcgaag gctctgcaaa tgccgccgtt
+      721 ccacttttcc gaccaccgtc cggaaattgt taaagtttct gaaaatggca ccctcttcga
+      781 gcagcatgag agttctgtcg cgcgttactg tcagacctgc ccttctaagc tgggccacaa
+      841 ctgaagagct tagagaccga gataacagat acttcggtat ctgttatctg ttttttttgg
+      901 agtgagacga aacacgtggc aaacattccc taagcatcac actgccgtc
+//

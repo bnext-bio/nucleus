@@ -1,0 +1,96 @@
+LOCUS       CK-Gg                   1459 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Creatine Kinase (G. gallus).
+ACCESSION   CK-Gg
+VERSION     CK-Gg
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [31]"
+     misc_feature    79..89
+                     /label="CAST 36 [TAGA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     misc_feature    209..1351
+                     /label="CK-Gg"
+     CDS             209..1351
+                     /standard_name="CK-Gg"
+                     /translation="MPFSSTHNKHKLKFSAEEEFPDLSKHNNHMAKVLTPELYKRLRDK
+                     ETPSGFTLDDVIQTGVDNPGHPFIMTVGCVAGDEESYEVFKDLFDPVIQDRHGGYKPTD
+                     KHRTDLNHENLKGGDDLDPKYVLSSRVRTGRSIKGYSLPPHCSRGERRAVEKLSVEALN
+                     SLEGEFKGRYYPLKAMTEQEQQQLIDDHFLFDKPVSPLLLASGMARDWPDARGIWHNDN
+                     KTFLVWVNEEDHLRVISMEKGGNMKEVFRRFCVGLKKIEEIFKKAGHPFMWTEHLGYIL
+                     TCPSNLGTGLRGGVHVKLPKLSQHPKFEEILHRLRLQKRGTGGVDTAAVGAVFDISNAD
+                     RLGFSEVEQVQMVVDGVKLMVEMEKKLEQNQPIDDMIPAQK*"
+     misc_feature    1352..1369
+                     /label="CDS Suffix"
+     regulatory      1370..1408
+                     /label="T7hyb6 Terminator"
+     misc_feature    1409..1419
+                     /label="CAST 36 [TGAA]"
+     misc_feature    1420..1439
+                     /label="Dialout Reverse [0]"
+     misc_feature    1440..1459
+                     /label="Terminator Spacer"
+     misc_feature    1..1459
+                     /label="pT7-lacO-UTR1-CK-Gg-tT7hyb6"
+ORIGIN
+        1 acaaaactga aagcataagc tagggataac agggtaatga ccaacatatt gtcacggtac
+       61 gatggggaca tagaacaccg tctcatagat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat gccgttttcg tcaacacata ataaacacaa
+      241 actgaaattt agtgctgagg aagagttccc agacttgagc aaacataata accatatggc
+      301 caaagttctg accccggagc tgtataaacg tttacgcgat aaagaaaccc catcgggctt
+      361 caccctggat gacgtaatcc agactggtgt cgataaccct gggcacccat tcattatgac
+      421 agttggctgc gttgcggggg atgaagaatc ttatgaggtt tttaaagact tattcgaccc
+      481 agttatccag gaccgccatg gtgggtacaa accgaccgat aagcaccgta ccgatctgaa
+      541 ccatgaaaac ctgaaaggtg gggatgatct tgatccaaaa tacgtgttat ccagccgtgt
+      601 tcgtaccggg cggtctatta aaggttatag cttacctccg cactgtagcc gtggggaacg
+      661 ccgcgcggtc gaaaaattgt cagttgaagc tctgaattcg ttagaaggcg agttcaaggg
+      721 tcgttattac ccgctgaagg ccatgactga gcaagagcag cagcagttaa tcgatgatca
+      781 ttttctgttc gataaacctg tttcgccgct tcttttagca agtggcatgg cacgcgattg
+      841 gccggacgcg cgcggaattt ggcataacga caataaaacc tttctggtgt gggttaacga
+      901 agaagatcat ctgcgggtga tctccatgga aaaaggcggc aatatgaaag aagtgttccg
+      961 tcgcttctgc gtaggtctga aaaagattga ggagattttc aaaaaagcgg gtcatccttt
+     1021 tatgtggacg gagcatctgg gttacatcct gacgtgcccg tcgaatcttg gtacaggttt
+     1081 gcgtggggga gttcatgtga aactgcctaa gctgtcacag catccaaaat ttgaagagat
+     1141 cttgcaccgt ctgcggttac agaaacgcgg cactggtggg gttgacactg cggcggttgg
+     1201 tgcagtattt gacattagca atgcggatcg cctgggtttt agtgaagttg agcaggtcca
+     1261 gatggttgtg gatggagtta aactgatggt ggaaatggaa aaaaagttag agcagaacca
+     1321 gccaattgac gacatgatcc cggcccagaa gtgaagagct tagagaccga gataacagat
+     1381 acttcggtat ctgttatctg tttttttttg aatgagacga aacacgtggc aaacattccc
+     1441 taagcatcac actgccgtc
+//

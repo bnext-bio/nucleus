@@ -1,0 +1,85 @@
+LOCUS       pT7-lacO                 958 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  Measurement: PlamGFP green fluorescent protein with repressed by the
+            lac repressor lacI..
+ACCESSION   pT7-lacO
+VERSION     pT7-lacO
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [75]"
+     source          79..89
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    79..89
+                     /label="MCL0-VP"
+     primer_bind     90..109
+                     /label="pT7"
+     source          110..132
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     protein_bind    110..132
+                     /label="LacO"
+                     /bound_moiety="LacI"
+     source          133..143
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    133..143
+                     /label="MCL0PU"
+     source          144..176
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    144..176
+                     /label="UTR1"
+     RBS             150..172
+                     /note="efficient ribosome binding site from bacteriophage
+                     T7 gene 10 (Olins and Rangwala, 1989)"
+     source          177..869
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     CDS             177..869
+                     /codon_start=1
+                     /label="plamGFP"
+                     /translation="MEIEDVIKRDMKIKLRMEGAVNGHKFVIIGNGDGKPYEGTQTIDL
+                     EVIEGAPLPFAFDILTTVFEYGNRVFAKYPNEIVDYFKQSFPEGYSWERSMTYEDGGIC
+                     IATNNITLSKVIDNCFHYNIRFDGVNFPPKSPVLQKTTMKWEPSTEIMYVRDGVLKGDV
+                     NMALLIEGGGHYRCDFKTIYKAKKVVELPDYHFVDHRITIKSHDKDYNKVLLHEHAKAR
+                     YGLQRKAK"
+     misc_feature    870..879
+                     /label="Spacer"
+     regulatory      880..918
+                     /label="T7hyb6 Terminator"
+     misc_feature    919..938
+                     /label="Dialout Reverse [0]"
+     misc_feature    939..958
+                     /label="Terminator Spacer"
+     misc_feature    1..958
+                     /label="pT7-lacO-UTR1-plamGFP-t7hyb6"
+ORIGIN
+        1 agttttaaat tgatcgctca tagggataac agggtaattt ccactgttcg acacgcgaat
+       61 agatcatgtc ggcagtcggg tctcaggagt aatacgactc actatagggg gaattgtgag
+      121 cggataacaa tttactagag accaataatt ttgtttaact ttaagaagga gatataatgg
+      181 agatcgagga tgtgatcaaa cgcgacatga aaatcaagct gcgtatggaa ggtgctgtta
+      241 acggtcacaa attcgtgatc attggtaacg gcgacggcaa accatatgaa ggcactcaga
+      301 ccatcgatct ggaagtcatt gaaggtgccc cgctgccgtt cgcatttgac atcctgacta
+      361 cagtttttga atacggtaac agagttttcg ccaaatatcc gaacgaaatt gttgactact
+      421 tcaaacaatc ctttccggag ggctactctt gggagcgttc tatgacctac gaggacggcg
+      481 gcatttgtat cgccaccaac aatatcaccc tgtccaaagt aatcgataac tgcttccatt
+      541 acaacatccg tttcgatggg gtgaatttcc cgccgaaaag cccggtgctt cagaaaacca
+      601 ccatgaaatg ggaaccgtcc accgaaatca tgtacgttcg tgacggtgtg ctgaaaggcg
+      661 acgtaaacat ggccctgctg atcgaaggcg gtggtcatta tcgttgcgat tttaaaacga
+      721 tctacaaagc gaaaaaagtt gttgaactgc cggactatca ctttgtcgac caccgtatca
+      781 ccattaaatc acacgacaaa gactacaaca aagtcctgct tcacgaacac gcaaaagccc
+      841 gttacggcct ccagcgtaaa gcgaagtgag gaaggtttaa gataacagat acttcggtat
+      901 ctgttatctg ttttttttaa acacgtggca aacattccct aagcatcaca ctgccgtc
+//

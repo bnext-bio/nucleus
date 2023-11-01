@@ -1,0 +1,95 @@
+LOCUS       PheS                    1297 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Phenylalanine tRNA synthetase S protein.
+ACCESSION   PheS
+VERSION     PheS
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [24]"
+     misc_feature    79..89
+                     /label="CAST 16 [AAAT]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     source          209..1189
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    209..1189
+                     /label="pheS"
+     CDS             209..1189
+                     /codon_start=1
+                     /translation="MSHLAELVASAKAAISQASDVAALDNVRVEYLGKKGHLTLQMTTL
+                     RELPPEERPAAGAVINEAKEQVQQALNARKAELESAALNARLAAETIDVSLPGRRIENG
+                     GLHPVTRTIDRIESFFGELGFTVATGPEIEDDYHNFDALNIPGHHPARADHDTFWFDTT
+                     RLLRTQTSGVQIRTMKAQQPPIRIIAPGRVYRNDYDQTHTPMFHQMEGLIVDTNISFTN
+                     LKGTLHDFLRNFFEEDLQIRFRPSYFPFTEPSAEVDVMGKNGKWLEVLGCGMVHPNVLR
+                     NVGIDPEVYSGFAFGMGMERLTMLRYGVTDLRSFFENDLRFLKQFK"
+     misc_feature    1190..1207
+                     /label="CDS Suffix"
+     regulatory      1208..1246
+                     /label="T7hyb6 Terminator"
+     misc_feature    1247..1257
+                     /label="CAST 16 [ATAA]"
+     misc_feature    1258..1277
+                     /label="Dialout Reverse [0]"
+     misc_feature    1278..1297
+                     /label="Terminator Spacer"
+     misc_feature    1..1297
+                     /label="pT7-lacO-UTR1-PheS-tT7hyb6"
+ORIGIN
+        1 aaaatgcgtt cacgccaggg tagggataac agggtaatta ttacctagtg gacaaacaac
+       61 agggtatatt gagtgccccg tctcaaaatt aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat gagtcattta gctgaactgg ttgcgagcgc
+      241 gaaggctgca atctctcagg ctagcgacgt ggccgctctg gataacgtgc gtgtggagta
+      301 tcttggtaag aaaggccatt taacgcttca aatgacgacc ctgcgcgaat taccgccgga
+      361 agaacgtcct gccgctggcg ccgtaatcaa tgaagcaaaa gaacaagttc aacaggcgct
+      421 gaacgctcgc aaggctgaac tggaaagcgc tgctctgaac gcccgtctgg cggcggaaac
+      481 catcgatgtg agcttaccgg gccgtcgcat tgagaacggg gggttacatc cagtcactcg
+      541 tacaatcgat cgcattgaat ctttcttcgg tgagctgggc tttacggtgg ctaccggccc
+      601 cgagatcgaa gatgactacc acaatttcga tgccctgaat attcctgggc accacccagc
+      661 gcgtgcggac cacgacacct tttggtttga cacaacccgt ctgcttcgta ctcagacttc
+      721 gggcgtacag atccgtacta tgaaagctca acagccgcca atccgcatta tcgcccctgg
+      781 tcgcgtttat cggaacgatt acgatcagac ccatacccca atgttccatc aaatggaagg
+      841 tctgattgtg gacacgaata tcagtttcac gaacctgaaa ggtaccttac acgatttcct
+      901 gcggaatttt ttcgaggaag atcttcaaat tcgtttccgc ccgtcctatt tcccttttac
+      961 tgagccttcc gcagaggttg acgtgatggg caagaacggt aaatggctgg aggtactggg
+     1021 ctgcggcatg gtccatccta acgttctgcg caatgtgggg atcgatccgg aagtctacag
+     1081 tggctttgcc ttcgggatgg gcatggaacg tttaaccatg ctgcgttatg gtgtgaccga
+     1141 tctgcgctct ttttttgaga acgacctgcg ctttttgaag caatttaaat gaagagctta
+     1201 gagaccgaga taacagatac ttcggtatct gttatctgtt ttttttataa tgagacgaaa
+     1261 cacgtggcaa acattcccta agcatcacac tgccgtc
+//

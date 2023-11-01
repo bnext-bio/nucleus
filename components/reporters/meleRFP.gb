@@ -1,0 +1,76 @@
+LOCUS       meleRFP                  931 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  Measurement: MeleRFP red fluorescent protein under the T7 promoter..
+ACCESSION   meleRFP
+VERSION     meleRFP
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [54]"
+     misc_feature    79..89
+                     /label="CAST 0 [TAAC]"
+     primer_bind     90..109
+                     /label="pT7"
+     source          110..145
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    110..137
+                     /label="UTR1"
+     misc_feature    138..145
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    138..143
+                     /label="BsaI_Bind"
+     source          146..823
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     terminator      146..823
+                     /note="""transcription terminator for bacteriophage T7 RNA"
+     CDS             146..823
+                     /codon_start=1
+                     /label="meleRFP"
+                     /translation="MSVIKPDMKLKLRMEGTVNGHYFVIEGDGKGRPFEGKQSMDLDVK
+                     EGGPLPFAYDILTTAFHYGNRVFAEYPDHIPDYFKQSFPGGYSWERSLTFEDGGICIAR
+                     NDIKMVGDTFYNTVRFDGVNFPPNGPVMQRRTQKWEPSTEKIYVRDGVLTGDITMALLL
+                     EGGVHYRCDFRTTYKAKEKGVQLPGYHFVDHCIEILSHDKDYNKVKLYEHAVAHSGLPD
+                     NKRQ"
+     misc_feature    824..841
+                     /label="CDS Suffix"
+     regulatory      842..880
+                     /label="T7hyb6 Terminator"
+     misc_feature    881..891
+                     /label="CAST 0 [GGAG]"
+     misc_feature    892..911
+                     /label="Dialout Reverse [0]"
+     misc_feature    912..931
+                     /label="Terminator Spacer"
+     misc_feature    1..931
+                     /label="pT7-UTR1-meleRFP-tT7hyb6"
+ORIGIN
+        1 gatgggcgag acgcaccggt tagggataac agggtaatca agggtcggct gccgatggag
+       61 ctatgatccc ggtgtaaccg tctcataact aatacgactc actataggga ataattttgt
+      121 ttaactttaa gaaggagggt ctctaatgag cgttattaag ccggacatga agctgaaact
+      181 gcgtatggaa ggcactgtta atggccacta cttcgtgatt gaaggtgatg gtaagggccg
+      241 tccgtttgag ggcaaacaga gcatggatct ggacgtaaaa gagggtggtc ctctgccgtt
+      301 cgcttacgac atcctgacca ccgcgttcca ttacggtaac cgtgttttcg cggaatatcc
+      361 ggatcacatc ccggactatt ttaagcagtc cttcccgggt ggttattctt gggaacgatc
+      421 cctgaccttc gaagatggcg gcatctgcat tgcacgtaac gatatcaaaa tggtgggcga
+      481 caccttctac aacactgtac gtttcgatgg cgttaacttc cctccgaacg gcccggttat
+      541 gcagcgccgc acccagaaat gggagccgtc taccgagaaa atctatgtac gtgacggcgt
+      601 actgactggt gatattacca tggcgttgct gctggaaggt ggtgttcact atcgttgcga
+      661 cttccgtact acttataaag cgaaagaaaa aggtgtacag ctgcctggct atcatttcgt
+      721 tgaccattgc atcgaaatcc tgagccacga caaagactac aacaaggtta agctgtacga
+      781 acacgctgtt gcgcactctg gcctgccgga taataagcgt cagtgaagag cttagagacc
+      841 gagataacag atacttcggt atctgttatc tgtttttttt ggagtgagac gaaacacgtg
+      901 gcaaacattc cctaagcatc acactgccgt c
+//

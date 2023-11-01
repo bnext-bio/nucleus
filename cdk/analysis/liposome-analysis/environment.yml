@@ -1,0 +1,16 @@
+name: nucleus-liposome-analysis
+channels:
+  - defaults
+dependencies:
+  - pip
+  - ipykernel
+  - scipy
+  - scikit-image
+  - numpy
+  - matplotlib
+  - pandas
+  - seaborn
+  - pip:
+    - tifffile
+    - "cellpose[gui]"
+prefix: /opt/anaconda3/envs/liposome-analysis

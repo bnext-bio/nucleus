@@ -1,0 +1,83 @@
+LOCUS       AK-Oc                    898 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Adenylate Kinase (O. cuniculus).
+ACCESSION   AK-Oc
+VERSION     AK-Oc
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [30]"
+     misc_feature    79..89
+                     /label="CAST 34 [CCAA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     misc_feature    209..790
+                     /label="AK-Oc"
+     CDS             209..790
+                     /standard_name="AK-Oc"
+                     /translation="MEEKLKKAKIIFVVGGPGSGKGTQCEKIVHKYGYTHLSTGDLLRA
+                     EVSSGSARGKKLSEIMEKGQLVPLETVLDMLRDAMVAKADTSKGFLIDGYPRQVQQGEE
+                     FERRIAQPTLLLYVDAGPETMQKRLLKRGETSGRVDDNEETIKKRLETYYKATEPVIAF
+                     YEKRGIVRKVNAEGSVDNVFSQVCTHLDALK*"
+     misc_feature    791..808
+                     /label="CDS Suffix"
+     regulatory      809..847
+                     /label="T7hyb6 Terminator"
+     misc_feature    848..858
+                     /label="CAST 34 [TAAA]"
+     misc_feature    859..878
+                     /label="Dialout Reverse [0]"
+     misc_feature    879..898
+                     /label="Terminator Spacer"
+     misc_feature    1..898
+                     /label="pT7-lacO-UTR1-AK-Oc-tT7hyb6"
+ORIGIN
+        1 cgctgatcac cagaggtctt tagggataac agggtaatcc tagataaact ggagtaggac
+       61 gagatgatgc accgatagcg tctcaccaat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat ggaagaaaaa ctgaaaaagg cgaagattat
+      241 ctttgttgtt ggaggtccgg gtagcggtaa gggtacacaa tgtgaaaaga tcgtgcataa
+      301 atatggctat acccatcttt cgactgggga tctgctgcgc gccgaagtca gtagtggtag
+      361 cgcacgcgga aaaaaacttt cggagattat ggaaaaaggc cagttggttc cgctggaaac
+      421 ggttctggat atgcttcgcg acgccatggt ggctaaagcg gacacgtcca aaggttttct
+      481 gattgatggc tatccgcgcc aagtgcaaca gggcgaggaa tttgaacgcc gcattgcaca
+      541 accgactctg ttgttatacg ttgacgcagg cccggaaaca atgcagaaac gcctgttaaa
+      601 acgtggtgaa acgtcaggtc gtgttgatga taacgaagaa accattaaaa aacggttgga
+      661 aacatactac aaggctaccg aaccggttat cgctttctac gagaaacgtg gaattgtgcg
+      721 caaagtcaat gccgaaggga gcgttgataa tgtgtttagt caagtttgca cccacctgga
+      781 tgcacttaag tgaagagctt agagaccgag ataacagata cttcggtatc tgttatctgt
+      841 ttttttttaa atgagacgaa acacgtggca aacattccct aagcatcaca ctgccgtc
+//

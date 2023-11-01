@@ -1,0 +1,83 @@
+LOCUS       AK-Sc-1                  979 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Adenylate Kinase (S. cerevisiae S288C).
+ACCESSION   AK-Sc-1
+VERSION     AK-Sc-1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [13]"
+     misc_feature    79..89
+                     /label="CAST 34 [CCAA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     misc_feature    173..838
+                     /label="AK-Sc-1"
+     CDS             173..838
+                     /standard_name="AK-Sc-1"
+                     /translation="MSSSESIRMVLIGPPGAGKGTQAPNLQERFHAAHLATGDMLRSQI
+                     AKGTQLGLEAKKIMDQGGLVSDDIMVNMIKDELTNNPACKNGFILDGFPRTIPQAEKLD
+                     QMLKEQGTPLEKAIELKVDDELLVARITGRLIHPASGRSYHKIFNPPKEDMKDDVTGEA
+                     LVQRSDDNADALKKRLAAYHAQTEPIVDFYKKTGIWAGVDASQPPATVWADILNKLGKD
+                     *"
+     CDS             839..853
+                     /label="Linker"
+                     /translation="GGGGS"
+     CDS             854..871
+                     /label="His6"
+                     /translation="HHHHHH"
+     misc_feature    872..889
+                     /label="CDS Suffix"
+     regulatory      890..928
+                     /label="T7hyb6 Terminator"
+     misc_feature    929..939
+                     /label="CAST 34 [TAAA]"
+     misc_feature    940..959
+                     /label="Dialout Reverse [0]"
+     misc_feature    960..979
+                     /label="Terminator Spacer"
+     misc_feature    1..979
+                     /label="pT7-lacO-UTR1-AK-Sc-1-tT7hyb6"
+ORIGIN
+        1 taggtcgtct cgtgcgcatg tagggataac agggtaatta catccctagg ttacgcgaaa
+       61 ggtatgtata gcgaccgccg tctcaccaat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgtcaag
+      181 tagcgagtcg atccgtatgg tgttaatcgg gccgccaggg gctggcaaag gcacgcaggc
+      241 accgaacctg caagaacggt tccacgctgc tcatttggca acaggcgata tgctgcgcag
+      301 tcaaattgcg aaaggcacac agctgggact tgaagcaaaa aaaattatgg atcaaggcgg
+      361 ccttgttagc gacgacatta tggttaacat gattaaggat gagctgacaa ataaccccgc
+      421 ttgtaaaaac ggctttattc ttgacggttt cccccgcacg attccgcaag cagaaaagct
+      481 tgaccagatg ttgaaagaac aggggacgcc actggaaaaa gcgattgaac tgaaagttga
+      541 cgatgaactg ttggttgccc gcattacagg tcgcctgatc catccagcga gtgggcggtc
+      601 ataccataaa atcttcaatc ccccaaaaga agatatgaaa gatgatgtta ccggcgaagc
+      661 cttagtacag cgttcggatg acaatgcgga cgctttaaag aagcgcttgg ccgcatacca
+      721 tgcgcaaact gaaccgattg tcgattttta caaaaaaacg ggcatttggg cgggtgtgga
+      781 tgcgagtcag cctccggcga cggtgtgggc ggatatcctg aacaagctgg gaaaagatgg
+      841 aggcggtgga tctcaccatc accaccatca ttgaagagct tagagaccga gataacagat
+      901 acttcggtat ctgttatctg ttttttttta aatgagacga aacacgtggc aaacattccc
+      961 taagcatcac actgccgtc
+//

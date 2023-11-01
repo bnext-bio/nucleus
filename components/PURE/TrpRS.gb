@@ -1,0 +1,89 @@
+LOCUS       TrpRS                   1315 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Tryptophan tRNA synthetase.
+ACCESSION   TrpRS
+VERSION     TrpRS
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [4]"
+     misc_feature    79..89
+                     /label="CAST 20 [ACCA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     misc_feature    173..1174
+                     /label="TrpRS"
+     CDS             173..1174
+                     /standard_name="TrpRS"
+                     /translation="MTKPIVFSGAQPSGELTIGNYMGALRQWVNMQDDYHCIYCIVDQH
+                     AITVRQDAQKLRKATLDTLALYLACGIDPEKSTIFVQSHVPEHAQLGWALNCYTYFGEL
+                     SRMTQFKDKSARYAENINAGLFDYPVLMAADILLYQTNLVPVGEDQKQHLELSRDIAQR
+                     FNALYGEIFKVPEPFIPKSGARVMSLLEPTKKMSKSDDNRNNVIGLLEDPKSVVKKIKR
+                     AVTDSDEPPVVRYDVQNKAGVSNLLDILSAVTGQSIPELEKQFEGKMYGHLKGEVADAV
+                     SGMLTELQERYHRFRNDEAFLQQVMKDGAEKASAHASRTLKAVYEAIGFVAKP*"
+     CDS             1175..1189
+                     /label="Linker"
+                     /translation="GGGGS"
+     CDS             1190..1207
+                     /label="His6"
+                     /translation="HHHHHH"
+     misc_feature    1208..1225
+                     /label="CDS Suffix"
+     regulatory      1226..1264
+                     /label="T7hyb6 Terminator"
+     misc_feature    1265..1275
+                     /label="CAST 20 [CATC]"
+     misc_feature    1276..1295
+                     /label="Dialout Reverse [0]"
+     misc_feature    1296..1315
+                     /label="Terminator Spacer"
+     misc_feature    1..1315
+                     /label="pT7-lacO-UTR1-TrpRS-tT7hyb6"
+ORIGIN
+        1 cgggctggat cgtccgagcc tagggataac agggtaatag agggtaggca ggacactgaa
+       61 ataagacgac gaccctcgcg tctcaaccat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgacgaa
+      181 accgattgtc ttttcggggg cccagccgag cggagaactg actattggca attacatggg
+      241 cgcgttacgt caatgggtga atatgcagga cgattaccac tgcatttact gcattgtgga
+      301 tcagcacgcg atcacggtgc gtcaggatgc acaaaagctg cgcaaagcca cgctggatac
+      361 tctggctctt tatctggcct gtggtattga cccggaaaag agcaccattt ttgttcagtc
+      421 tcatgttccg gagcacgcgc aactgggctg ggcacttaac tgttacactt actttggtga
+      481 actgtcacgt atgacccagt ttaaggataa atcggcccgt tatgctgaaa atattaacgc
+      541 gggtctgttc gactatccag tcttaatggc agctgacatt ttgctgtacc agacgaatct
+      601 ggttccggtt ggcgaagatc agaaacagca tttggaattg tctcgtgata tcgctcagcg
+      661 ttttaatgcg ctgtatggtg aaatctttaa agttccggaa ccgttcatcc ccaaatctgg
+      721 ggcgcgtgta atgtctctgc tggaaccgac taaaaaaatg tcgaaatcag atgacaatcg
+      781 taataacgtg attggcttgc tggaagatcc taaatccgtg gtgaaaaaaa ttaagcgggc
+      841 tgttactgat tctgatgaac cgccggttgt acggtacgat gtacagaata aagcgggagt
+      901 ctccaatctt cttgatatcc tgtccgcggt tacgggacag tctattccgg agcttgagaa
+      961 gcagtttgaa ggcaaaatgt acggtcattt aaaaggggaa gtggccgatg cagtttcggg
+     1021 catgctgaca gaactgcagg aacgttatca tcgtttccgc aacgacgaag ctttcctgca
+     1081 acaagttatg aaagatgggg cagagaaagc cagtgcccat gcaagtcgga ccttaaaagc
+     1141 agtatatgaa gctatcggtt ttgtcgcgaa gccaggaggc ggtggatctc accatcacca
+     1201 ccatcattga agagcttaga gaccgagata acagatactt cggtatctgt tatctgtttt
+     1261 ttttcatctg agacgaaaca cgtggcaaac attccctaag catcacactg ccgtc
+//

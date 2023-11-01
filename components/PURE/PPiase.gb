@@ -1,0 +1,87 @@
+LOCUS       PPiase                  1174 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Pyrophosphotase.
+ACCESSION   PPiase
+VERSION     PPiase
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [8]"
+     misc_feature    79..89
+                     /label="CAST 38 [TAAG]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     misc_feature    173..1033
+                     /label="PPiase"
+     CDS             173..1033
+                     /standard_name="PPiase"
+                     /translation="MTYTTRQIGAKNTLEYKVYIEKDGKPVSAFHDIPLYADKENNIFN
+                     MVVEIPRWTNAKLEITKEETLNPIIQDTKKGKLRFVRNCFPHHGYIHNYGAFPQTWEDP
+                     NVSHPETKAVGDNDPIDVLEIGETIAYTGQVKQVKALGIMALLDEGETDWKVIAIDIND
+                     PLAPKLNDIEDVEKYFPGLLRATNEWFRIYKIPDGKPENQFAFSGEAKNKKYALDIIKE
+                     THDSWKQLIAGKSSDSKGIDLTNVTLPDTPTYSKAASDAIPPASPKADAPIDKSIDKWF
+                     FISGSV*"
+     CDS             1034..1048
+                     /label="Linker"
+                     /translation="GGGGS"
+     CDS             1049..1066
+                     /label="His6"
+                     /translation="HHHHHH"
+     misc_feature    1067..1084
+                     /label="CDS Suffix"
+     regulatory      1085..1123
+                     /label="T7hyb6 Terminator"
+     misc_feature    1124..1134
+                     /label="CAST 38 [TAAT]"
+     misc_feature    1135..1154
+                     /label="Dialout Reverse [0]"
+     misc_feature    1155..1174
+                     /label="Terminator Spacer"
+     misc_feature    1..1174
+                     /label="pT7-lacO-UTR1-PPiase-tT7hyb6"
+ORIGIN
+        1 aggcaattgt ctgttgaaga tagggataac agggtaatgt ctgctaccca atcgaaacaa
+       61 ggaactatgg catcgagccg tctcataagt aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgaccta
+      181 tacgacacgt cagattgggg ccaaaaacac tttagagtac aaagtgtaca tcgaaaagga
+      241 cggcaaaccg gtttccgcgt tccatgacat tccgctttat gctgataaag aaaacaacat
+      301 tttcaacatg gttgtggaaa ttccgcgctg gaccaatgct aagcttgaga ttactaaaga
+      361 agaaacgctg aacccgatca tccaagatac caaaaagggc aaacttcggt tcgtccgcaa
+      421 ttgcttcccc caccatggtt atatccacaa ctacggcgca tttccccaga cgtgggaaga
+      481 tccgaacgtt agccatccgg agacaaaagc agtcggcgac aatgatccga tcgatgtttt
+      541 ggaaattggg gagacaatcg catataccgg ccaagtcaaa caggtaaaag ctctgggtat
+      601 tatggccctg ctggacgaag gtgagacaga ttggaaagtg attgctattg atattaacga
+      661 tccgttagcc ccgaaactga atgatatcga agatgtcgaa aaatatttcc cgggtttact
+      721 gcgcgcgacc aacgaatggt ttcgcattta caaaattcca gatggcaaac cggaaaacca
+      781 gtttgctttc tcaggcgagg ccaaaaacaa gaaatacgcg ttggacatca tcaaagaaac
+      841 ccacgacagc tggaagcagc ttattgcggg gaagagtagt gattcaaagg gtattgactt
+      901 gacaaacgtc accctgcctg ataccccaac ctattccaaa gccgcaagcg acgcgatccc
+      961 gccggcctct ccaaaagcag atgcaccgat tgataaaagc atcgataaat ggtttttcat
+     1021 ctctgggagc gtgggaggcg gtggatctca ccatcaccac catcattgaa gagcttagag
+     1081 accgagataa cagatacttc ggtatctgtt atctgttttt ttttaattga gacgaaacac
+     1141 gtggcaaaca ttccctaagc atcacactgc cgtc
+//

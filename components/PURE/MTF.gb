@@ -1,0 +1,88 @@
+LOCUS       MTF                     1258 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Methionyl tRNA transformylase.
+ACCESSION   MTF
+VERSION     MTF
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [12]"
+     misc_feature    79..89
+                     /label="CAST 24 [AGTC]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     misc_feature    173..1117
+                     /label="MTF"
+     CDS             173..1117
+                     /standard_name="MTF"
+                     /translation="MSESLRIIFAGTPDFAARHLDALLSSGHNVVGVFTQPDRPAGRGK
+                     KLMPSPVKVLAEEKGLPVFQPVSLRPQENQQLVAELQADVMVVVAYGLILPKAVLEMPR
+                     LGCINVHGSLLPRWRGAAPIQRSLWAGDAETGVTIMQMDVGLDTGDMLYKLSCPITAED
+                     TSGTLYDKLAELGPQGLITTLKQLADGTAKPEVQDETLVTYAEKLSKEEARIDWSLSAA
+                     QLERCIRAFNPWPMSWLEIEGQPVKVWKASVIDTATNAAPGTILEANKQGIQVATGDGI
+                     LNLLSLQPAGKKAMSAQDLLNSRREWFVPGNRLV*"
+     CDS             1118..1132
+                     /label="Linker"
+                     /translation="GGGGS"
+     CDS             1133..1150
+                     /label="His6"
+                     /translation="HHHHHH"
+     misc_feature    1151..1168
+                     /label="CDS Suffix"
+     regulatory      1169..1207
+                     /label="T7hyb6 Terminator"
+     misc_feature    1208..1218
+                     /label="CAST 24 [GAAA]"
+     misc_feature    1219..1238
+                     /label="Dialout Reverse [0]"
+     misc_feature    1239..1258
+                     /label="Terminator Spacer"
+     misc_feature    1..1258
+                     /label="pT7-lacO-UTR1-MTF-tT7hyb6"
+ORIGIN
+        1 agtgcaagct atatagagta tagggataac agggtaattg gggatcctcc agaataccaa
+       61 ggcgctcgga taatactccg tctcaagtct aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgtccga
+      181 atcactgcgt atcatttttg ccggcactcc ggactttgcc gcccgtcatc tggatgcgct
+      241 gctgagtagt ggtcataacg tagtgggcgt gttcacccag cctgatcgtc cggcaggacg
+      301 tggtaaaaaa ctgatgccga gcccggtgaa agtcctggcg gaagaaaaag gtctgccggt
+      361 gtttcagcca gtttctttgc gtccacaaga aaatcagcaa cttgtggccg aactgcaggc
+      421 cgatgtgatg gtagtagtcg cgtatggttt aattctgcca aaagcggtgt tggaaatgcc
+      481 gcgcttagga tgtatcaacg tgcatggtag cttgttgcct cgctggcgtg gcgccgctcc
+      541 aatccaacgt tcactgtggg ccggagatgc ggaaactggc gtgaccatca tgcagatgga
+      601 cgtgggtctt gataccggag atatgctgta taaactgtca tgccctatta ccgccgaaga
+      661 taccagcggt accctttatg acaaattagc cgaactgggt ccgcaaggcc tgattaccac
+      721 acttaaacag ctggcagatg gcacggctaa accagaggtt caggatgaaa ctctggttac
+      781 gtatgctgaa aaattgtcaa aagaagaggc ccgcattgac tggtctttgt ctgcagctca
+      841 gttagaacgc tgcattcgtg cctttaaccc ctggccgatg agttggctgg aaattgaagg
+      901 tcaacccgta aaggtatgga aagcctctgt gatcgatact gcgaccaacg cagccccagg
+      961 gactattctg gaggccaaca aacagggcat tcaggttgca accggagatg gtatcctgaa
+     1021 cttactgagc ctgcagcccg cgggtaagaa agcaatgtcc gcacaggacc tgctgaacag
+     1081 ccgccgcgaa tggttcgtgc cgggtaaccg cttggtggga ggcggtggat ctcaccatca
+     1141 ccaccatcat tgaagagctt agagaccgag ataacagata cttcggtatc tgttatctgt
+     1201 tttttttgaa atgagacgaa acacgtggca aacattccct aagcatcaca ctgccgtc
+//

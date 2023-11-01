@@ -1,0 +1,88 @@
+LOCUS       GlyQ                    1222 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Glycine tRNA synthetase Q protein.
+ACCESSION   GlyQ
+VERSION     GlyQ
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [39]"
+     misc_feature    79..89
+                     /label="CAST 10 [GGGA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     misc_feature    173..1081
+                     /label="GlyQ"
+     CDS             173..1081
+                     /standard_name="GlyQ"
+                     /translation="MQKFDTRTFQGLILTLQDYWARQGCTIVQPLDMEVGAGTSHPMTC
+                     LRELGPEPMAAAYVQPSRRPTDGRYGENPNRLQHYYQFQVVIKPSPDNIQELYLGSLKE
+                     LGMDPTIHDIRFVEDNWENPTLGAWGLGWEVWLNGMEVTQFTYFQQVGGLECKPVTGEI
+                     TYGLERLAMYIQGVDSVYDLVWSDGPLGKTTYGDVFHQNEVEQSTYNFEYADVDFLFTC
+                     FEQYEKEAQQLLALENPLPLPAYERILKAAHSFNLLDARKAISVTERQRYILRIRTLTK
+                     AVAEAYYASREALGFPMCNKDK*"
+     CDS             1082..1096
+                     /label="Linker"
+                     /translation="GGGGS"
+     CDS             1097..1114
+                     /label="His6"
+                     /translation="HHHHHH"
+     misc_feature    1115..1132
+                     /label="CDS Suffix"
+     regulatory      1133..1171
+                     /label="T7hyb6 Terminator"
+     misc_feature    1172..1182
+                     /label="CAST 10 [GAGG]"
+     misc_feature    1183..1202
+                     /label="Dialout Reverse [0]"
+     misc_feature    1203..1222
+                     /label="Terminator Spacer"
+     misc_feature    1..1222
+                     /label="pT7-lacO-UTR1-GlyQ-tT7hyb6"
+ORIGIN
+        1 gttctacatg cggtcgacct tagggataac agggtaatta gaaaataaca agctcacaag
+       61 aacatagcat tcacggggcg tctcagggat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcagaa
+      181 gtttgacact cgtacctttc aaggactgat tctgacttta caggattact gggctcgcca
+      241 gggttgtacc atcgtccagc cgctggatat ggaagtcggg gcgggtacat cacatccgat
+      301 gacctgcttg cgtgaactgg gcccagagcc gatggccgca gcgtacgtac agccgtcacg
+      361 tcgtcccacc gacggtcgct atggcgagaa cccaaatcgc ctgcaacatt attatcagtt
+      421 tcaggttgtc attaaaccga gccctgataa cattcaggaa ttgtacctgg gatctttaaa
+      481 agaattaggc atggacccga ccatccatga tattcgcttt gtggaagata actgggaaaa
+      541 cccaacgctg ggcgcgtggg gactgggttg ggaagtgtgg ctgaacggca tggaggttac
+      601 tcaatttacc tactttcaac aggtcggtgg cctggagtgc aaaccggtga ccggtgaaat
+      661 tacctatggt ctggaacgtc ttgctatgta tattcagggc gtggattccg tatacgatct
+      721 ggtttggtct gatggtccgc tgggtaaaac cacctatgga gatgttttcc accagaacga
+      781 agtagagcaa agtacctata actttgaata cgcagatgta gactttttat ttacttgctt
+      841 cgaacaatac gagaaggaag cacagcagtt gctggccctg gaaaacccgc tgccgctgcc
+      901 ggcctatgaa cgtatcctga aggcggcgca ttcgtttaat ctgctggacg cccgcaaagc
+      961 aatttcagtg acggaacgcc agcgttatat tctgcgtatc cggaccctga caaaggctgt
+     1021 ggctgaagca tattatgcat cacgtgaagc attgggcttt ccgatgtgta ataaagataa
+     1081 gggaggcggt ggatctcacc atcaccacca tcattgaaga gcttagagac cgagataaca
+     1141 gatacttcgg tatctgttat ctgttttttt tgaggtgaga cgaaacacgt ggcaaacatt
+     1201 ccctaagcat cacactgccg tc
+//

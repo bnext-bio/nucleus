@@ -1,0 +1,115 @@
+LOCUS       EF-G                    2425 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Elongation factor G.
+ACCESSION   EF-G
+VERSION     EF-G
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [25]"
+     misc_feature    79..89
+                     /label="CAST 28 [AATA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     misc_feature    173..2284
+                     /label="EF-G"
+     CDS             173..2284
+                     /standard_name="EF-G"
+                     /translation="MARTTPIARYRNIGISAHIDAGKTTTTERILFYTGVNHKIGEVHD
+                     GAATMDWMEQEQERGITITSAATTAFWSGMAKQYEPHRINIIDTPGHVDFTIEVERSMR
+                     VLDGAVMVYCAVGGVQPQSETVWRQANKYKVPRIAFVNKMDRMGANFLKVVNQIKTRLG
+                     ANPVPLQLAIGAEEHFTGVVDLVKMKAINWNDADQGVTFEYEDIPADMVELANEWHQNL
+                     IESAAEASEELMEKYLGGEELTEAEIKGALRQRVLNNEIILVTCGSAFKNKGVQAMLDA
+                     VIDYLPSPVDVPAINGILDDGKDTPAERHASDDEPFSALAFKIATDPFVGNLTFFRVYS
+                     GVVNSGDTVLNSVKAARERFGRIVQMHANKREEIKEVRAGDIAAAIGLKDVTTGDTLCD
+                     PDAPIILERMEFPEPVISIAVEPKTKADQEKMGLALGRLAKEDPSFRVWTDEESNQTII
+                     AGMGELHLDIIVDRMKREFNVEANVGKPQVAYRETIRQKVTDVEGKHAKQSGGRGQYGH
+                     VVIDMYPLEPGSNPKGYEFINDIKGGVIPGEYIPAVDKGIQEQLKAGPLAGYPVVDMGI
+                     RLHFGSYHDVDSSELAFKLAASIAFKEGFKKAKPVLLEPIMKVEVETPEENTGDVIGDL
+                     SRRRGMLKGQESEVTGVKIHAEVPLSEMFGYATQLRSLTKGRASYTMEFLKYDEAPSNV
+                     AQAVIEARGK*"
+     CDS             2285..2299
+                     /label="Linker"
+                     /translation="GGGGS"
+     CDS             2300..2317
+                     /label="His6"
+                     /translation="HHHHHH"
+     misc_feature    2318..2335
+                     /label="CDS Suffix"
+     regulatory      2336..2374
+                     /label="T7hyb6 Terminator"
+     misc_feature    2375..2385
+                     /label="CAST 28 [CAAG]"
+     misc_feature    2386..2405
+                     /label="Dialout Reverse [0]"
+     misc_feature    2406..2425
+                     /label="Terminator Spacer"
+     misc_feature    1..2425
+                     /label="pT7-lacO-UTR1-EF-G-tT7hyb6"
+ORIGIN
+        1 aagcgtgttg tcgccttggc tagggataac agggtaattt gaacccaaga ggtttcgaac
+       61 ataagcgatc ccaaggtccg tctcaaatat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatggcccg
+      181 caccaccccg atcgcgcgct atcgcaacat tggcatttct gcccacattg acgcggggaa
+      241 aaccacgacc accgagcgca tcctgtttta tacgggggtt aaccacaaaa tcggtgaggt
+      301 acacgatggt gcggcgacaa tggattggat ggaacaagaa caggaacgcg gcatcacgat
+      361 caccagtgcc gcaaccaccg cgttctggag tggaatggct aaacaatatg aaccacaccg
+      421 catcaacatt attgatactc caggtcatgt cgattttacg attgaagtgg agcgttcgat
+      481 gcgcgtgtta gatggtgcgg ttatggttta ttgcgcggtc ggcggcgttc aaccgcagtc
+      541 cgaaacagta tggcgccaag ctaacaaata taaggtgcct cgcattgcgt tcgtgaataa
+      601 aatggatcgc atgggggcga attttttgaa ggttgtgaat cagattaaaa cccgtctggg
+      661 agccaacccc gtgcccttgc agcttgccat cggcgcagaa gaacacttca ccggggttgt
+      721 cgacctggtg aagatgaaag cgattaactg gaacgacgcg gatcaaggtg tgacctttga
+      781 gtatgaagat attccggccg acatggtgga acttgctaac gaatggcacc aaaatcttat
+      841 tgagagcgcg gccgaagcgt ccgaagagtt aatggaaaaa tatctgggag gcgaagaatt
+      901 gactgaagca gaaatcaaag gcgcactgcg tcagcgtgtt ttaaataacg aaatcatcct
+      961 tgtaacatgc ggttccgcat tcaaaaacaa aggtgttcag gccatgctgg acgctgtaat
+     1021 cgactatctg ccatccccgg tagatgtgcc ggctatcaac ggtattcttg atgacgggaa
+     1081 agatacaccg gccgaacgcc atgcgagtga tgatgagccg ttttcagcct tggcattcaa
+     1141 aattgcaacc gacccgtttg tgggcaattt gacctttttt cgggtctatt ctggtgtcgt
+     1201 gaacagtggc gataccgtgc tgaatagtgt gaaggcagct cgtgaacgtt tcggtcgcat
+     1261 tgtccagatg cacgccaaca aacgtgaaga aatcaaagag gtccgcgcag gagatattgc
+     1321 cgcagcgatt ggtctgaaag atgtgacgac cggagatacg ctgtgcgacc ccgacgcccc
+     1381 gatcattttg gaacgcatgg aatttccgga gccggtgatt agcattgctg ttgaacctaa
+     1441 aaccaaagcc gatcaggaga aaatgggcct ggccctgggt cgcttggcga aggaagatcc
+     1501 tagctttcgg gtgtggaccg atgaagaatc taatcaaact attattgcgg gcatgggcga
+     1561 attgcatttg gacatcattg tggatcgcat gaaacgcgaa ttcaacgttg aggcaaatgt
+     1621 tggcaaaccg caggtcgcct accgcgaaac tattcgccaa aaggttaccg atgtagaagg
+     1681 caagcacgcg aagcagagcg gggggcgcgg acaatatggc cacgtagtga ttgacatgta
+     1741 tcctctggaa ccaggctcaa acccgaaagg ctatgaattc atcaatgaca ttaagggggg
+     1801 agtcattccg ggtgaataca tcccagctgt cgacaaaggg attcaggaac aacttaaggc
+     1861 cggcccgttg gcgggctacc cagttgtaga catggggatt cgtctgcatt tcggaagcta
+     1921 tcatgacgtc gactcatcgg agctggcttt taaacttgcg gctagcattg cgtttaaaga
+     1981 agggtttaaa aaggcaaaac cagtgctgct ggaaccgatc atgaaagtgg aagttgaaac
+     2041 ccccgaggaa aacacggggg atgtgattgg ggacctgagc cgccggcgtg gaatgttaaa
+     2101 gggccaggag agcgaagtaa cgggagtaaa gatccacgca gaagtgccgt tatcggagat
+     2161 gtttggctac gcgacacagc tgcgcagttt aactaaaggt cgtgcaagct acacgatgga
+     2221 attcctgaag tatgatgaag ccccctccaa tgtagcgcaa gccgtaatcg aggctcgcgg
+     2281 caagggaggc ggtggatctc accatcacca ccatcattga agagcttaga gaccgagata
+     2341 acagatactt cggtatctgt tatctgtttt ttttcaagtg agacgaaaca cgtggcaaac
+     2401 attccctaag catcacactg ccgtc
+//

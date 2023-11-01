@@ -1,0 +1,127 @@
+LOCUS       PheT                    2701 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Phenylalanine tRNA synthetase T protein.
+ACCESSION   PheT
+VERSION     PheT
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [34]"
+     misc_feature    79..89
+                     /label="CAST 16 [AAAT]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     source          209..2593
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    209..2593
+                     /label="pheT"
+     CDS             209..2593
+                     /codon_start=1
+                     /translation="MKFSELWLREWVNPAIDSDALANQITMAGLEVDGVEPVAGSFHGV
+                     VVGEVVECAQHPNADKLRVTKVNVGGDRLLDIVCGAPNCRQGLRVAVATIGAVLPGDFK
+                     IKAAKLRGEPSEGMLCSFSELGISDDHSGIIELPADAPIGTDIREYLKLDDNTIEISVT
+                     PNRADCLGIIGVARDVAVLNQLPLVQPEIVPVGATIDDTLPITVEAPEACPRYLGRVVK
+                     GINVKAPTPLWMKEKLRRCGIRSIDAVVDVTNYVLLELGQPMHAFDKDRIEGGIVVRMA
+                     KEGETLVLLDGTEAKLNADTLVIADHNKALAMGGIFGGEHSGVNDETQNVLLECAFFSP
+                     LSITGRARRHGLHTDASHRYERGVDPALQHKAMERATRLLIDICGGEAGPVIDITNEAT
+                     LPKRATITLRRSKLDRLIGHHIADEQVTDILRRLGCEVTEGKDEWQAVAPSWRFDMEIE
+                     EDLVEEVARVYGYNNIPDEPVQASLIMGTHREADLSLKRVKTLLNDKGYQEVITYSFVD
+                     PKVQQMIHPGVEALLLPSPISVEMSAMRLSLWTGLLATVVYNQNRQQNRVRIFESGLRF
+                     VPDTQAPLGIRQDLMLAGVICGNRYEEHWNLAKETVDFYDLKGDLESVLDLTGKLNEVE
+                     FRAEANPALHPGQSAAIYLKGERIGFVGVVHPELERKLDLNGRTLVFELEWNKLADRVV
+                     PQAREISRFPANRRDIAVVVAENVPAADILSECKKVGVNQVVGVNLFDVYRGKGVAEGY
+                     KSLAISLILQDTSRTLEEEEIAATVAKCVEALKERFQASLRD"
+     misc_feature    2594..2611
+                     /label="CDS Suffix"
+     regulatory      2612..2650
+                     /label="T7hyb6 Terminator"
+     misc_feature    2651..2661
+                     /label="CAST 16 [ATAA]"
+     misc_feature    2662..2681
+                     /label="Dialout Reverse [0]"
+     misc_feature    2682..2701
+                     /label="Terminator Spacer"
+     misc_feature    1..2701
+                     /label="pT7-lacO-UTR1-PheT-tT7hyb6"
+ORIGIN
+        1 cgaacactta gaagagcccg tagggataac agggtaatta gcaacaaggt caatcacaac
+       61 gtgaaactgt atcgagcccg tctcaaaatt aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat gaaattttct gagctgtggt tacgtgagtg
+      241 ggttaatccc gctattgact ctgatgccct ggcaaaccaa attacgatgg cgggcttaga
+      301 agtcgacggc gttgaaccag ttgcgggatc ctttcacggt gtggttgtgg gggaagtggt
+      361 agaatgtgca cagcatccca atgccgacaa actgcgtgtc accaaggtaa atgtgggggg
+      421 cgatcgtctt ttagatattg tgtgcggcgc ccctaattgt cggcaggggc tgcgtgttgc
+      481 agtggccacg attggggctg tcctgccagg tgacttcaag atcaaagcag cgaaattacg
+      541 cggtgaaccg tctgaaggca tgctgtgctc tttcagtgag ttaggtatct cagatgatca
+      601 tagcggcatt attgagctgc cggcagatgc gcctatcgga actgatattc gcgaatacct
+      661 taagttagat gacaacacga ttgaaatctc cgttaccccc aaccgcgctg attgtctggg
+      721 catcatcggt gtagcacgcg acgtggcggt cctgaatcaa ctgccgttgg tgcagccaga
+      781 aatcgtccct gtaggtgcca caatcgatga taccctgccg attacggttg aagcgccgga
+      841 ggcatgccct cgttacttgg gtcgcgtcgt taaaggaatc aatgtaaaag ccccgacacc
+      901 actgtggatg aaagaaaaac tgcgccgttg cgggattcgg agtattgatg ccgtagtgga
+      961 tgttacaaac tatgtgctgc tggaattagg acagccaatg catgcctttg ataaggaccg
+     1021 gattgaaggg ggtatcgtag ttcgcatggc gaaagaagga gaaacgctgg tgttgcttga
+     1081 tggtaccgaa gcaaaattga atgctgatac tctggttatt gcggaccaca acaaagcgct
+     1141 ggccatgggg gggatcttcg gcggagagca tagcggcgtt aatgatgaaa cgcagaatgt
+     1201 tctgctggaa tgtgcgttct tttccccatt gtctatcacc gggcgcgcgc ggcgtcacgg
+     1261 cttgcacaca gatgcttctc accgctacga acgcggcgtg gaccctgctc tgcagcataa
+     1321 agcaatggaa cgtgctacgc gtctgctgat tgacatctgc ggaggcgagg cggggccggt
+     1381 gattgacatt accaatgaag ccaccttacc gaagcgcgcc actattactc ttcgtcggtc
+     1441 taagctggat cggttgatcg gccatcacat tgctgatgaa caggttacag atatcctgcg
+     1501 gcgcttaggt tgcgaagtca cggagggcaa ggacgaatgg caggcggtgg cgccgagctg
+     1561 gcgctttgat atggaaattg aggaagatct ggttgaggag gtggcacgtg tatacggtta
+     1621 taataatatt ccggacgagc ctgttcaggc gagcctgatt atgggcactc atcgtgaagc
+     1681 ggacctgtct ctgaagcgcg taaaaactct gttgaacgac aaaggttatc aagaagttat
+     1741 tacctacagt tttgtcgacc cgaaagtgca acagatgatt cacccagggg ttgaagcgtt
+     1801 acttcttccg tcgcctatct ccgtggaaat gagcgccatg cgcctgtcgt tatggactgg
+     1861 tctgcttgcg actgtcgtgt ataatcagaa tcgtcaacag aaccgtgtcc gcatctttga
+     1921 gtcggggctg cgtttcgtgc cagatacgca ggcccccctt ggcattcgcc aggatttgat
+     1981 gttagctggc gtgatttgtg ggaatcgtta cgaggagcac tggaatctgg ccaaggaaac
+     2041 cgttgatttc tatgatctta aaggtgacct ggaatcggta ctggatctga cgggtaaatt
+     2101 gaatgaagtc gaatttcgtg ccgaagccaa tccagctctg catccgggcc aaagcgcagc
+     2161 gatttatttg aagggtgaac gtatcggttt cgtgggcgtg gtgcaccctg aactggaacg
+     2221 caaattggat ttaaatggtc gtacacttgt atttgagctg gagtggaata aattagctga
+     2281 tcgtgttgtt ccgcaagcac gcgaaattag ccggtttccg gcgaaccggc gtgatatcgc
+     2341 cgttgtcgtg gcagaaaacg tcccggcggc cgacatcctt tccgaatgta aaaaggtggg
+     2401 tgtgaaccag gttgttgggg tgaacttatt tgatgtctat cgcggtaaag gagtagcaga
+     2461 aggctacaaa agcctggcta tctcgttgat tctgcaagat acatctcgta cgttagagga
+     2521 ggaggagatc gccgcgaccg ttgcgaaatg cgtagaggct ctgaaagaac ggttccaggc
+     2581 ctctttgcgt gattgaagag cttagagacc gagataacag atacttcggt atctgttatc
+     2641 tgtttttttt ataatgagac gaaacacgtg gcaaacattc cctaagcatc acactgccgt
+     2701 c
+//

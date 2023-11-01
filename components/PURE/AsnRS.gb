@@ -1,0 +1,102 @@
+LOCUS       AsnRS                   1714 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Asparagine tRNA synthetase.
+ACCESSION   AsnRS
+VERSION     AsnRS
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [20]"
+     misc_feature    79..89
+                     /label="CAST 5 [ACTA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     misc_feature    209..1606
+                     /label="AsnRS"
+     CDS             209..1606
+                     /standard_name="AsnRS"
+                     /translation="MSVVPVADVLQGRVAVDSEVTVRGWVRTRRDSKAGISFLAVYDGS
+                     CFDPVQAVINNSLPNYNEDVLRLTTGCSVIVTGKVVASPGQGQQFEIQASKVEVAGWVE
+                     DPDTYPMAAKRHSIEYLREVAHLRPRTNLIGAVARVRHTLAQALHRFFNEQGFFWVSTP
+                     LITASDTEGAGEMFRVSTLDLENLPRNDQGKVDFDKDFFGKESFLTVSGQLNGETYACA
+                     LSKIYTFGPTFRAENSNTSRHLAEFWMLEPEVAFANLNDIAGLAEAMLKYVFKAVLEER
+                     ADDMKFFAERVDKDAVSRLERFIEADFAQVDYTDAVTILENCGRKFENPVYWGVDLSSE
+                     HERYLAEEHFKAPVVVKNYPKDIKAFYMRLNEDGKTVAAMDVLAPGIGEIIGGSQREER
+                     LDVLDERMLEMGLNKEDYWWYRDLRRYGTVPHSGFGLGFERLIAYVTGVQNVRDVIPFP
+                     RTPRNASF*"
+     misc_feature    1607..1624
+                     /label="CDS Suffix"
+     regulatory      1625..1663
+                     /label="T7hyb6 Terminator"
+     misc_feature    1664..1674
+                     /label="CAST 5 [TTAC]"
+     misc_feature    1675..1694
+                     /label="Dialout Reverse [0]"
+     misc_feature    1695..1714
+                     /label="Terminator Spacer"
+     misc_feature    1..1714
+                     /label="pT7-lacO-UTR1-AsnRS-tT7hyb6"
+ORIGIN
+        1 gcagggagta tcgagggttt tagggataac agggtaataa accatctttc ttacggagac
+       61 aacgagcaga ccgaatagcg tctcaactat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat gagcgttgtt cccgtcgcag atgtcttgca
+      241 gggccgtgtc gcggtggatt ccgaagtcac cgtgcgtggt tgggttcgca cgcgccgcga
+      301 tagcaaagct ggcatcagct tcctggcggt ttacgatggc tcctgctttg acccagtcca
+      361 agcggtgatt aacaattcac ttccaaacta taacgaagat gttttgcgct taacaacggg
+      421 atgtagcgta atcgtgacag gtaaagtggt tgcctcgcca ggccagggcc aacagttcga
+      481 aatccaagcg agcaaggttg aggttgccgg ttgggttgag gatccggata cgtatccaat
+      541 ggcggcgaaa cgtcactcta tcgagtatct gcgggaggtc gcgcatctgc gtcctcggac
+      601 gaaccttatt ggcgcagtag cacgcgtccg ccataccctg gcacaggcgt tacatcgttt
+      661 ctttaacgaa caaggatttt tttgggtttc cacgccgctg atcactgcga gcgatacgga
+      721 aggtgcaggc gaaatgttcc gtgtttcgac ccttgatttg gaaaatctgc cgcgcaatga
+      781 ccaaggcaaa gttgatttcg ataaagattt cttcggcaaa gagtctttcc tgacggtcag
+      841 tggccagctg aatggagaga catacgcgtg cgcgctgtcg aagatttata ctttcggccc
+      901 gacctttcgt gcggaaaact cgaacacttc acgccatctg gcagaatttt ggatgcttga
+      961 gccggaagtt gcctttgcta acttaaatga tatcgcggga ctggctgaag ccatgctgaa
+     1021 atatgtattt aaagcggtcc tggaagaacg tgcggatgat atgaaatttt ttgctgagcg
+     1081 ggttgataaa gatgcggtca gccgtcttga acgttttatt gaagctgatt tcgctcaggt
+     1141 cgattacacg gatgcagtga ctatcctgga aaattgtggg cgtaaatttg agaacccggt
+     1201 gtactggggt gtcgatttgt caagtgaaca cgaacgctac ttggcggaag aacatttcaa
+     1261 agcgccagtt gtggtgaaaa attatccaaa ggatatcaaa gccttctaca tgcgcctgaa
+     1321 cgaagatggt aaaaccgtgg cggcaatgga tgttctggct ccgggcatcg gtgaaattat
+     1381 tggtggatca cagcgtgaag aacgtctgga cgtgttggac gaacgcatgt tggaaatggg
+     1441 tctgaataaa gaagattatt ggtggtatcg cgatctgcgc cgctacggga cagttccaca
+     1501 ttccggcttc ggtctgggtt tcgagcgtct gatcgcatac gtaactggtg ttcagaatgt
+     1561 gcgtgatgtg attccgtttc ctcgtacacc ccgcaacgcc agcttttgaa gagcttagag
+     1621 accgagataa cagatacttc ggtatctgtt atctgttttt tttttactga gacgaaacac
+     1681 gtggcaaaca ttccctaagc atcacactgc cgtc
+//

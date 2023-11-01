@@ -1,0 +1,72 @@
+LOCUS       tetR                     877 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  Measurement: TetR repressor under control of the T7 promoter.
+ACCESSION   tetR
+VERSION     tetR
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [72]"
+     misc_feature    79..89
+                     /label="CAST 0 [TAAC]"
+     primer_bind     90..109
+                     /label="pT7"
+     source          110..145
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    110..137
+                     /label="UTR1"
+     misc_feature    138..145
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    138..143
+                     /label="BsaI_Bind"
+     source          146..769
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     CDS             146..769
+                     /codon_start=1
+                     /label="TetR"
+                     /translation="MSRLDKSKVINSALELLNEVGIEGLTTRKLAQKLGVEQPTLYWHV
+                     KNKRALLDALAIEMLDRHHTHFCPLEGESWQDFLRNNAKSFRCALLSHRDGAKVHLGTR
+                     PTEKQYETLENQLAFLCQQGFSLENALYALSAVGHFTLGCVLEDQEHQVAKEERETPTT
+                     DSMPPLLRQAIELFDHQGAEPAFLFGLELIICGLEKQLKCESGS"
+     misc_feature    770..787
+                     /label="CDS Suffix"
+     regulatory      788..826
+                     /label="T7hyb6 Terminator"
+     misc_feature    827..837
+                     /label="CAST 0 [GGAG]"
+     misc_feature    838..857
+                     /label="Dialout Reverse [0]"
+     misc_feature    858..877
+                     /label="Terminator Spacer"
+     misc_feature    1..877
+                     /label="pT7-UTR1-tetR-t7hyb6"
+ORIGIN
+        1 gtcttacatt atgaacttgt tagggataac agggtaattc ccggaccatt tttattatag
+       61 ttgtaatatc acccgcgccg tctcataact aatacgactc actataggga ataattttgt
+      121 ttaactttaa gaaggagggt ctctaatgtc cagattagat aaaagtaaag tgattaacag
+      181 cgcattagag ctgcttaatg aggtcggaat cgaaggttta acaacccgta aactcgccca
+      241 gaagctaggt gtagagcagc ctacattgta ttggcatgta aaaaataagc gggctttgct
+      301 cgacgcctta gccattgaga tgttagatag gcaccatact cacttttgcc ctttagaagg
+      361 ggaaagctgg caagattttt tacgtaataa cgctaaaagt tttagatgtg ctttactaag
+      421 tcaccgtgat ggagcaaaag tacatttagg tacacggcct acagaaaaac agtatgaaac
+      481 tctcgaaaat caattagcct ttttatgcca acaaggtttt tcactagaga atgcattata
+      541 tgcactcagc gctgtggggc attttacttt aggttgcgta ttggaagatc aagagcatca
+      601 agtcgctaaa gaagaaaggg aaacacctac tactgatagt atgccgccat tattacgaca
+      661 agctatcgaa ttatttgatc accaaggtgc agagccagcc ttcttattcg gccttgaatt
+      721 gatcatatgc ggattagaaa aacaacttaa atgtgaaagt gggtcctgat gaagagctta
+      781 gagaccgaga taacagatac ttcggtatct gttatctgtt ttttttggag tgagacgaaa
+      841 cacgtggcaa acattcccta agcatcacac tgccgtc
+//
