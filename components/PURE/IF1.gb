@@ -1,0 +1,75 @@
+LOCUS       IF1                      532 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Initiation factor 1.
+ACCESSION   IF1
+VERSION     IF1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [7]"
+     misc_feature    79..89
+                     /label="CAST 25 [GAAA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     misc_feature    209..424
+                     /label="IF1"
+     CDS             209..424
+                     /standard_name="IF1"
+                     /translation="MAKEDNIEMQGTVLETLPNTMFRVELENGHVVTAHISGKMRKNYI
+                     RILTGDKVTVELTPYDLSKGRIVFRSR*"
+     misc_feature    425..442
+                     /label="CDS Suffix"
+     regulatory      443..481
+                     /label="T7hyb6 Terminator"
+     misc_feature    482..492
+                     /label="CAST 25 [TCAA]"
+     misc_feature    493..512
+                     /label="Dialout Reverse [0]"
+     misc_feature    513..532
+                     /label="Terminator Spacer"
+     misc_feature    1..532
+                     /label="pT7-lacO-UTR1-IF1-tT7hyb6"
+ORIGIN
+        1 taaaaataag acgctgcaca tagggataac agggtaattg ggccgggggc ggcccgcgaa
+       61 gacgatccga gccattaccg tctcagaaat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat ggctaaggag gataatatcg aaatgcaggg
+      241 cacggtactt gaaacccttc caaatactat gttccgcgtg gaactggaga atgggcatgt
+      301 tgtaaccgcg catattagcg gcaaaatgcg taaaaattac attcgcattc tgacaggcga
+      361 caaagtcacc gtggaactta ccccttatga tctgagcaag ggccgtatcg tgttccgtag
+      421 ccgctgaaga gcttagagac cgagataaca gatacttcgg tatctgttat ctgttttttt
+      481 ttcaatgaga cgaaacacgt ggcaaacatt ccctaagcat cacactgccg tc
+//

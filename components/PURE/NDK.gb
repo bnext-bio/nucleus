@@ -1,0 +1,80 @@
+LOCUS       NDK                      745 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Nuceloside-diphosphate Kinase.
+ACCESSION   NDK
+VERSION     NDK
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [36]"
+     misc_feature    79..89
+                     /label="CAST 37 [TGAA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     misc_feature    209..637
+                     /label="NDK"
+     CDS             209..637
+                     /standard_name="NDK"
+                     /translation="MAIERTFSIIKPNAVAKNVIGNIFARFEAAGFKIVGTKMLHLTVE
+                     QARGFYAEHDGKPFFDGLVEFMTSGPIVVSVLEGENAVQRHRDLLGATNPANALAGTLR
+                     ADYADSLTENGTHGSDSVESAAREIAYFFGEGEVCPRTR*"
+     misc_feature    638..655
+                     /label="CDS Suffix"
+     regulatory      656..694
+                     /label="T7hyb6 Terminator"
+     misc_feature    695..705
+                     /label="CAST 37 [TAAG]"
+     misc_feature    706..725
+                     /label="Dialout Reverse [0]"
+     misc_feature    726..745
+                     /label="Terminator Spacer"
+     misc_feature    1..745
+                     /label="pT7-lacO-UTR1-NDK-tT7hyb6"
+ORIGIN
+        1 ccaggtacaa gtcgcagact tagggataac agggtaatgc aacggcctcc cggattcaac
+       61 tagattagca aggcaccccg tctcatgaat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat ggcaattgag cgcacatttt cgattattaa
+      241 accgaacgct gtagccaaaa acgttatcgg taatattttt gcgcggtttg aagctgcagg
+      301 tttcaagatt gtgggcacga aaatgctgca ccttacggtg gagcaagccc gcggtttcta
+      361 tgcagaacat gatggcaaac ctttctttga cggactggtg gagtttatga cctctggtcc
+      421 gatcgttgtg agcgttcttg aaggcgaaaa cgccgttcag cgtcaccgcg atttgctggg
+      481 cgcgaccaac ccggctaacg ctctggcggg tactttacgt gccgattacg ctgactccct
+      541 gaccgagaat ggcactcacg gcagcgattc tgtcgagtct gcggcacggg aaattgctta
+      601 tttctttggg gaaggagaag tgtgcccccg tactcgctga agagcttaga gaccgagata
+      661 acagatactt cggtatctgt tatctgtttt tttttaagtg agacgaaaca cgtggcaaac
+      721 attccctaag catcacactg ccgtc
+//

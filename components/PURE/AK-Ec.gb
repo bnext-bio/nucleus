@@ -1,0 +1,84 @@
+LOCUS       AK-Ec                    958 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Adenylate Kinase (E. coli).
+ACCESSION   AK-Ec
+VERSION     AK-Ec
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [5]"
+     misc_feature    79..89
+                     /label="CAST 35 [TAAA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     misc_feature    209..850
+                     /label="AK-Ec"
+     CDS             209..850
+                     /standard_name="AK-Ec"
+                     /translation="MRIILLGAPGAGKGTQAQFIMEKYGIPQISTGDMLRAAVKSGSEL
+                     GKQAKDIMDAGKLVTDELVIALVKERIAQEDCRNGFLLDGFPRTIPQADAMKEAGINVD
+                     YVLEFDVPDELIVDRIVGRRVHAPSGRVYHVKFNPPKVEGKDDVTGEELTTRKDDQEET
+                     VRKRLVEYHQMTAPLIGYYSKEAEAGNTKYAKVDGTKPVAEVRADLEKILG*"
+     misc_feature    851..868
+                     /label="CDS Suffix"
+     regulatory      869..907
+                     /label="T7hyb6 Terminator"
+     misc_feature    908..918
+                     /label="CAST 35 [TAGA]"
+     misc_feature    919..938
+                     /label="Dialout Reverse [0]"
+     misc_feature    939..958
+                     /label="Terminator Spacer"
+     misc_feature    1..958
+                     /label="pT7-lacO-UTR1-AK-Ec-tT7hyb6"
+ORIGIN
+        1 taggtgtcta cgttcgaagc tagggataac agggtaatgc aacaattctg acataactaa
+       61 cgatgatgct cactctcgcg tctcataaat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat gcgcattatt ctgcttggtg ccccaggggc
+      241 aggtaaaggc actcaggcac agtttattat ggaaaaatac ggtatcccac agatttccac
+      301 cggcgatatg ctgcgtgctg ccgtcaaaag cggttccgaa ttggggaaac aggcgaaaga
+      361 catcatggat gcaggcaaac tggtgacaga tgaattagtc attgctttag taaaagagcg
+      421 tatcgcgcaa gaggattgtc gcaatggctt tctgctggac ggctttccgc gcaccattcc
+      481 gcaagccgac gctatgaaag aggcgggcat taacgtagac tatgtcctgg aattcgacgt
+      541 tccagatgaa ctgattgtcg atcgcatcgt gggccggcgt gttcacgctc cgagtggacg
+      601 cgtttaccac gtcaaattca acccaccaaa ggtagaaggt aaagatgatg tcaccggaga
+      661 ggaactgacc acccgtaaag atgatcagga agaaaccgtg cgcaaacgcc tggttgaata
+      721 ccatcagatg accgctccgc tgattggata ttatagcaaa gaggcagaag cggggaatac
+      781 gaaatatgca aaggtagatg gtacaaagcc ggttgcggaa gttcgcgccg atttagaaaa
+      841 gatcttgggc tgaagagctt agagaccgag ataacagata cttcggtatc tgttatctgt
+      901 ttttttttag atgagacgaa acacgtggca aacattccct aagcatcaca ctgccgtc
+//

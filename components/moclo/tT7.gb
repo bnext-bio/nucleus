@@ -1,0 +1,55 @@
+LOCUS       tT7                      337 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  MoClo: T7 terminator..
+ACCESSION   tT7
+VERSION     tT7
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [80]"
+     source          79..89
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     source          79..85
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     source          86..89
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    79..89
+                     /label="MCL0-TERM-CDS-T"
+                     /label="MCL0-UTR-PU"
+                     /label="MCL0PU"
+     regulatory      90..136
+                     /label="T7 Terminator"
+     source          137..147
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    137..147
+                     /label="MCL0-TERM-T-V"
+                     /label="MCL0-UTR-U-SP"
+                     /label="MCL0PU"
+     misc_feature    298..317
+                     /label="Dialout Reverse [0]"
+     misc_feature    318..337
+                     /label="Terminator Spacer"
+     misc_feature    1..337
+                     /label="MCL0-tT7"
+ORIGIN
+        1 tgcggggcct aggtacgttt tagggataac agggtaatgg tatctcccac ccgatctaat
+       61 cctagaaaag gcgaaggcgg tctctgcttt agcataaccc cttggggcct ctaaacgggt
+      121 cttgaggggt tttttgcgct agagacctga aaaactggtc ataaatggat tagaatgagg
+      181 ttgcctcata gtgatacact gatagtgaca ggggtgtagc ttaaactatt agtcatcagg
+      241 tatatatcgg cacttctcgg caaaagacgc tttgcaagcc aagtgataac ttagaataaa
+      301 cacgtggcaa acattcccta agcatcacac tgccgtc
+//

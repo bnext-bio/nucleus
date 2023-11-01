@@ -1,0 +1,87 @@
+LOCUS       EF-Ts                   1162 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Elongation factor Ts.
+ACCESSION   EF-Ts
+VERSION     EF-Ts
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [38]"
+     misc_feature    79..89
+                     /label="CAST 30 [ATAC]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     misc_feature    173..1021
+                     /label="EF-Ts"
+     CDS             173..1021
+                     /standard_name="EF-Ts"
+                     /translation="MAEITASLVKELRERTGAGMMDCKKALTEANGDIELAIENMRKSG
+                     AIKAAKKAGNVAADGVIKTKIDGNYGIILEVNCQTDFVAKDAGFQAFADKVLDAAVAGK
+                     ITDVEVLKAQFEEERVALVAKIGENINIRRVAALEGDVLGSYQHGARIGVLVAAKGADE
+                     ELVKHIAMHVAASKPEFIKPEDVSAEVVEKEYQVQLDIAMQSGKPKEIAEKMVEGRMKK
+                     FTGEVSLTGQPFVMEPSKTVGQLLKEHNAEVTGFIRFEVGEGIEKVETDFAAEVAAMSK
+                     QS*"
+     CDS             1022..1036
+                     /label="Linker"
+                     /translation="GGGGS"
+     CDS             1037..1054
+                     /label="His6"
+                     /translation="HHHHHH"
+     misc_feature    1055..1072
+                     /label="CDS Suffix"
+     regulatory      1073..1111
+                     /label="T7hyb6 Terminator"
+     misc_feature    1112..1122
+                     /label="CAST 30 [CGGC]"
+     misc_feature    1123..1142
+                     /label="Dialout Reverse [0]"
+     misc_feature    1143..1162
+                     /label="Terminator Spacer"
+     misc_feature    1..1162
+                     /label="pT7-lacO-UTR1-EF-Ts-tT7hyb6"
+ORIGIN
+        1 ctttgctgta acgcaaaccg tagggataac agggtaatga ctattgtgaa gctcacttac
+       61 ttcgattggc aaggactgcg tctcaatact aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatggcgga
+      181 aattaccgcc tcccttgtaa aagaactgcg tgaacgcacc ggtgcaggta tgatggactg
+      241 caaaaaagcg ctgaccgaag cgaacgggga cattgaactt gccattgaga acatgcgtaa
+      301 atctggcgca attaaagcag cgaagaaagc cggtaacgta gccgcagatg gtgtgatcaa
+      361 gactaaaatt gatggtaact atgggatcat tttagaggtt aattgccaaa cggatttcgt
+      421 cgctaaagat gcaggcttcc aggcctttgc tgacaaagta ctggacgctg cagtggcagg
+      481 caaaatcaca gacgtcgaag tgctgaaagc gcagtttgaa gaggaacgcg tggccctggt
+      541 cgcgaaaatt ggcgaaaaca ttaacattcg tcgcgtcgca gcgctggaag gcgacgtact
+      601 ggggtcttat cagcacggcg cgcgtatcgg cgtgctggtg gcggcaaagg gtgcagacga
+      661 agaactggtg aagcatatcg ccatgcacgt cgcggcgtct aaaccggaat tcatcaaacc
+      721 tgaggacgtt tcagcagaag ttgtcgaaaa agaatatcaa gttcagctgg atattgcaat
+      781 gcagagtggc aaaccaaagg aaattgcgga aaaaatggta gagggtcgta tgaaaaagtt
+      841 caccggcgaa gtgagcctga cgggtcagcc gttcgttatg gaaccgagta aaaccgttgg
+      901 ccaattatta aaagagcaca atgcggaagt gactggcttt atccgttttg aagtggggga
+      961 agggattgaa aaagtggaaa cggactttgc agcggaggta gcggccatga gcaagcaatc
+     1021 cggaggcggt ggatctcacc atcaccacca tcattgaaga gcttagagac cgagataaca
+     1081 gatacttcgg tatctgttat ctgttttttt tcggctgaga cgaaacacgt ggcaaacatt
+     1141 ccctaagcat cacactgccg tc
+//

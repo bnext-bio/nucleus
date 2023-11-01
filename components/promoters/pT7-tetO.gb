@@ -1,0 +1,87 @@
+LOCUS       pT7-tetO                 954 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  Measurement: PlamGFP green fluorescent protein with repressed by the
+            tet repressor tetR..
+ACCESSION   pT7-tetO
+VERSION     pT7-tetO
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [73]"
+     source          79..89
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    79..89
+                     /label="MCL0-VP"
+     primer_bind     90..109
+                     /label="pT7"
+     source          110..128
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     protein_bind    110..128
+                     /gene="tetO"
+                     /label="tet operator"
+                     /bound_moiety="tetracycline repressor TetR"
+                     /note="bacterial operator O2 for the tetR and tetA genes"
+     source          129..139
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    129..139
+                     /label="MCL0PU"
+     source          140..172
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    140..172
+                     /label="UTR1"
+     RBS             146..168
+                     /note="efficient ribosome binding site from bacteriophage
+                     T7 gene 10 (Olins and Rangwala, 1989)"
+     source          173..865
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     CDS             173..865
+                     /codon_start=1
+                     /label="plamGFP"
+                     /translation="MEIEDVIKRDMKIKLRMEGAVNGHKFVIIGNGDGKPYEGTQTIDL
+                     EVIEGAPLPFAFDILTTVFEYGNRVFAKYPNEIVDYFKQSFPEGYSWERSMTYEDGGIC
+                     IATNNITLSKVIDNCFHYNIRFDGVNFPPKSPVLQKTTMKWEPSTEIMYVRDGVLKGDV
+                     NMALLIEGGGHYRCDFKTIYKAKKVVELPDYHFVDHRITIKSHDKDYNKVLLHEHAKAR
+                     YGLQRKAK"
+     misc_feature    866..875
+                     /label="Spacer"
+     regulatory      876..914
+                     /label="T7hyb6 Terminator"
+     misc_feature    915..934
+                     /label="Dialout Reverse [0]"
+     misc_feature    935..954
+                     /label="Terminator Spacer"
+     misc_feature    1..954
+                     /label="pT7-tetO-UTR1-plamGFP-t7hyb6"
+ORIGIN
+        1 gggcggcatt attagcgaat tagggataac agggtaataa ctatccattt tgcttacaat
+       61 acgtggctag catgagacgg tctcaggagt aatacgactc actatagggt ccctatcagt
+      121 gatagagata ctagagacca ataattttgt ttaactttaa gaaggagata taatggagat
+      181 cgaggatgtg atcaaacgcg acatgaaaat caagctgcgt atggaaggtg ctgttaacgg
+      241 tcacaaattc gtgatcattg gtaacggcga cggcaaacca tatgaaggca ctcagaccat
+      301 cgatctggaa gtcattgaag gtgccccgct gccgttcgca tttgacatcc tgactacagt
+      361 ttttgaatac ggtaacagag ttttcgccaa atatccgaac gaaattgttg actacttcaa
+      421 acaatccttt ccggagggct actcttggga gcgttctatg acctacgagg acggcggcat
+      481 ttgtatcgcc accaacaata tcaccctgtc caaagtaatc gataactgct tccattacaa
+      541 catccgtttc gatggggtga atttcccgcc gaaaagcccg gtgcttcaga aaaccaccat
+      601 gaaatgggaa ccgtccaccg aaatcatgta cgttcgtgac ggtgtgctga aaggcgacgt
+      661 aaacatggcc ctgctgatcg aaggcggtgg tcattatcgt tgcgatttta aaacgatcta
+      721 caaagcgaaa aaagttgttg aactgccgga ctatcacttt gtcgaccacc gtatcaccat
+      781 taaatcacac gacaaagact acaacaaagt cctgcttcac gaacacgcaa aagcccgtta
+      841 cggcctccag cgtaaagcga agtgaggaag gtttaagata acagatactt cggtatctgt
+      901 tatctgtttt ttttaaacac gtggcaaaca ttccctaagc atcacactgc cgtc
+//

@@ -1,0 +1,95 @@
+LOCUS       RF2                     1411 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Release factor 2.
+ACCESSION   RF2
+VERSION     RF2
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [26]"
+     misc_feature    79..89
+                     /label="CAST 32 [GGAC]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     misc_feature    209..1303
+                     /label="RF2"
+     CDS             209..1303
+                     /standard_name="RF2"
+                     /translation="MFEINPVNNRIQDLTERSDVLRGYLDYDAKKERLEEVNAELEQPD
+                     VWNEPERAQALGKERSSLEAVVDTLDQMKQGLEDVSGLLELAVEADDEETFNEAVAELD
+                     ALEEKLAQLEFRRMFSGEYDSADCYLDIQAGSGGTEAQDWASMLERMYLRWAESRGFKT
+                     EIIEESEGEVAGIKSVTIKISGDYAYGWLRTETGVHRLVRKSPFDSGGRRHTSFSSAFV
+                     YPEVDDDIDIEINPADLRIDVYRTSGAGGQHVNRTESAVRITHIPTGIVTQCQNDRSQH
+                     KNKDQAMKQMKAKLYELEMQKKNAEKQAMEDNKSDIGWGSQIRSYVLDDSRIKDLRTGV
+                     ETRNTQAVLDGSLDQFIEASLKAGL*"
+     misc_feature    1304..1321
+                     /label="CDS Suffix"
+     regulatory      1322..1360
+                     /label="T7hyb6 Terminator"
+     misc_feature    1361..1371
+                     /label="CAST 32 [ACAT]"
+     misc_feature    1372..1391
+                     /label="Dialout Reverse [0]"
+     misc_feature    1392..1411
+                     /label="Terminator Spacer"
+     misc_feature    1..1411
+                     /label="pT7-lacO-UTR1-RF2-tT7hyb6"
+ORIGIN
+        1 ccgcactgga acctgctcta tagggataac agggtaatcc gcacaaagtg ttggtggaac
+       61 atcgcatacc agaacaggcg tctcaggact aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat gtttgaaatt aatcctgtga ataaccgtat
+      241 ccaggatctg acggaacggt cagatgtgtt gcgtgggtac ttagattacg atgcaaagaa
+      301 ggagcgctta gaggaggtta atgccgaact tgaacagcct gatgtgtgga atgagccaga
+      361 gcgcgcgcag gcactgggta aggagcgttc gtctttagag gcggtggtgg ataccctgga
+      421 tcagatgaaa cagggtttag aagatgttag tggactgctg gagctggcag tggaggccga
+      481 tgatgaagaa actttcaacg aagcagttgc cgaactggat gctctggagg aaaaactggc
+      541 acagttagag ttccggcgca tgtttagtgg tgagtacgat agtgcggatt gctatctgga
+      601 tattcaggcc ggtagtggcg ggacagaagc ccaggattgg gcgtcgatgc tggaacgtat
+      661 gtatctgcgc tgggccgaat cccgtggctt taaaaccgaa attatcgagg aatcggaggg
+      721 tgaagtagct ggtatcaagt cagtcaccat taagatttcg ggggattacg catacggctg
+      781 gttgcgtacc gaaaccggcg ttcaccgtct ggttcgcaaa tcgccatttg acagcggcgg
+      841 tcggcgtcac acctccttca gctccgcatt tgtgtacccg gaagttgatg atgatattga
+      901 tatcgagatc aatcccgcgg atcttcgtat cgacgtgtat cgcacctctg gtgcgggcgg
+      961 tcagcatgtc aaccggaccg aaagtgccgt gcgcatcaca catatcccga ctggtatcgt
+     1021 gacgcagtgc cagaatgatc ggagccagca caaaaacaaa gatcaggcaa tgaaacagat
+     1081 gaaagccaaa ttgtacgaat tggagatgca gaaaaaaaat gcagaaaaac aggcaatgga
+     1141 agataacaag tctgatattg ggtggggctc gcaaatccgc agctatgttc tggatgatag
+     1201 ccgcatcaaa gaccttcgta ctggcgttga aacgcgtaac actcaggctg tccttgatgg
+     1261 cagccttgat cagttcattg aggcgagtct taaagcgggc ctgtgaagag cttagagacc
+     1321 gagataacag atacttcggt atctgttatc tgtttttttt acattgagac gaaacacgtg
+     1381 gcaaacattc cctaagcatc acactgccgt c
+//

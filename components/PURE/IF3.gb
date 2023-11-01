@@ -1,0 +1,83 @@
+LOCUS       IF3                      856 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Initiation factor 3.
+ACCESSION   IF3
+VERSION     IF3
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [14]"
+     misc_feature    79..89
+                     /label="CAST 27 [ACGG]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     misc_feature    209..748
+                     /label="IF3"
+     CDS             209..748
+                     /standard_name="IF3"
+                     /translation="MKGGKRVQTARPNRINGEIRAQEVRLTGLEGEQLGIVSLREALEK
+                     AEEAGVDLVEISPNAEPPVCRIMDYGKFLYEKSKSSKEQKKKQKVIQVKEIKFRPGTDE
+                     GDYQVKLRSLIRFLEEGDKAKITLRFRGREMAHQQIGMEVLNRVKDDLQELAVVESFPT
+                     KIEGRQMIMVLAPKKKQ*"
+     misc_feature    749..766
+                     /label="CDS Suffix"
+     regulatory      767..805
+                     /label="T7hyb6 Terminator"
+     misc_feature    806..816
+                     /label="CAST 27 [AATA]"
+     misc_feature    817..836
+                     /label="Dialout Reverse [0]"
+     misc_feature    837..856
+                     /label="Terminator Spacer"
+     misc_feature    1..856
+                     /label="pT7-lacO-UTR1-IF3-tT7hyb6"
+ORIGIN
+        1 gtccgaattt tttttctcta tagggataac agggtaatgg ctggatacgg ataaatctaa
+       61 taggaacctc ttacgcggcg tctcaacggt aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat gaaaggcgga aaacgcgtcc aaaccgcacg
+      241 cccgaaccgt attaatgggg aaattcgcgc gcaggaagtt cgcctgacag gtttggaggg
+      301 ggagcagtta ggtatcgtgt ccttgcggga agcactggaa aaggcggagg aagcgggtgt
+      361 tgacctggtt gaaatctccc caaatgcaga accacccgtt tgtcgtatca tggattacgg
+      421 taaatttctg tacgaaaagt cgaaaagcag taaggagcaa aaaaaaaagc aaaaagttat
+      481 ccaggtcaag gaaatcaagt ttcgtccggg caccgatgaa ggtgattatc aggtgaaact
+      541 tcgtagcctg attcgttttt tagaagaagg cgacaaagct aaaatcacat tacgttttcg
+      601 gggacgtgag atggcgcatc aacagattgg catggaagtg ctgaatcgtg ttaaagatga
+      661 cttacaagaa ctggccgtcg tagaatcatt tccgaccaaa atcgaaggtc gccaaatgat
+      721 catggtctta gcaccgaaaa aaaaacagtg aagagcttag agaccgagat aacagatact
+      781 tcggtatctg ttatctgttt tttttaatat gagacgaaac acgtggcaaa cattccctaa
+      841 gcatcacact gccgtc
+//

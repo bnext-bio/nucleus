@@ -1,0 +1,79 @@
+LOCUS       cjBlue-lacO              972 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  Measurement: Leaky expression control consisting of cjBlue under
+            control of the pT7-lacO promoter. Failure of repression by lacI will
+            appear as chromoprotein expression..
+ACCESSION   cjBlue-lacO
+VERSION     cjBlue-lacO
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [58]"
+     misc_feature    79..89
+                     /label="CAST 0 [TAAC]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     source          133..168
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    133..160
+                     /label="UTR1"
+     misc_feature    161..168
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    161..166
+                     /label="BsaI_Bind"
+     source          169..864
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     CDS             169..864
+                     /codon_start=1
+                     /label="cjBlue"
+                     /translation="MASKISDNVRIKLYMEGTVNNHHFMCEAEGEGKPYEGTQMENIKV
+                     TKGGPLPFSFDILTPNCQYGSVAITKYTSGIPDYFKQSFPEGFTWERTTIYEDGAYLTT
+                     QQETKLDGNCLVYNIKILGCNFPPNGPVMQKKTQGWEPCCEMRYTRDGVLCGQTLMALK
+                     CADGNHLTCHLRTTYRSKKAAKALQMPPFHFSDHRPEIVKVSENGTLFEQHESSVARYC
+                     QTCPSKLGHN"
+     misc_feature    865..882
+                     /label="CDS Suffix"
+     regulatory      883..921
+                     /label="T7hyb6 Terminator"
+     misc_feature    922..932
+                     /label="CAST 0 [GGAG]"
+     misc_feature    933..952
+                     /label="Dialout Reverse [0]"
+     misc_feature    953..972
+                     /label="Terminator Spacer"
+     misc_feature    1..972
+                     /label="pT7-lacO-UTR1-cjBlue-tT7hyb6"
+ORIGIN
+        1 ttggcaccct ggcacctaca tagggataac agggtaatat tcctataacg ttaatcaaag
+       61 gtgatctgac gaatgtcccg tctcataact aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttaataattt tgtttaactt taagaaggag ggtctctaat ggcgtccaaa
+      181 atctccgaca acgtccgcat taagctgtac atggaaggca ccgttaacaa ccaccatttc
+      241 atgtgtgaag cggaaggcga aggtaaacca tacgaaggca cccagatgga aaacatcaaa
+      301 gtaactaaag gtggccctct gccgtttagc ttcgacattc tgaccccgaa ctgccaatac
+      361 ggttctgtgg ctatcaccaa atatacgtct ggtatcccgg attactttaa acagtcattt
+      421 ccggaaggct ttacctggga gcgtaccacg atctatgagg atggtgcata cctgaccacc
+      481 cagcaggaaa cgaaattaga tggcaactgc ctggtatata acatcaaaat tctgggctgc
+      541 aacttcccgc cgaacggccc ggttatgcag aaaaaaacgc aggggtggga gccatgctgc
+      601 gagatgcgtt atacccgcga cggcgttctc tgcggccaaa ccctgatggc actgaaatgc
+      661 gcagatggca accatctgac ctgccatctg cgtacgacct accgtagcaa aaaagcagcg
+      721 aaggctctgc aaatgccgcc gttccacttt tccgaccacc gtccggaaat tgttaaagtt
+      781 tctgaaaatg gcaccctctt cgagcagcat gagagttctg tcgcgcgtta ctgtcagacc
+      841 tgcccttcta agctgggcca caactgaaga gcttagagac cgagataaca gatacttcgg
+      901 tatctgttat ctgttttttt tggagtgaga cgaaacacgt ggcaaacatt ccctaagcat
+      961 cacactgccg tc
+//

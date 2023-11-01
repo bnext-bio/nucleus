@@ -1,0 +1,113 @@
+LOCUS       MetRS                   2344 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Methionine tRNA synthetase.
+ACCESSION   MetRS
+VERSION     MetRS
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [23]"
+     misc_feature    79..89
+                     /label="CAST 15 [CCCG]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     misc_feature    173..2203
+                     /label="MetRS"
+     CDS             173..2203
+                     /standard_name="MetRS"
+                     /translation="MTQVAKKILVTCALPYANGSIHLGHMLEHIQADVWVRYQRMRGHE
+                     VNFICADDAHGTPIMLKAQQLGITPEQMIGEMSQEHQTDFAGFNISYDNYHSTHSEENR
+                     QLSELIYSRLKENGFIKNRTISQLYDPEKGMFLPDRFVKGTCPKCKSPDQYGDNCEVCG
+                     ATYSPTELIEPKSVVSGATPVMRDSEHFFFDLPSFSEMLQAWTRSGALQEQVANKMQEW
+                     FESGLQQWDISRDAPYFGFEIPNAPGKYFYVWLDAPIGYMGSFKNLCDKRGDSVSFDEY
+                     WKKDSTAELYHFIGKDIVYFHSLFWPAMLEGSNFRKPSNLFVHGYVTVNGAKMSKSRGT
+                     FIKASTWLNHFDADSLRYYYTAKLSSRIDDIDLNLEDFVQRVNADIVNKVVNLASRNAG
+                     FINKRFDGVLASELADPQLYKTFTDAAEVIGEAWESREFGKAVREIMALADLANRYVDE
+                     QAPWVVAKQEGRDADLQAICSMGINLFRVLMTYLKPVLPKLTERAEAFLNTELTWDGIQ
+                     QPLLGHKVNPFKALYNRIDMRQVEALVEASKEEVKAAAAPVTGPLADDPIQETITFDDF
+                     AKVDLRVALIENAEFVEGSDKLLRLTLDLGGEKRNVFSGIRSAYPDPQALIGRHTIMVA
+                     NLAPRKMRFGISEGMVMAAGPGGKDIFLLSPDAGAKPGHQVK*"
+     CDS             2204..2218
+                     /label="Linker"
+                     /translation="GGGGS"
+     CDS             2219..2236
+                     /label="His6"
+                     /translation="HHHHHH"
+     misc_feature    2237..2254
+                     /label="CDS Suffix"
+     regulatory      2255..2293
+                     /label="T7hyb6 Terminator"
+     misc_feature    2294..2304
+                     /label="CAST 15 [AAAT]"
+     misc_feature    2305..2324
+                     /label="Dialout Reverse [0]"
+     misc_feature    2325..2344
+                     /label="Terminator Spacer"
+     misc_feature    1..2344
+                     /label="pT7-lacO-UTR1-MetRS-tT7hyb6"
+ORIGIN
+        1 ccctgttaga acctcacgac tagggataac agggtaatgt cctagctgct tttatgtgac
+       61 aggaagcaag gtatacgccg tctcacccgt aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgaccca
+      181 agttgcgaaa aaaatcctgg tcacgtgcgc cctgccgtac gcgaacggat ctatccattt
+      241 gggccacatg cttgaacata ttcaggcgga tgtttgggtg cgctaccagc gtatgcgtgg
+      301 gcatgaagtg aacttcattt gcgcggacga tgcgcatggt acacccatta tgctgaaggc
+      361 gcagcaatta gggattaccc ccgaacagat gatcggagaa atgtctcaag agcatcaaac
+      421 tgattttgcg ggcttcaaca ttagttacga taactatcat agcactcatt ctgaggaaaa
+      481 tcgtcagctg agtgagctga tctattcacg cctgaaggaa aacggtttca tcaaaaaccg
+      541 cacgatctcc cagctgtacg atccagaaaa aggtatgttt ttaccggacc gtttcgttaa
+      601 aggtacctgt ccgaaatgca aatcgccgga tcaatatggt gataactgtg aagtctgtgg
+      661 tgctacttat agcccgacag agctgattga gccaaaaagc gtagtctcag gtgccactcc
+      721 tgtgatgcgt gactctgagc actttttctt cgacctgccg agcttcagtg aaatgttaca
+      781 ggcctggacc cgttcgggcg cgctgcagga acaggtggcg aataaaatgc aagaatggtt
+      841 tgaatccggc ctgcagcagt gggatatttc gcgcgacgct ccctatttcg gctttgagat
+      901 tccgaacgcg cccggtaagt atttctatgt atggcttgat gccccgattg gctatatggg
+      961 gagcttcaaa aacttatgcg ataaacgtgg cgatagtgtt agttttgatg aatactggaa
+     1021 aaaggatagc accgcggaac tttatcattt cattggcaaa gacattgttt atttccacag
+     1081 tctgttctgg ccagcaatgt tagaaggcag caactttcgc aaaccaagca acctgttcgt
+     1141 tcacggctat gttaccgtga atggtgcaaa aatgtccaag tcacgcggaa catttattaa
+     1201 agctagtacg tggcttaacc acttcgatgc ggattctctg cggtactact acacagctaa
+     1261 gctttctagc cgcatcgatg atatcgatct taatttagaa gattttgtcc agcgcgtgaa
+     1321 cgcagatatt gtgaataagg tcgttaactt agccagtcgt aatgccgggt tcatcaataa
+     1381 acggtttgac ggtgtcctgg ctagcgagct tgcagatccg caactttata agacttttac
+     1441 cgatgcggcg gaagttattg gtgaggcatg ggaatcacgt gaattcggaa aggccgtccg
+     1501 tgaaattatg gcgctggcag acctggcgaa ccgctacgtg gatgaacaag cgccgtgggt
+     1561 tgttgccaag caggaaggcc gcgacgctga cttgcaggct atttgctcta tgggcattaa
+     1621 tttattccgt gttctgatga catatctgaa acccgtgctg cctaagttga cggagcgcgc
+     1681 ggaggccttt ctgaataccg aactgacgtg ggatggcatt cagcagccgc tgctgggtca
+     1741 taaagtgaac ccgttcaaag cgttgtacaa ccgcattgat atgcgccaag tggaagcgtt
+     1801 ggttgaagcc tcaaaagagg aagtgaaagc ggcggccgct cccgttactg gcccgctggc
+     1861 ggatgatcca atccaagaga caatcacctt tgatgatttt gccaaagttg atttacgcgt
+     1921 agcgttaatt gagaacgcgg aattcgtgga ggggtcggat aaactgctgc gtctgacgct
+     1981 ggatctgggg ggcgagaaac gcaatgtatt ctcagggatt cgctccgcgt atccggatcc
+     2041 acaggcgctt atcggacgtc acacgatcat ggtggctaat ttggcccctc gcaaaatgcg
+     2101 cttcggtatt tctgaaggca tggtcatggc cgcgggaccc ggcggcaagg acattttcct
+     2161 gttatcgcct gacgcgggcg cgaaaccggg acaccaagta aagggaggcg gtggatctca
+     2221 ccatcaccac catcattgaa gagcttagag accgagataa cagatacttc ggtatctgtt
+     2281 atctgttttt tttaaattga gacgaaacac gtggcaaaca ttccctaagc atcacactgc
+     2341 cgtc
+//

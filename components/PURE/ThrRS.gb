@@ -1,0 +1,114 @@
+LOCUS       ThrRS                   2242 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Threonine tRNA synthetase.
+ACCESSION   ThrRS
+VERSION     ThrRS
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [28]"
+     misc_feature    79..89
+                     /label="CAST 19 [CGTA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     misc_feature    209..2134
+                     /label="ThrRS"
+     CDS             209..2134
+                     /standard_name="ThrRS"
+                     /translation="MPVITLPDGSQRHYDHAVSPMDVALDIGPGLAKACIAGRVNGELV
+                     DACDLIENDAQLSIITAKDEEGLEIIRHSCAHLLGHAIKQLWPHTKMAIGPVIDNGFYY
+                     DVDLDRTLTQEDVEALEKRMHELAEKNYDVIKKKVSWHEARETFANRGESYKVSILDEN
+                     IAHDDKPGLYFHEEYVDMCRGPHVPNMRFCHHFKLMKTAGAYWRGDSNNKMLQRIYGTA
+                     WADKKALNAYLQRLEEAAKRDHRKIGKQLDLYHMQEEAPGMVFWHNDGWTIFRELEVFV
+                     RSKLKEYQYQEVKGPFMMDRVLWEKTGHWDNYKDAMFTTSSENREYCIKPMNCPGHVQI
+                     FNQGLKSYRDLPLRMAEFGSCHRNEPSGSLHGLMRVRGFTQDDAHIFCTEEQIRDEVNG
+                     CIRLVYDMYSTFGFEKIVVKLSTRPEKRIGSDEMWDRAEADLAVALEENNIPFEYQLGE
+                     GAFYGPKIEFTLYDCLDRAWQCGTVQLDFSLPSRLSASYVGEDNERKVPVMIHRAILGS
+                     MERFIGILTEEFAGFFPTWLAPVQVVIMNITDSQSEYVNELTQKLSNAGIRVKADLRNE
+                     KIGFKIREHTLRRVPYMLVCGDKEVESGKVAVRTRRGKDLGSMDVNEVIEKLQQEIRSR
+                     SLKQLEE*"
+     misc_feature    2135..2152
+                     /label="CDS Suffix"
+     regulatory      2153..2191
+                     /label="T7hyb6 Terminator"
+     misc_feature    2192..2202
+                     /label="CAST 19 [ACCA]"
+     misc_feature    2203..2222
+                     /label="Dialout Reverse [0]"
+     misc_feature    2223..2242
+                     /label="Terminator Spacer"
+     misc_feature    1..2242
+                     /label="pT7-lacO-UTR1-ThrRS-tT7hyb6"
+ORIGIN
+        1 atcgaaagag acaacttttg tagggataac agggtaatta gcaaccagag ttcttcctac
+       61 cacaggtcaa gattcacgcg tctcacgtat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat gccggttatc accctgccag atggttctca
+      241 gcgtcattat gatcacgctg tcagtcctat ggatgtggca cttgacatcg gcccgggctt
+      301 ggccaaggcg tgtattgcag gacgtgttaa tggtgaactg gtagatgctt gtgatctgat
+      361 cgagaacgat gcccaactga gcatcatcac tgctaaagat gaagaaggtc ttgaaatcat
+      421 tcgccatagc tgtgcccatc tgttgggcca cgcaattaaa cagctgtggc cgcacacaaa
+      481 aatggcaatt ggccctgtca tcgataatgg gttttattat gacgtggacc tggaccggac
+      541 gctgacacaa gaagatgtag aggcattgga aaaacggatg catgaactgg ccgaaaaaaa
+      601 ttatgacgtt attaagaaaa aagtctcctg gcatgaggcg cgcgaaacat ttgcgaaccg
+      661 cggcgagagc tataaagtct ctattctgga cgagaatatt gcccatgatg ataagccggg
+      721 tctgtatttc catgaggaat atgtggacat gtgccggggt cctcacgtgc cgaacatgcg
+      781 tttctgccac cactttaaat tgatgaaaac cgccggtgca tattggcgcg gtgattccaa
+      841 taacaagatg ctgcagcgca tttacggtac cgcctgggcg gataaaaaag ccctgaacgc
+      901 gtacttacag cgtctggaag aggccgctaa acgggatcat cgtaaaattg gtaagcagct
+      961 ggatttatat catatgcagg aagaggcgcc tgggatggtc ttttggcata acgatggctg
+     1021 gaccattttc cgtgaactgg aagtctttgt acgcagtaaa ttaaaagaat accagtatca
+     1081 ggaggttaaa ggacctttca tgatggatcg ggttctgtgg gaaaaaaccg gccattggga
+     1141 taactataag gatgccatgt tcacgacatc gtcggaaaat cgggaatact gtattaaacc
+     1201 tatgaactgt ccgggccatg tgcagatttt taaccaaggc cttaaaagtt atcgtgatct
+     1261 gccattacgc atggccgaat ttgggtcgtg ccatcgtaat gagccatccg gcagcttgca
+     1321 cggtttgatg cgcgttcgcg gatttactca ggatgatgct catatttttt gcaccgagga
+     1381 gcagatccgt gacgaggtta atggttgcat ccgccttgtc tacgatatgt actcaacgtt
+     1441 tggcttcgag aagatcgtgg tgaagctgtc gacacgtccg gaaaaacgta ttggctccga
+     1501 cgaaatgtgg gatcgtgcgg aggcagacct tgcggtggca ttggaggaga ataacatccc
+     1561 cttcgagtac cagctgggtg agggtgcttt ttacggcccg aaaattgaat ttacgttata
+     1621 cgattgcttg gatcgggcgt ggcagtgcgg gacagttcaa ttggatttct cattgccatc
+     1681 ccgcctgagc gcgagctacg tgggtgagga taatgaacgc aaagttccgg taatgatcca
+     1741 tcgggccatt ctgggcagta tggaacgttt tatcggcatc ttaacggaag aatttgctgg
+     1801 ttttttcccg acttggctgg cgcccgttca ggtcgtgatc atgaacatta ccgattctca
+     1861 atcggaatat gtgaatgaac tgactcagaa gctgtcaaat gctggtattc gtgtcaaggc
+     1921 cgatcttcgc aatgagaaaa tcggcttcaa aatccgcgaa cacacgcttc gccgcgtacc
+     1981 atatatgctg gtttgtggtg acaaagaagt tgaatctggt aaagttgctg tgcggacgcg
+     2041 tcgtggcaaa gatttggggt cgatggacgt caacgaggtg attgaaaaac tgcaacagga
+     2101 aatccgctca cgttccctga aacagctgga ggagtgaaga gcttagagac cgagataaca
+     2161 gatacttcgg tatctgttat ctgttttttt taccatgaga cgaaacacgt ggcaaacatt
+     2221 ccctaagcat cacactgccg tc
+//

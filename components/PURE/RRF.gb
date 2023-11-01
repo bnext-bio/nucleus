@@ -1,0 +1,80 @@
+LOCUS       RRF                      868 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Ribosome recycling factor.
+ACCESSION   RRF
+VERSION     RRF
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [40]"
+     misc_feature    79..89
+                     /label="CAST 34 [CCAA]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     misc_feature    173..727
+                     /label="RRF"
+     CDS             173..727
+                     /standard_name="RRF"
+                     /translation="MISDIRKDAEVRMDKCVEAFKTQISKIRTGRASPSLLDGIVVEYY
+                     GTPTPLRQLASVTVEDSRTLKINVFDRSMSPAVEKAIMASDLGLNPNSAGSDIRVPLPP
+                     LTEERRKDLTKIVRGEAEQARVAVRNVRRDANDKVKALLKDKEISEDDDRRSQDDVQKL
+                     TDAAIKKIEAALADKEAELMQF*"
+     CDS             728..742
+                     /label="Linker"
+                     /translation="GGGGS"
+     CDS             743..760
+                     /label="His6"
+                     /translation="HHHHHH"
+     misc_feature    761..778
+                     /label="CDS Suffix"
+     regulatory      779..817
+                     /label="T7hyb6 Terminator"
+     misc_feature    818..828
+                     /label="CAST 34 [TAAA]"
+     misc_feature    829..848
+                     /label="Dialout Reverse [0]"
+     misc_feature    849..868
+                     /label="Terminator Spacer"
+     misc_feature    1..868
+                     /label="pT7-lacO-UTR1-RRF-tT7hyb6"
+ORIGIN
+        1 gggatttatg ccatcgatgc tagggataac agggtaatat gtccgtccag ggtcagtaag
+       61 acaacaatct gaggctggcg tctcaccaat aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgattag
+      181 cgatatccgt aaagacgcgg aagtgcgcat ggataaatgt gttgaggcct ttaagaccca
+      241 gatctctaag atccggacgg gtcgcgccag cccgagttta ctggatggta tcgtggtcga
+      301 atattatggg acacctactc cgctgcggca actggcctcg gttaccgtcg aagatagccg
+      361 caccctgaaa atcaacgtat tcgatcgctc aatgagccct gccgttgaaa aagcgatcat
+      421 ggcgagcgac ctgggcttaa acccgaatag tgcagggtct gacatccgtg tgccgttgcc
+      481 accgttgaca gaagaacgcc gcaaggacct tactaaaatc gtacgtggtg aagctgaaca
+      541 ggctcgcgtc gccgttcgta acgtccggcg cgacgcgaat gacaaggtga aagcgttgtt
+      601 gaaggacaaa gaaatctccg aagatgatga tcgtcgcagc caggacgatg tacagaaact
+      661 gacagatgcg gcgattaaga aaattgaagc ggccctggct gataaagagg ctgagctgat
+      721 gcaatttgga ggcggtggat ctcaccatca ccaccatcat tgaagagctt agagaccgag
+      781 ataacagata cttcggtatc tgttatctgt ttttttttaa atgagacgaa acacgtggca
+      841 aacattccct aagcatcaca ctgccgtc
+//

@@ -1,0 +1,86 @@
+LOCUS       PURET7-8                 953 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURET7 level-matched promoter. 30.6834 expression relative to
+            PURET7-10..
+ACCESSION   PURET7-8
+VERSION     PURET7-8
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [63]"
+     misc_feature    79..89
+                     /label="CAST 0 [TAAC]"
+     source          90..100
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    90..100
+                     /label="MCL0-VP"
+     regulatory      101..119
+                     /regulatory_class="promoter"
+                     /standard_name="PURET7-8"
+                     /note="PURET7 level-matched promoter. 30.6834 expression
+                     relative to PURET7-10."
+     source          120..130
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    120..130
+                     /label="MCL0PU"
+     source          131..163
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    131..163
+                     /label="UTR1"
+     RBS             137..159
+                     /note="efficient ribosome binding site from bacteriophage
+                     T7 gene 10 (Olins and Rangwala, 1989)"
+     source          164..853
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     CDS             164..853
+                     /codon_start=1
+                     /label="amajLime"
+                     /translation="MALSNKFIGDDMKMTYHMDGCVNGHYFTVKGEGNGKPYEGTQTST
+                     FKVTMANGGPLAFSFDILSTVFKYGNRCFTAYPTSMPDYFKQAFPDGMSYERTFTYEDG
+                     GVATASWEISLKGNCFEHKSTFHGVNFPADGPVMAKKTTGWDPSFEKMTVCDGILKGDV
+                     TAFLMLQGGGNYRCQFHTSYKTKKPVTMPPNHVVEHRIARTDLDKGGNSVQLTEHAVAH
+                     ITSVVPF"
+     misc_feature    854..863
+                     /label="Spacer"
+     regulatory      864..902
+                     /label="T7hyb6 Terminator"
+     misc_feature    903..913
+                     /label="CAST 0 [GGAG]"
+     misc_feature    914..933
+                     /label="Dialout Reverse [0]"
+     misc_feature    934..953
+                     /label="Terminator Spacer"
+     misc_feature    1..953
+                     /label="PURET7-8"
+ORIGIN
+        1 atatctctca tgattactgt tagggataac agggtaattc acgacaaata cggctcaaag
+       61 tattcttaca gccagccgcg tctcataacg gtctcaggag cgatacgact cactataggt
+      121 actagagacc aataattttg tttaacttta agaaggagat ataatggcac tgtccaataa
+      181 attcatcggc gacgatatga aaatgacgta ccatatggac ggctgtgtga acggtcatta
+      241 cttcaccgtg aaaggcgaag gcaacggcaa accgtacgag ggcacccaaa cctccacttt
+      301 caaagttact atggcgaacg gcggcccgct ggctttctcc tttgacattc tgagtaccgt
+      361 tttcaaatat ggcaaccgct gcttcactgc gtacccgacg tcgatgccgg attatttcaa
+      421 acaagcgttc ccggacggta tgtcttatga acgtacattc acctacgaag atggtggtgt
+      481 cgccacggcg agctgggaaa tcagcctgaa agggaactgc ttcgagcaca aaagcacctt
+      541 tcacggtgtt aacttcccgg ccgacggccc ggttatggcg aaaaaaacca cgggctggga
+      601 cccttctttc gagaagatga ccgtgtgcga cggtatcctg aaaggtgacg tcaccgcatt
+      661 tctgatgctg caaggtggcg gcaactaccg ttgccagttt catacctctt acaagacgaa
+      721 aaaacctgtt accatgccgc cgaaccacgt ggtagaacac cgcattgcgc gcactgacct
+      781 ggataaaggc ggcaactccg tacagctgac cgaacacgca gttgctcaca taacctctgt
+      841 agttccgttt tgaggaaggt ttaagataac agatacttcg gtatctgtta tctgtttttt
+      901 ttggagtgag acgaaacacg tggcaaacat tccctaagca tcacactgcc gtc
+//

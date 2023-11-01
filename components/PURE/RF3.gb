@@ -1,0 +1,106 @@
+LOCUS       RF3                     1903 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  PURE: Release factor 3.
+ACCESSION   RF3
+VERSION     RF3
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [22]"
+     misc_feature    79..89
+                     /label="CAST 33 [ACAT]"
+     primer_bind     90..109
+                     /label="pT7"
+     misc_binding    110..132
+                     /label="LacO"
+     misc_feature    133..136
+                     /label="GC Clamp"
+     source          137..172
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    137..164
+                     /label="UTR1"
+     misc_feature    165..172
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    165..170
+                     /label="BsaI_Bind"
+     CDS             173..175
+                     /label="Start"
+                     /translation="M"
+     CDS             176..193
+                     /label="His6"
+                     /translation="HHHHHH"
+     CDS             194..208
+                     /label="Linker"
+                     /translation="GGGGS"
+     misc_feature    209..1795
+                     /label="RF3"
+     CDS             209..1795
+                     /standard_name="RF3"
+                     /translation="MTLSPYLQEVAKRRTFAIISHPDAGKTTITEKVLLFGQAIQTAGT
+                     VKGRGSNQHAKSDWMEMEKQRGISITTSVMQFPYHDCLVNLLDTPGHEDFSEDTYRTLT
+                     AVDCCLMVIDAAKGVEDRTRKLMEVTRLRDTPILTFMNKLDRDIRDPMELLDEVENELK
+                     IGCAPITWPIGCGKLFKGVYHLYKDETYLYQSGKGHTIQEVRIVKGLNNPDLDAAVGED
+                     LAQQLRDELELVKGASNEFDKELFLAGEITPVFFGTALGNFGVDHMLDGLVEWAPAPMP
+                     RQTDTRTVEASEDKFTGFVFKIQANMDPKHRDRVAFMRVVSGKYEKGMKLRQVRTAKDV
+                     VISDALTFMAGDRSHVEEAYPGDILGLHNHGTIQIGDTFTQGEMMKFTGIPNFAPELFR
+                     RIRLKDPLKQKQLLKGLVQLSEEGAVQVFRPISNNDLIVGAVGVLQFDVVVARLKSEYN
+                     VEAVYESVNVATARWVECADAKKFEEFKRKNESQLALDGGDNLAYIATSMVNLRLAQER
+                     YPDVQFHQTREH*"
+     misc_feature    1796..1813
+                     /label="CDS Suffix"
+     regulatory      1814..1852
+                     /label="T7hyb6 Terminator"
+     misc_feature    1853..1863
+                     /label="CAST 33 [CCAA]"
+     misc_feature    1864..1883
+                     /label="Dialout Reverse [0]"
+     misc_feature    1884..1903
+                     /label="Terminator Spacer"
+     misc_feature    1..1903
+                     /label="pT7-lacO-UTR1-RF3-tT7hyb6"
+ORIGIN
+        1 cacgagcatc tatagaaatc tagggataac agggtaatct atagaattgc acaactccac
+       61 agaacgaaca ggcactaccg tctcaacatt aatacgactc actatagggg gaattgtgag
+      121 cggataacaa ttccccaata attttgttta actttaagaa ggagggtctc taatgcacca
+      181 tcaccaccat catggaggcg gtggatctat gactctgtcg ccgtatttgc aggaagttgc
+      241 aaaacgtcgt accttcgcga ttatctcaca tcctgatgcc gggaaaacca ctattacaga
+      301 aaaagtgctg ctgtttggcc aggcgattca aaccgccggc actgtgaaag gacgtggaag
+      361 caaccagcat gctaagtcag attggatgga gatggaaaaa caacgtggta tcagcattac
+      421 aaccagcgtg atgcagttcc cgtaccacga ctgcctggtg aacctgctgg atactccagg
+      481 gcatgaggat ttctccgaag atacataccg cactcttacg gcggtggatt gttgcctgat
+      541 ggtcatcgat gctgcaaaag gagttgagga tcggacgcgc aaactgatgg aagttacccg
+      601 tttacgtgac acgccgattc ttacatttat gaacaagctg gatcgtgata ttcgggatcc
+      661 gatggaactt ctggatgaag tcgaaaatga actgaaaatc ggttgtgcac cgattacgtg
+      721 gccgatcggt tgtggtaaac tgtttaaagg tgtatatcac ctgtataagg acgaaacgta
+      781 cctgtaccag agcggcaaag gccacaccat ccaagaggtg cgtatcgtga aaggtttgaa
+      841 caacccggat ctggacgccg ctgttggcga ggatttagct cagcagctgc gcgacgaact
+      901 ggagctggtg aaaggtgcgt ctaacgaatt tgacaaagaa ttattcctgg cgggtgaaat
+      961 taccccggtc tttttcggga cggctctggg gaactttggt gtggaccaca tgctggatgg
+     1021 gttagtggaa tgggctccag ccccgatgcc gcggcaaaca gatacgcgga ctgttgaagc
+     1081 cagtgaggac aaattcactg gattcgtgtt taagattcag gcgaatatgg atcctaaaca
+     1141 ccgtgatcgc gtggctttta tgcgcgtggt atccggcaaa tatgagaagg ggatgaaatt
+     1201 gcgtcaggtc cggactgcca aggatgtagt tatcagcgac gccttgacgt tcatggcggg
+     1261 tgatcggagt catgtcgagg aagcgtaccc gggggacatt ctgggattac acaatcatgg
+     1321 cactattcag atcggtgaca cattcaccca gggcgagatg atgaaattta ccgggattcc
+     1381 gaacttcgca cctgaacttt ttcgccgtat tcggctgaag gatccactta aacagaaaca
+     1441 gctgctgaaa ggtctggtcc aattgtctga agaaggcgcg gtgcaggttt tccgtccgat
+     1501 ctctaataat gatctgatcg tgggtgcggt aggggttctg cagttcgacg ttgtggtagc
+     1561 gcggctgaaa tcagagtaca acgtggaagc agtatacgag tccgttaatg tcgctactgc
+     1621 acgctgggtc gaatgcgcgg atgcaaaaaa atttgaggaa tttaaacgca aaaacgaaag
+     1681 ccaactggcg ttggacggcg gcgataactt agcatatatc gcgaccagta tggtaaatct
+     1741 gcgtctggcc caggaacgct acccagacgt ccaatttcat caaacccgtg agcattgaag
+     1801 agcttagaga ccgagataac agatacttcg gtatctgtta tctgtttttt ttccaatgag
+     1861 acgaaacacg tggcaaacat tccctaagca tcacactgcc gtc
+//

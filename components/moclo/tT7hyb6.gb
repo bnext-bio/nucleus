@@ -1,0 +1,56 @@
+LOCUS       tT7hyb6                  329 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  MoClo: T7hyb6 synthetic hybrid T7 terminator from Calvopina-Chavez
+            (2022)..
+ACCESSION   tT7hyb6
+VERSION     tT7hyb6
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [81]"
+     source          79..89
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     source          79..85
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     source          86..89
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    79..89
+                     /label="MCL0-TERM-CDS-T"
+                     /label="MCL0-UTR-PU"
+                     /label="MCL0PU"
+     regulatory      90..128
+                     /label="T7hyb6 Terminator"
+     source          129..139
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    129..139
+                     /label="MCL0-TERM-T-V"
+                     /label="MCL0-UTR-U-SP"
+                     /label="MCL0PU"
+     misc_feature    290..309
+                     /label="Dialout Reverse [0]"
+     misc_feature    310..329
+                     /label="Terminator Spacer"
+     misc_feature    1..329
+                     /label="MCL0-tT7hyb6"
+ORIGIN
+        1 atcggtgggg aggtaatacc tagggataac agggtaatga aatcggtcag gtgacggcat
+       61 gccatgacga caactagcgg tctctgctta gataacagat acttcggtat ctgttatctg
+      121 ttttttttcg ctagagacct ttgcttcctg acatcgcgac taggacgctt tcggggtttt
+      181 agtaatgaga ctattctatt gatttgtttc acgcaattgg aggatttaaa tttgcatagc
+      241 taaatagagc ctgtttcggt tggcgtatta ttatgctaac catttcgata aacacgtggc
+      301 aaacattccc taagcatcac actgccgtc
+//

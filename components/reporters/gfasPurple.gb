@@ -1,0 +1,73 @@
+LOCUS       gfasPurple               916 bp    DNA     linear   SYN 30-OCT-2023
+DEFINITION  Measurement: GfasPurple purple chromoprotein under the T7 promoter..
+ACCESSION   gfasPurple
+VERSION     gfasPurple
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..20
+                     /label="Barcode A"
+     misc_feature    21..38
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    39..58
+                     /label="Barcode B"
+     misc_feature    1..58
+                     /label="Barcode"
+     misc_feature    59..78
+                     /label="Dialout Forward [55]"
+     misc_feature    79..89
+                     /label="CAST 0 [TAAC]"
+     primer_bind     90..109
+                     /label="pT7"
+     source          110..145
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    110..137
+                     /label="UTR1"
+     misc_feature    138..145
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    138..143
+                     /label="BsaI_Bind"
+     source          146..808
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     CDS             146..808
+                     /codon_start=1
+                     /label="gfasPurple"
+                     /translation="MSVIAKQMTYKVYMSGTVNGHYFEVEGDGKGKPYEGEQTVKLTVT
+                     KGGPLPFAWDILSPQSQYGSIPFTKYPEDIPDYVKQSFPEGYTWERIMNFEDGAVCTVS
+                     NDSSIQGNCFIYHVKFSGLNFPPNGPVMQKKTQGWEPNTERLFARDGMLIGNNFMALKL
+                     EGGGHYLCEFKSTYKAKKPVKMPGYHYVDRKLDVTNHNKDYTSVEQCEISIARKSVVA"
+     misc_feature    809..826
+                     /label="CDS Suffix"
+     regulatory      827..865
+                     /label="T7hyb6 Terminator"
+     misc_feature    866..876
+                     /label="CAST 0 [GGAG]"
+     misc_feature    877..896
+                     /label="Dialout Reverse [0]"
+     misc_feature    897..916
+                     /label="Terminator Spacer"
+     misc_feature    1..916
+                     /label="pT7-UTR1-gfasPurple-tT7hyb6"
+ORIGIN
+        1 agagtgccag ttttgttcaa tagggataac agggtaatat ttagactaca gactgcaaag
+       61 ctcaatctaa cagtggggcg tctcataact aatacgactc actataggga ataattttgt
+      121 ttaactttaa gaaggagggt ctctaatgtc ggtgattgct aaacagatga cctacaaagt
+      181 ctatatgtcg ggtacggtga acggccatta ttttgaagtt gaaggtgacg gtaaaggcaa
+      241 gccgtatgaa ggcgaacaga ccgttaaact gaccgtcacg aagggcggtc cgctgccgtt
+      301 tgcatgggat attctgagtc cgcagtccca atatggcagc atcccgttca cgaaatatcc
+      361 ggaagatatc ccggactacg tgaagcagtc ttttccggaa ggttacacct gggaacgtat
+      421 catgaacttc gaagatggcg ccgtctgcac cgtgagtaac gacagctcta ttcaaggtaa
+      481 ttgtttcatc taccatgtca agttctcagg tctgaacttc ccgccgaatg gcccggtgat
+      541 gcagaaaaag acccaaggct gggaaccgaa tacggaacgt ctgtttgcac gcgacggtat
+      601 gctgattggc aacaatttca tggctctgaa actggaaggc ggtggccact atctgtgcga
+      661 atttaaaagc acctacaagg cgaaaaagcc ggttaaaatg ccgggctatc attacgtgga
+      721 tcgtaaactg gacgttacca accacaataa ggactatacg tccgtcgaac agtgtgaaat
+      781 ttcaatcgcg cgcaaatcgg tggttgcctg aagagcttag agaccgagat aacagatact
+      841 tcggtatctg ttatctgttt tttttggagt gagacgaaac acgtggcaaa cattccctaa
+      901 gcatcacact gccgtc
+//
