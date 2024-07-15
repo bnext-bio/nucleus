@@ -1,0 +1,17 @@
+Well	Experiment	Label	DNA Template	[DNA Template] (ng/uL)	Blank
+B1	DNA Concentration	GFP-100	pT7-deGFP (AR-11)	100	
+B2	DNA Concentration	GFP-50	pT7-deGFP (AR-11)	50	
+B3	DNA Concentration	GFP-20	pT7-deGFP (AR-11)	20	
+B4	DNA Concentration	GFP-10	pT7-deGFP (AR-11)	10	
+B5	DNA Concentration	GFP-5	pT7-deGFP (AR-11)	5	
+B6	DNA Concentration	GFP-2	pT7-deGFP (AR-11)	2	
+B7	DNA Concentration	GFP-1	pT7-deGFP (AR-11)	1	
+B8	DNA Concentration	GFP-0	pT7-deGFP (AR-11)	0	Y
+C1	DNA Comparison	plamGFP (20240622)	pT7-lacO-plamGFP (20240622)	29.3	
+C2	DNA Comparison	plamGFP (20240626)	pT7-lacO-plamGFP (20240626)	35.8	
+C3	DNA Comparison	plamGFP (20240510)	pT7-lacO-plamGFP (20240510)	17.1	
+C4	DNA Comparison	plamGFP (20240622)	pT7-tetO-plamGFP (20240622)	72.7	
+C5	DNA Comparison	plamGFP (20240626)	pT7-tetO-plamGFP (20240626)	46.4	
+C6	DNA Comparison	plamGFP (20240510)	pT7-tetO-plamGFP (20240510)	12.3	
+C7	DNA Comparison	deGFP 1	pT7-deGFP (AR-11)	178.5	
+C8	DNA Comparison	deGFP 2	pT7-deGFP (AR-11)	178.5	
