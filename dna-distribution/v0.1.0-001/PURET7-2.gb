@@ -1,0 +1,160 @@
+LOCUS       PURET7-2                2953 bp    DNA     circular SYN 31-JUL-2024
+DEFINITION  PURET7 level-matched promoter. 0.417373 expression relative to
+            PURET7-10..
+ACCESSION   PURET7-2
+VERSION     PURET7-2
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    95..118
+                     /label="BB seq FOR"
+     misc_feature    269..296
+                     /label="upstream anneal"
+     misc_feature    297..316
+                     /label="20bp random sequence"
+     misc_feature    complement(317..343)
+                     /label="downstream anneal"
+     misc_feature    complement(477..505)
+                     /label="pOpen ori anneal REV"
+     CDS             complement(483..1343)
+                     /label="AmpR"
+     misc_feature    complement(502..523)
+                     /label="BB seq REV"
+     promoter        complement(1344..1448)
+                     /label="AmpR promoter"
+     misc_feature    1449..1463
+                     /label="AarI"
+     primer_bind     1464..1480
+                     /label="M13 fwd"
+     terminator      1481..1512
+                     /label="tonB terminator"
+     misc_feature    complement(1509..1528)
+                     /label="SLiCE-rev"
+     misc_feature    1528
+                     /label="BioBrick prefix"
+     misc_feature    1533..1552
+                     /label="Barcode A"
+     misc_feature    1553..1570
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    1571..1590
+                     /label="Barcode B"
+     misc_feature    1533..1590
+                     /label="Barcode"
+     misc_feature    1591..1610
+                     /label="Dialout Forward [68]"
+     misc_feature    1611..1621
+                     /label="CAST 0 [TAAC]"
+     source          1622..1632
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    1622..1632
+                     /label="MCL0-VP"
+     regulatory      1633..1651
+                     /regulatory_class="promoter"
+                     /standard_name="PURET7-2"
+                     /note="PURET7 level-matched promoter. 0.417373 expression
+                     relative to PURET7-10."
+     source          1652..1662
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    1652..1662
+                     /label="MCL0PU"
+     source          1663..1695
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    1663..1695
+                     /label="UTR1"
+     RBS             1669..1691
+                     /note="efficient ribosome binding site from bacteriophage
+                     T7 gene 10 (Olins and Rangwala, 1989)"
+     source          1696..2385
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     CDS             1696..2385
+                     /codon_start=1
+                     /label="amajLime"
+                     /translation="MALSNKFIGDDMKMTYHMDGCVNGHYFTVKGEGNGKPYEGTQTST
+                     FKVTMANGGPLAFSFDILSTVFKYGNRCFTAYPTSMPDYFKQAFPDGMSYERTFTYEDG
+                     GVATASWEISLKGNCFEHKSTFHGVNFPADGPVMAKKTTGWDPSFEKMTVCDGILKGDV
+                     TAFLMLQGGGNYRCQFHTSYKTKKPVTMPPNHVVEHRIARTDLDKGGNSVQLTEHAVAH
+                     ITSVVPF"
+     misc_feature    2386..2395
+                     /label="Spacer"
+     regulatory      2396..2434
+                     /label="T7hyb6 Terminator"
+     misc_feature    2435..2445
+                     /label="CAST 0 [GGAG]"
+     misc_feature    2446..2465
+                     /label="Dialout Reverse [0]"
+     misc_feature    2466..2485
+                     /label="Terminator Spacer"
+     misc_feature    1533..2485
+                     /label="PURET7-2"
+     misc_feature    2489..2492
+                     /label="BioBrick suffix"
+     misc_feature    2489..2507
+                     /label="SLiCE-for"
+     primer_bind     complement(2508..2526)
+                     /label="T7 Reverse"
+     terminator      2522..2569
+                     /label="T7 terminator"
+     primer_bind     complement(2570..2590)
+                     /label="M13 rev"
+     misc_feature    2591..2605
+                     /label="AarI"
+     misc_feature    2606..2656
+                     /label="spacer"
+ORIGIN
+        1 taactatcgt cttgagtcca acccggtaag acacgactta tcgccactgg cagcagccac
+       61 tggtaacagg attagcagag cgaggtatgt aggcggtgct acagagttct tgaagtggtg
+      121 gcctaactac ggctacacta gaagaacagt atttggtatc tgcgctctgc tgaagccagt
+      181 taccttcgga aaaagagttg gtagctcttg atccggcaaa caaaccaccg ctggtagcgg
+      241 tggttttttt gtttgcaagc agcagattac gcgcagaaaa aaaggatctc aagaaggcct
+      301 actattagca acaacgatcc tttgatcttt tctacggggt ctgacgctca gtggaacgaa
+      361 aactcacgtt aagggatttt ggtcatgaga ttatcaaaaa ggatcttcac ctagatcctt
+      421 ttaaattaaa aatgaagttt taaatcaatc taaagtatat atgagtaaac ttggtctgac
+      481 agttaccaat gcttaatcag tgaggcacct atctcagcga tctgtctatt tcgttcatcc
+      541 atagttgcct gactccccgt cgtgtagata actacgatac gggagggctt accatctggc
+      601 cccagtgctg caatgatacc gcgagaacca cgctcaccgg ctccagattt atcagcaata
+      661 aaccagccag ccggaagggc cgagcgcaga agtggtcctg caactttatc cgcctccatc
+      721 cagtctatta attgttgccg ggaagctaga gtaagtagtt cgccagttaa tagtttgcgc
+      781 aacgttgttg ccattgctac aggcatcgtg gtgtcacgct cgtcgtttgg tatggcttca
+      841 ttcagctccg gttcccaacg atcaaggcga gttacatgat cccccatgtt gtgcaaaaaa
+      901 gcggttagct ccttcggtcc tccgatcgtt gtcagaagta agttggccgc agtgttatca
+      961 ctcatggtta tggcagcact gcataattct cttactgtca tgccatccgt aagatgcttt
+     1021 tctgtgactg gtgagtactc aaccaagtca ttctgagaat agtgtatgcg gcgaccgagt
+     1081 tgctcttgcc cggcgtcaat acgggataat accgcgccac atagcagaac tttaaaagtg
+     1141 ctcatcattg gaaaacgttc ttcggggcga aaactctcaa ggatcttacc gctgttgaga
+     1201 tccagttcga tgtaacccac tcgtgcaccc aactgatctt cagcatcttt tactttcacc
+     1261 agcgtttctg ggtgagcaaa aacaggaagg caaaatgccg caaaaaaggg aataagggcg
+     1321 acacggaaat gttgaatact catactcttc ctttttcaat attattgaag catttatcag
+     1381 ggttattgtc tcatgagcgg atacatattt gaatgtattt agaaaaataa acaaataggg
+     1441 gttccgcgca cctgcaccag tcagtaaaac gacggccagt agtcaaaagc ctccgaccgg
+     1501 aggcttttga cttggttcag gtggagtggg agggcgcaca cgggtctgtc cctagggata
+     1561 acagggtaat acattgtcaa aaagttgaca agtggtctgt aaaccgtacc cgtctcataa
+     1621 cggtctcagg agtaatatca ctgactaaag ttactagaga ccaataattt tgtttaactt
+     1681 taagaaggag atataatggc actgtccaat aaattcatcg gcgacgatat gaaaatgacg
+     1741 taccatatgg acggctgtgt gaacggtcat tacttcaccg tgaaaggcga aggcaacggc
+     1801 aaaccgtacg agggcaccca aacctccact ttcaaagtta ctatggcgaa cggcggcccg
+     1861 ctggctttct cctttgacat tctgagtacc gttttcaaat atggcaaccg ctgcttcact
+     1921 gcgtacccga cgtcgatgcc ggattatttc aaacaagcgt tcccggacgg tatgtcttat
+     1981 gaacgtacat tcacctacga agatggtggt gtcgccacgg cgagctggga aatcagcctg
+     2041 aaagggaact gcttcgagca caaaagcacc tttcacggtg ttaacttccc ggccgacggc
+     2101 ccggttatgg cgaaaaaaac cacgggctgg gacccttctt tcgagaagat gaccgtgtgc
+     2161 gacggtatcc tgaaaggtga cgtcaccgca tttctgatgc tgcaaggtgg cggcaactac
+     2221 cgttgccagt ttcatacctc ttacaagacg aaaaaacctg ttaccatgcc gccgaaccac
+     2281 gtggtagaac accgcattgc gcgcactgac ctggataaag gcggcaactc cgtacagctg
+     2341 accgaacacg cagttgctca cataacctct gtagttccgt tttgacgctg ccttgagata
+     2401 acagatactt cggtatctgt tatctgtttt ttttggagtg agacgaaaca cgtggcaaac
+     2461 attcctctgg gggatgaatc atggtgctga ggtgtcaatc gtcggagccg ctgagcaata
+     2521 actagcataa ccccttgggg cctctaaacg ggtcttgagg ggttttttgc atggtcatag
+     2581 ctgtttcctg agagcttggc aggtgatgac acacattaac aaatttcgtg aggagtctcc
+     2641 agaagaatgc cattaatttc cataggctcc gcccccctga cgagcatcac aaaaatcgac
+     2701 gctcaagtca gaggtggcga aacccgacag gactataaag ataccaggcg tttccccctg
+     2761 gaagctccct cgtgcgctct cctgttccga ccctgccgct taccggatac ctgtccgcct
+     2821 ttctcccttc gggaagcgtg gcgctttctc atagctcacg ctgtaggtat ctcagttcgg
+     2881 tgtaggtcgt tcgctccaag ctgggctgtg tgcacgaacc ccccgttcag cccgaccgct
+     2941 gcgccttatc cgg
+//

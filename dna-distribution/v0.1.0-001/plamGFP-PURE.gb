@@ -1,0 +1,149 @@
+LOCUS       plamGFP-PURE            2943 bp    DNA     circular SYN 31-JUL-2024
+DEFINITION  Measurement: PlamGFP green fluorescent protein optimized for
+            cell-free expression in PURE..
+ACCESSION   plamGFP-PURE
+VERSION     plamGFP-PURE
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    95..118
+                     /label="BB seq FOR"
+     misc_feature    269..296
+                     /label="upstream anneal"
+     misc_feature    297..316
+                     /label="20bp random sequence"
+     misc_feature    complement(317..343)
+                     /label="downstream anneal"
+     misc_feature    complement(477..505)
+                     /label="pOpen ori anneal REV"
+     CDS             complement(483..1343)
+                     /label="AmpR"
+     misc_feature    complement(502..523)
+                     /label="BB seq REV"
+     promoter        complement(1344..1448)
+                     /label="AmpR promoter"
+     misc_feature    1449..1463
+                     /label="AarI"
+     primer_bind     1464..1480
+                     /label="M13 fwd"
+     terminator      1481..1512
+                     /label="tonB terminator"
+     misc_feature    complement(1509..1528)
+                     /label="SLiCE-rev"
+     misc_feature    1528
+                     /label="BioBrick prefix"
+     misc_feature    1533..1552
+                     /label="Barcode A"
+     misc_feature    1553..1570
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    1571..1590
+                     /label="Barcode B"
+     misc_feature    1533..1590
+                     /label="Barcode"
+     misc_feature    1591..1610
+                     /label="Dialout Forward [49]"
+     misc_feature    1611..1621
+                     /label="CAST 0 [TAAC]"
+     primer_bind     1622..1641
+                     /label="pT7"
+     source          1642..1677
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    1642..1669
+                     /label="UTR1"
+     misc_feature    1670..1677
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    1670..1675
+                     /label="BsaI_Bind"
+     source          1678..2367
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     CDS             1678..2367
+                     /codon_start=1
+                     /label="plamGFP"
+                     /translation="MEIEDVIKRDMKIKLRMEGAVNGHKFVIIGNGDGKPYEGTQTIDL
+                     EVIEGAPLPFAFDILTTVFEYGNRVFAKYPNEIVDYFKQSFPEGYSWERSMTYEDGGIC
+                     IATNNITLSKVIDNCFHYNIRFDGVNFPPKSPVLQKTTMKWEPSTEIMYVRDGVLKGDV
+                     NMALLIEGGGHYRCDFKTIYKAKKVVELPDYHFVDHRITIKSHDKDYNKVLLHEHAKAR
+                     YGLQRKAK"
+     misc_feature    2368..2385
+                     /label="CDS Suffix"
+     regulatory      2386..2424
+                     /label="T7hyb6 Terminator"
+     misc_feature    2425..2435
+                     /label="CAST 0 [GGAG]"
+     misc_feature    2436..2455
+                     /label="Dialout Reverse [0]"
+     misc_feature    2456..2475
+                     /label="Terminator Spacer"
+     misc_feature    1533..2475
+                     /label="pT7-UTR1-plamGFP-tT7hyb6"
+     misc_feature    2479..2482
+                     /label="BioBrick suffix"
+     misc_feature    2479..2497
+                     /label="SLiCE-for"
+     primer_bind     complement(2498..2516)
+                     /label="T7 Reverse"
+     terminator      2512..2559
+                     /label="T7 terminator"
+     primer_bind     complement(2560..2580)
+                     /label="M13 rev"
+     misc_feature    2581..2595
+                     /label="AarI"
+     misc_feature    2596..2646
+                     /label="spacer"
+ORIGIN
+        1 taactatcgt cttgagtcca acccggtaag acacgactta tcgccactgg cagcagccac
+       61 tggtaacagg attagcagag cgaggtatgt aggcggtgct acagagttct tgaagtggtg
+      121 gcctaactac ggctacacta gaagaacagt atttggtatc tgcgctctgc tgaagccagt
+      181 taccttcgga aaaagagttg gtagctcttg atccggcaaa caaaccaccg ctggtagcgg
+      241 tggttttttt gtttgcaagc agcagattac gcgcagaaaa aaaggatctc aagaaggcct
+      301 actattagca acaacgatcc tttgatcttt tctacggggt ctgacgctca gtggaacgaa
+      361 aactcacgtt aagggatttt ggtcatgaga ttatcaaaaa ggatcttcac ctagatcctt
+      421 ttaaattaaa aatgaagttt taaatcaatc taaagtatat atgagtaaac ttggtctgac
+      481 agttaccaat gcttaatcag tgaggcacct atctcagcga tctgtctatt tcgttcatcc
+      541 atagttgcct gactccccgt cgtgtagata actacgatac gggagggctt accatctggc
+      601 cccagtgctg caatgatacc gcgagaacca cgctcaccgg ctccagattt atcagcaata
+      661 aaccagccag ccggaagggc cgagcgcaga agtggtcctg caactttatc cgcctccatc
+      721 cagtctatta attgttgccg ggaagctaga gtaagtagtt cgccagttaa tagtttgcgc
+      781 aacgttgttg ccattgctac aggcatcgtg gtgtcacgct cgtcgtttgg tatggcttca
+      841 ttcagctccg gttcccaacg atcaaggcga gttacatgat cccccatgtt gtgcaaaaaa
+      901 gcggttagct ccttcggtcc tccgatcgtt gtcagaagta agttggccgc agtgttatca
+      961 ctcatggtta tggcagcact gcataattct cttactgtca tgccatccgt aagatgcttt
+     1021 tctgtgactg gtgagtactc aaccaagtca ttctgagaat agtgtatgcg gcgaccgagt
+     1081 tgctcttgcc cggcgtcaat acgggataat accgcgccac atagcagaac tttaaaagtg
+     1141 ctcatcattg gaaaacgttc ttcggggcga aaactctcaa ggatcttacc gctgttgaga
+     1201 tccagttcga tgtaacccac tcgtgcaccc aactgatctt cagcatcttt tactttcacc
+     1261 agcgtttctg ggtgagcaaa aacaggaagg caaaatgccg caaaaaaggg aataagggcg
+     1321 acacggaaat gttgaatact catactcttc ctttttcaat attattgaag catttatcag
+     1381 ggttattgtc tcatgagcgg atacatattt gaatgtattt agaaaaataa acaaataggg
+     1441 gttccgcgca cctgcaccag tcagtaaaac gacggccagt agtcaaaagc ctccgaccgg
+     1501 aggcttttga cttggttcag gtggagtggg aggagtttgt cggtcgggtc cctagggata
+     1561 acagggtaat cgcgatacag gctgcaaccc agattagctg ccgatactgg cgtctcataa
+     1621 ctaatacgac tcactatagg gaataatttt gtttaacttt aagaaggagg gtctctaatg
+     1681 gagatcgagg atgtgatcaa acgcgacatg aaaatcaagc tgcgtatgga aggtgctgtt
+     1741 aacggtcaca aattcgtgat cattggtaac ggcgacggca aaccatatga aggcactcag
+     1801 accatcgatc tggaagtcat tgaaggtgcc ccgctgccgt tcgcatttga catcctgact
+     1861 acagtttttg aatacggtaa cagagttttc gccaaatatc cgaacgaaat tgttgactac
+     1921 ttcaaacaat cctttccgga gggctactct tgggagcgtt ctatgaccta cgaggacggc
+     1981 ggcatttgta tcgccaccaa caatatcacc ctgtccaaag taatcgataa ctgcttccat
+     2041 tacaacatcc gtttcgatgg ggtgaatttc ccgccgaaaa gcccggtgct tcagaaaacc
+     2101 accatgaaat gggaaccgtc caccgaaatc atgtacgttc gtgacggtgt gctgaaaggc
+     2161 gacgtaaaca tggccctgct gatcgaaggc ggtggtcatt atcgttgcga ttttaaaacg
+     2221 atctacaaag cgaaaaaagt tgttgaactg ccggactatc actttgtcga ccaccgtatc
+     2281 accattaaat cacacgacaa agactacaac aaagtcctgc ttcacgaaca cgcaaaagcc
+     2341 cgttacggcc tccagcgtaa agcgaagtga agagcttaga gaccgagata acagatactt
+     2401 cggtatctgt tatctgtttt ttttggagtg agacgaaaca cgtggcaaac attcctctgg
+     2461 gggatgaatc atggtgctga ggtgtcaatc gtcggagccg ctgagcaata actagcataa
+     2521 ccccttgggg cctctaaacg ggtcttgagg ggttttttgc atggtcatag ctgtttcctg
+     2581 agagcttggc aggtgatgac acacattaac aaatttcgtg aggagtctcc agaagaatgc
+     2641 cattaatttc cataggctcc gcccccctga cgagcatcac aaaaatcgac gctcaagtca
+     2701 gaggtggcga aacccgacag gactataaag ataccaggcg tttccccctg gaagctccct
+     2761 cgtgcgctct cctgttccga ccctgccgct taccggatac ctgtccgcct ttctcccttc
+     2821 gggaagcgtg gcgctttctc atagctcacg ctgtaggtat ctcagttcgg tgtaggtcgt
+     2881 tcgctccaag ctgggctgtg tgcacgaacc ccccgttcag cccgaccgct gcgccttatc
+     2941 cgg
+//
