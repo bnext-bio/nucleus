@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "cdk"
+version = "0.1.0"
+description = ""
+authors = ["Anton Jackson-Smith <anton@bnext.bio>"]
+readme = "README.md"
+homepage = "https://nucleus.bnext.bio/"
+repository = "https://github.com/bnext-bio/bnext/"
+packages = [
+    { include = "cdk", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^2.1.2"
+pandas = "^2.2.3"
+seaborn = "^0.13.2"
+matplotlib = "^3.9.2"
+tqdm = "^4.66.5"
+rich = "^13.9.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra"
+testpaths = [
+    "tests",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
