@@ -33,12 +33,12 @@ def test_read_cytation():
 
 def test_platereader_read_has_mandatory_columns(platereader_data):
     data = platereader_data
-    required_columns = {"Well", "Row", "Column", "Time", "Seconds", "Read", "Data"}
+    required_columns = {"Well", "Row", "Column", "Time", "Seconds", "Temperature (C)", "Read", "Data"}
     assert required_columns.issubset(set(data.columns)), f"Missing required columns. Expected {required_columns} to be a subset of {set(data.columns)}"
 
 def test_platereader_read_mandatory_columns_are_ordered(platereader_data):
     data = platereader_data
-    required_columns = ["Well", "Row", "Column", "Time", "Seconds", "Read", "Data"]
+    required_columns = ["Well", "Row", "Column", "Time", "Seconds", "Temperature (C)", "Read", "Data"]
     assert (required_columns == data.columns.values[:len(required_columns)]).all(), f"Missing required columns. Expected {required_columns} to be a subset of {set(data.columns)}"
     # assert data.shape == (96, 18)
     # assert set(data.columns) == set([

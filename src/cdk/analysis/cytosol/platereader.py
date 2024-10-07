@@ -121,7 +121,7 @@ def read_cytation(data_file: str, sep="\t") -> pd.DataFrame:
     data['Time'] = pd.to_timedelta(data['Time']).astype('timedelta64[s]')
     data['Seconds'] = data['Time'].map(lambda x: x.total_seconds())
 
-    return data[['Well', 'Row', 'Column', 'Time', 'Seconds', 'Read', 'Data']]
+    return data[['Well', 'Row', 'Column', 'Time', 'Seconds', 'Temperature (C)', 'Read', 'Data']]
 
 def read_envision(data_file: str) -> pd.DataFrame:
     # load data
@@ -135,6 +135,8 @@ def read_envision(data_file: str) -> pd.DataFrame:
     data['Time'] = pd.to_timedelta(data['Time [hhh:mm:ss.sss]']).astype('timedelta64[s]')
     data['Seconds'] = data['Time'].map(lambda x: x.total_seconds())
 
+    data['Temperature (C)'] = data['Temperature current[°C]']
+
     data['Read'] = data['Operation']
 
     data["Data"] = data["Result Channel 1"]
@@ -143,4 +145,4 @@ def read_envision(data_file: str) -> pd.DataFrame:
     data["Emission (nm)"] = data["Ems WL Channel 1[nm]"]
     data["Wavelength (nm)"] = data["Excitation (nm)"] + "," + data["Emission (nm)"]
         
-    return data[['Well', 'Row', 'Column', 'Time', 'Seconds', 'Read', 'Data']]
+    return data[['Well', 'Row', 'Column', 'Time', 'Seconds', 'Temperature (C)', 'Read', 'Data']]
