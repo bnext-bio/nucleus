@@ -23,6 +23,7 @@ rich = "^13.9.2"
 pytest = "^8.3.3"
 flake8 = "^7.1.1"
 black = "^24.10.0"
+pre-commit = "^4.0.0"
 
 [tool.poetry.scripts]
 lint = "flake8 ."
@@ -56,3 +57,4 @@ testpaths = [
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+

@@ -1,0 +1,12 @@
+repos:
+-   repo: https://github.com/python-poetry/poetry
+    rev: 1.8.3
+    hooks:
+    -   id: poetry-check
+        args: ["-C", "./cdk"]
+    -   id: poetry-lock
+        args: ["-C", "./cdk"]
+    -   id: poetry-export
+        args: ["-C", "./cdk", "-f", "requirements.txt", "-o", "./cdk/requirements.txt"]
+    -   id: poetry-install
+        args: ["-C", "./cdk"]
