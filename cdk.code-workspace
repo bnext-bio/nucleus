@@ -24,7 +24,10 @@
 			"**/CVS": true,
 			"**/.DS_Store": true,
 			"**/Thumbs.db": true
-		}
+		},
+		"python.testing.pytestArgs": [
+			"-s"
+		]
 	},
 	"extensions": {
 		"recommendations": [
