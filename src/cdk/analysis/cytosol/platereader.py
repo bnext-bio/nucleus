@@ -13,12 +13,13 @@ Usage:
 import io
 import re
 import os.path
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
 
-def load_platereader_data(data_file: str) -> pd.DataFrame:
+def load_platereader_data(data_file: Path) -> pd.DataFrame:
     """
     Load plate reader data from a file and return a DataFrame.
 
@@ -64,6 +65,23 @@ def load_platereader_data(data_file: str) -> pd.DataFrame:
     #     return read_glomax(os.path.dirname(data_file))
     else:
         raise ValueError(f"Unsupported plate reader data file: {data_file}")
+
+
+def read_platemap(platemap_file: Path) -> pd.DataFrame:
+    extension = os.path.splitext(platemap_file)[1].lower()
+    if extension == ".csv":
+        platemap = pd.read_csv(platemap_file)
+    elif extension == ".xlsx":
+        platemap = pd.read_excel(platemap_file)
+    else:
+        raise ValueError(f"Unsupported platemap file, use csv or xlsx: {platemap_file}")
+
+    # Remove unnamed columns from the plate map.
+    platemap = platemap[[col for col in platemap.columns if not col.startswith("Unnamed:")]]
+
+    platemap = platemap.convert_dtypes()
+    platemap["Well"] = platemap["Well"].str.replace(":", "")  # Normalize well by removing : if it exists
+    return platemap
 
 
 # def read_glomax(data_dir: str) -> pd.DataFrame:
@@ -122,12 +140,12 @@ def read_cytation(data_file: str, sep="\t") -> pd.DataFrame:
     header = pd.read_csv(io.StringIO(header), delimiter=sep, header=0, names=["key", "value"])
 
     # get procedure DataFrame
-    procedure = data[procidx.end():layoutidx.start()]
+    procedure = data[procidx.end() : layoutidx.start()]
     procedure = pd.read_csv(io.StringIO(procedure), skipinitialspace=True, names=range(4))
     procedure = procedure.replace(np.nan, "")
 
     # get Cytation plate map from data_file as DataFrame
-    layout = data[layoutidx.end():readidx.start()]
+    layout = data[layoutidx.end() : readidx.start()]
     layout = pd.read_csv(io.StringIO(layout), index_col=False)
     layout = layout.set_index(layout.columns[0])
     layout.index.name = "Row"
@@ -139,10 +157,10 @@ def read_cytation(data_file: str, sep="\t") -> pd.DataFrame:
 
     for readidx in re.finditer(r"^(Read\s)?\d+,\d+.*\n", data, re.MULTILINE):
         # for each iteration, extract string from start idx to end icx
-        read = data[readidx.end():]
+        read = data[readidx.end() :]
         read = read[: re.search(r"(^(Read\s)?\d+,\d+|^Blank Read\s\d|Results|\Z)", read[1:], re.MULTILINE).start()]
         read = pd.read_csv(io.StringIO(read), sep=sep, engine="python").convert_dtypes()
-        reads[data[readidx.start():readidx.end()].strip()] = read
+        reads[data[readidx.start() : readidx.end()].strip()] = read
 
     # create a DataFrame for each read and process, then concatenate into a large DataFrame
     # NOTE: JC 2024-05-21 - turns out, len(list(reads.items())) = 1 (one big mono table)

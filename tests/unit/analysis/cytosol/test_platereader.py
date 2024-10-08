@@ -1,5 +1,8 @@
 import pytest
 
+PLATEMAP_CSV_DATA_PATH = "tests/test_data/platemap.csv"
+PLATEMAP_XLSX_DATA_PATH = "tests/test_data/platemap.xlsx"
+
 CYTATION_KINETIC_DATA_PATH = "tests/test_data/cytation_fluorescence_kinetics.txt"
 ENVISION_KINETIC_DATA_PATH = "tests/test_data/envision_fluorescence_kinetics.csv"
 
@@ -62,3 +65,16 @@ def test_load_platereader_data(platereader_data_file):
     data = load_platereader_data(platereader_data_file)
 
     assert isinstance(data, pd.DataFrame)
+
+
+@pytest.fixture(params=[PLATEMAP_CSV_DATA_PATH, PLATEMAP_XLSX_DATA_PATH])
+def platemap_data_files(request):
+    return request.param
+
+
+def test_read_platemap(platemap_data_files):
+    from cdk.analysis.cytosol.platereader import read_platemap
+
+    platemap = read_platemap(platemap_data_files)
+    print(platemap)
+    assert platemap.shape == (16, 3)
