@@ -23,6 +23,9 @@
 			"**/CVS": true,
 			"**/.DS_Store": true,
 			"**/Thumbs.db": true
+		},
+		"[yaml]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode"
 		}
 	},
 	"extensions": {
