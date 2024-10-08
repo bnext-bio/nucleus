@@ -25,10 +25,6 @@ flake8 = "^7.1.1"
 black = "^24.10.0"
 pre-commit = "^4.0.0"
 
-[tool.poetry.scripts]
-lint = "flake8 ."
-format = "black ."
-
 [tool.black]
 line-length = 120
 target-version = ['py311']
