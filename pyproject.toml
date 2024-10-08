@@ -21,6 +21,30 @@ rich = "^13.9.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
+flake8 = "^7.1.1"
+black = "^24.10.0"
+
+[tool.poetry.scripts]
+lint = "flake8 ."
+format = "black ."
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
 
 [tool.pytest.ini_options]
 minversion = "6.0"
