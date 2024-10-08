@@ -8,12 +8,13 @@
 		"python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
 		"python.testing.pytestEnabled": true,
 		"flake8.importStrategy": "fromEnvironment",
+		"flake8.args": ["--config=.flake8"],
 		"black-formatter.importStrategy": "fromEnvironment",
 		"editor.defaultFormatter": "ms-python.black-formatter",
 		"editor.formatOnSave": true,
 		"[python]": {
 			"editor.codeActionsOnSave": {
-				"source.organizeImports": true,
+				"source.organizeImports": "explicit"
 			},
 		},
 		"files.exclude": {
