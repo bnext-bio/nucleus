@@ -78,3 +78,33 @@ def test_read_platemap(platemap_data_files):
     platemap = read_platemap(platemap_data_files)
     print(platemap)
     assert platemap.shape == (16, 3)
+
+
+def test_read_platemap_normalizes_wells():
+    import pandas as pd
+    from cdk.analysis.cytosol.platereader import read_platemap
+
+    platemap_check = pd.read_csv(PLATEMAP_CSV_DATA_PATH)
+    assert (
+        platemap_check["Well"].str.contains(":").any()
+    ), "Test platemap does not contain wells with : (e.g., A:1); test is invalid."
+
+    platemap = read_platemap(PLATEMAP_CSV_DATA_PATH)
+    assert not platemap["Well"].str.contains(":").any()
+
+
+def test_load_platereader_data_loads_platemap(platereader_data_file, platemap_data_files):
+    from cdk.analysis.cytosol.platereader import load_platereader_data
+
+    data = load_platereader_data(platereader_data_file, platemap_data_files)
+
+    # We will only have all of these columns if the platemap was successfully loaded.
+    required_columns = {"Well", "Data", "DNA Template"}
+    assert required_columns.issubset(set(data.columns))
+
+
+def test_load_platereader_with_none_platemap(platereader_data_file):
+    from cdk.analysis.cytosol.platereader import load_platereader_data
+
+    data = load_platereader_data(platereader_data_file, None)
+    assert data.shape[0] > 0

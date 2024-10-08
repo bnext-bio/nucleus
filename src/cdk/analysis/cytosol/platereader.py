@@ -14,12 +14,15 @@ import io
 import re
 import os.path
 from pathlib import Path
+import logging
 
 import numpy as np
 import pandas as pd
 
+logger = logging.getLogger(__name__)
 
-def load_platereader_data(data_file: Path) -> pd.DataFrame:
+
+def load_platereader_data(data_file: Path, platemap_file: Path) -> pd.DataFrame:
     """
     Load plate reader data from a file and return a DataFrame.
 
@@ -58,13 +61,19 @@ def load_platereader_data(data_file: Path) -> pd.DataFrame:
     filename = os.path.basename(data_file).lower()
 
     if filename.startswith("cytation"):
-        return read_cytation(data_file)
+        data = read_cytation(data_file)
     elif filename.startswith("envision"):
-        return read_envision(data_file)
+        data = read_envision(data_file)
     # elif filename_lower.startswith("glomax"):
     #     return read_glomax(os.path.dirname(data_file))
     else:
         raise ValueError(f"Unsupported plate reader data file: {data_file}")
+
+    if platemap_file is not None:
+        platemap = read_platemap(platemap_file)
+        data = data.merge(platemap, on="Well")
+
+    return data
 
 
 def read_platemap(platemap_file: Path) -> pd.DataFrame:
@@ -125,6 +134,7 @@ def read_platemap(platemap_file: Path) -> pd.DataFrame:
 
 
 def read_cytation(data_file: str, sep="\t") -> pd.DataFrame:
+    logger.debug(f"Reading Cytation data from {data_file}")
     # read data file as long string
     data = ""
     with open(data_file, "r", encoding="latin1") as file:
