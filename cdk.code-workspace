@@ -27,7 +27,10 @@
 		},
 		"python.testing.pytestArgs": [
 			"-s"
-		]
+		],
+		"[yaml]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode"
+		}
 	},
 	"extensions": {
 		"recommendations": [
