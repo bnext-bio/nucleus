@@ -6,6 +6,9 @@ PLATEMAP_XLSX_DATA_PATH = "tests/test_data/platemap.xlsx"
 CYTATION_KINETIC_DATA_PATH = "tests/test_data/cytation_fluorescence_kinetics.txt"
 ENVISION_KINETIC_DATA_PATH = "tests/test_data/envision_fluorescence_kinetics.csv"
 
+DNA_SWEEP_DATA_PATH = "tests/test_data/cytation_dna_sweep.txt"
+DNA_SWEEP_PLATEMAP_PATH = "tests/test_data/platemap.csv"
+
 
 def test_read_envision():
     import pandas as pd
@@ -25,6 +28,13 @@ def test_read_cytation():
     print(f"Columns: {data.columns}")
 
     assert isinstance(data, pd.DataFrame)
+
+
+def test_read_cytation_temperature_column():
+    from cdk.analysis.cytosol.platereader import read_cytation
+
+    data = read_cytation(DNA_SWEEP_DATA_PATH)  # DNA sweep data has a weird temp degree character
+    assert "Temperature (C)" in data.columns
 
 
 @pytest.fixture(params=["envision", "cytation"])
@@ -51,6 +61,13 @@ def test_platereader_read_mandatory_columns_are_ordered(platereader_data):
     assert (
         required_columns == data.columns.values[: len(required_columns)]
     ).all(), f"Missing required columns. Expected {required_columns} to be a subset of {set(data.columns)}"
+
+
+def test_platereader_time_is_timedelta(platereader_data):
+    import pandas as pd
+
+    data = platereader_data
+    assert isinstance(data["Time"].dtype, pd.Timedelta)
 
 
 @pytest.fixture(params=[ENVISION_KINETIC_DATA_PATH, CYTATION_KINETIC_DATA_PATH])
@@ -108,3 +125,17 @@ def test_load_platereader_with_none_platemap(platereader_data_file):
 
     data = load_platereader_data(platereader_data_file, None)
     assert data.shape[0] > 0
+
+
+@pytest.fixture
+def dna_sweep_data():
+    from cdk.analysis.cytosol.platereader import load_platereader_data
+
+    return load_platereader_data(DNA_SWEEP_DATA_PATH, DNA_SWEEP_PLATEMAP_PATH)
+
+
+def test_plot_plate(dna_sweep_data):
+    from cdk.analysis.cytosol.platereader import plot_plate
+
+    g = plot_plate(dna_sweep_data)
+    assert g.axes.shape[0] > 0 and g.axes.shape[1] > 0

@@ -15,14 +15,20 @@ import re
 import os.path
 from pathlib import Path
 import logging
+from typing import Union, Optional
 
 import numpy as np
 import pandas as pd
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 logger = logging.getLogger(__name__)
 
+DataFile = Union[str, Path, io.StringIO]
 
-def load_platereader_data(data_file: Path, platemap_file: Path) -> pd.DataFrame:
+
+def load_platereader_data(data_file: DataFile, platemap_file: Optional[DataFile] = None) -> pd.DataFrame:
     """
     Load plate reader data from a file and return a DataFrame.
 
@@ -76,14 +82,17 @@ def load_platereader_data(data_file: Path, platemap_file: Path) -> pd.DataFrame:
     return data
 
 
-def read_platemap(platemap_file: Path) -> pd.DataFrame:
-    extension = os.path.splitext(platemap_file)[1].lower()
-    if extension == ".csv":
+def read_platemap(platemap_file: DataFile) -> pd.DataFrame:
+    if isinstance(platemap_file, io.StringIO):
         platemap = pd.read_csv(platemap_file)
-    elif extension == ".xlsx":
-        platemap = pd.read_excel(platemap_file)
     else:
-        raise ValueError(f"Unsupported platemap file, use csv or xlsx: {platemap_file}")
+        extension = os.path.splitext(platemap_file)[1].lower()
+        if extension == ".csv":
+            platemap = pd.read_csv(platemap_file)
+        elif extension == ".xlsx":
+            platemap = pd.read_excel(platemap_file)
+        else:
+            raise ValueError(f"Unsupported platemap file, use csv or xlsx: {platemap_file}")
 
     # Remove unnamed columns from the plate map.
     platemap = platemap[[col for col in platemap.columns if not col.startswith("Unnamed:")]]
@@ -133,7 +142,7 @@ def read_platemap(platemap_file: Path) -> pd.DataFrame:
 #     return data
 
 
-def read_cytation(data_file: str, sep="\t") -> pd.DataFrame:
+def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
     logger.debug(f"Reading Cytation data from {data_file}")
     # read data file as long string
     data = ""
@@ -200,7 +209,7 @@ def read_cytation(data_file: str, sep="\t") -> pd.DataFrame:
     return data[["Well", "Row", "Column", "Time", "Seconds", "Temperature (C)", "Read", "Data"]]
 
 
-def read_envision(data_file: str) -> pd.DataFrame:
+def read_envision(data_file: DataFile) -> pd.DataFrame:
     # load data
     data = pd.read_csv(data_file).convert_dtypes()
 
@@ -223,3 +232,16 @@ def read_envision(data_file: str) -> pd.DataFrame:
     data["Wavelength (nm)"] = data["Excitation (nm)"] + "," + data["Emission (nm)"]
 
     return data[["Well", "Row", "Column", "Time", "Seconds", "Temperature (C)", "Read", "Data"]]
+
+
+def _plot_timedelta(g: sns.FacetGrid) -> sns.FacetGrid:
+    for ax in g.axes.flat:
+        ax.xaxis.set_major_locator(mpl.dates.AutoDateLocator())
+        ax.xaxis.set_major_formatter(mpl.dates.DateFormatter("%H:%M:%S"))
+
+
+def plot_plate(data: pd.DataFrame) -> sns.FacetGrid:
+    g = sns.relplot(data=data, x="Time", y="Data", row="Row", col="Column", kind="line")
+    _plot_timedelta(g)
+
+    return g
