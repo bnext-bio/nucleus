@@ -19,13 +19,18 @@ from typing import Union, Optional, NamedTuple
 
 import numpy as np
 import pandas as pd
+
+# import matplotlib.pyplot as plt
+import matplotlib as mpl
 import seaborn as sns
 import timple
 import timple.timedelta
 import scipy.optimize
 import functools
+import warnings
 
-logger = logging.getLogger(__name__)
+
+log = logging.getLogger(__name__)
 
 DataFile = Union[str, Path, io.StringIO]
 
@@ -174,7 +179,7 @@ def read_platemap(platemap_file: DataFile) -> pd.DataFrame:
 
 
 def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
-    logger.debug(f"Reading Cytation data from {data_file}")
+    log.debug(f"Reading Cytation data from {data_file}")
     # read data file as long string
     data = ""
     with open(data_file, "r", encoding="latin1") as file:
@@ -309,14 +314,19 @@ def plot_setup() -> None:
     _timple.enable()
 
 
-def _plot_timedelta(g: sns.FacetGrid) -> sns.FacetGrid:
-    for ax in g.axes.flat:
+def _plot_timedelta(plot: sns.FacetGrid | mpl.axes.Axes) -> sns.FacetGrid:
+    axes = [plot]
+    if isinstance(plot, sns.FacetGrid):
+        axes = plot.axes.flatten()
+
+    for ax in axes:
         # ax.xaxis.set_major_locator(timple.timedelta.AutoTimedeltaLocator(minticks=3))
         ax.xaxis.set_major_formatter(
             timple.timedelta.TimedeltaFormatter("%h:%m")
         )
+        ax.set_xlabel("Time (hours)")
 
-    g.set_xlabels("Time (hours)")
+    # g.set_xlabels("Time (hours)")
     # g.figure.autofmt_xdate()
 
 
@@ -444,11 +454,13 @@ def find_steady_state(
     return result
 
 
+def _sigmoid(x, L, k, x0):
+    return L / (1 + np.exp(-k * (x - x0)))
+
+
 def kinetic_analysis_per_well(
     data: pd.DataFrame, data_column="Data"
 ) -> pd.DataFrame:
-    def sigmoid(x, L, k, x0):
-        return L / (1 + np.exp(-k * (x - x0)))
 
     steadystate = find_steady_state_for_well(data)
 
@@ -464,27 +476,31 @@ def kinetic_analysis_per_well(
     p0 = [L_initial, k_initial, x0_initial]
 
     # attempt fitting
-    try:
-        params, _ = scipy.optimize.curve_fit(
-            sigmoid, time, data[data_column], p0=p0
-        )
-    except Exception as e:
-        print(f"Failed to solve: {e}")
+    params = [0, 0, 0]
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", scipy.optimize.OptimizeWarning)
+        try:
+            params, _ = scipy.optimize.curve_fit(
+                _sigmoid, time, data[data_column], p0=p0
+            )
+        except scipy.optimize.OptimizeWarning as w:
+            log.debug(f"Scipy optimize warning: {w}")
+        except Exception as e:
+            log.warning(f"Failed to solve: {e}")
 
-        return None
-
-    # Get the fitted curve
-    # x_fit = data["Seconds"]
-    # y_fit = sigmoid(x_fit, *params)
+            return None
+    log.debug(f"{data['Well'].iloc[0]} Fitted params: {params}")
 
     # calculate velocities and velocity params
-    v = data[data_column].diff() / data["Seconds"].diff()
+    v = data[data_column].diff() / data["Time"].dt.total_seconds().diff()
+
     maxV = v.max()
     maxV_d = data.loc[v.idxmax(), data_column]
     maxV_time = data.loc[v.idxmax(), "Time"]
 
     # calculate lag time
     lag = -maxV_d / maxV + maxV_time.total_seconds()
+    lag_data = _sigmoid(lag, *params)
 
     # decile_upper = data[data_column].quantile(0.95)
     # decile_lower = data[data_column].quantile(0.05)
@@ -515,9 +531,13 @@ def kinetic_analysis_per_well(
         ("Velocity", data_column): maxV_d,
         ("Velocity", "Max"): maxV,
         ("Lag", "Time"): pd.to_timedelta(lag, unit="s"),
+        ("Lag", "Data"): lag_data,
         # f"{data_column}_growth_s": growth_s,
         ("Steady State", "Time"): steadystate["Time_steadystate"],
         ("Steady State", data_column): steadystate["Data_steadystate"],
+        ("Fit", "L"): params[0],
+        ("Fit", "k"): params[1],
+        ("Fit", "x0"): params[2],
     }
 
     return pd.Series(kinetics)
@@ -558,8 +578,9 @@ def kinetic_analysis_summary(
     return out
 
 
-def plot_kinetics(
+def plot_kinetics_by_well(
     data: pd.DataFrame,
+    kinetics: pd.DataFrame,
     x: str = "Time",
     y: str = "Data",
     show_fit: bool = False,
@@ -576,60 +597,76 @@ def plot_kinetics(
     """
     colors = sns.color_palette("Set2")
 
-    summary = data.iloc[0]
+    ax = sns.scatterplot(data=data, x=x, y=y, c=colors[2], alpha=0.5)
 
-    ax = sns.scatterplot(data=data, x=x, y=y, alpha=0.5)
+    well = data["Well"].iloc[0]
+    read = data["Read"].iloc[0]
+    kinetics = kinetics.loc[well, read]
+    if (kinetics.isna()).any():
+        log.info(f"Kinetics information not available for {well}.")
+        return
 
     ax_ylim = (
         ax.get_ylim()
     )  # Use this to run lines to bounds later, then restore them before returning.
 
     if show_fit:
-        sns.lineplot(data=data, x=x, y=y, linestyle="--", c="red", alpha=0.5)
+        L = kinetics["Fit", "L"]
+        k = kinetics["Fit", "k"]
+        x0 = kinetics["Fit", "x0"]
+        sns.lineplot(
+            x=data["Time"],
+            y=_sigmoid(data["Time"].dt.total_seconds(), L, k, x0),
+            linestyle="--",
+            c=colors[3],
+            # alpha=0.5,
+            ax=ax,
+        )
+    #     sns.lineplot(data=data, x=x, y=y, linestyle="--", c="red", alpha=0.5)
 
     # Max Velocity
-    maxV_x = np.linspace(data[x].min(), data[x].max(), 100)
+    # maxV_x = np.linspace(ax.get_xlim()[0], ax.get_xlim()[1], 100)
     maxV_y = (
-        summary[f"{y}_maxV"] * (maxV_x - summary[f"{y}_maxV_s"])
-        + summary[f"{y}_maxV_d"]
+        kinetics["Velocity", "Max"]
+        * (data["Time"] - kinetics["Velocity", "Time"]).dt.total_seconds()
+        + kinetics["Velocity", "Data"]
     )
 
     sns.lineplot(
-        x=maxV_x[(maxV_y > 0) & (maxV_y < data[y].max())],
+        x=data["Time"].loc[(maxV_y > 0) & (maxV_y < data[y].max())],
         y=maxV_y[(maxV_y > 0) & (maxV_y < data[y].max())],
         linestyle="--",
-        c="r",
+        c=colors[1],
         ax=ax,
     )
 
-    maxV = summary[f"{y}_maxV"]
-    maxV_s = summary[f"{y}_maxV_s"]
-    maxV_d = summary[f"{y}_maxV_d"]
+    maxV = kinetics["Velocity", "Max"]
+    maxV_s = kinetics["Velocity", "Time"]
+    maxV_d = kinetics["Velocity", "Data"]
 
-    # Lag Time
-    lag = summary[f"{y}_lag_s"]
-    decile_upper = summary[f"{y}_high_d"]
-    decile_lower = summary[f"{y}_low_d"]
-    ax.vlines(
-        lag,
-        ymin=ax_ylim[0],
-        ymax=decile_lower,
-        colors=colors[2],
-        linestyle="--",
-    )
+    # decile_upper = summary[f"{y}_high_d"]
+    # decile_lower = summary[f"{y}_low_d"]
+    # ax.vlines(
+    #     lag,
+    #     ymin=ax_ylim[0],
+    #     ymax=decile_lower,
+    #     colors=colors[2],
+    #     linestyle="--",
+    # )
 
     # Time to Steady State
-    ss_s = summary[f"{y}_ss_s"]
+    ss_s = kinetics["Steady State", "Time"]
+    print(ss_s)
     ax.axvline(ss_s, c=colors[3], linestyle="--")
 
-    # Range
-    ax.axhline(decile_upper, c=colors[7], linestyle="--")
-    ax.axhline(decile_lower, c=colors[7], linestyle="--")
+    # # Range
+    # ax.axhline(decile_upper, c=colors[7], linestyle="--")
+    # ax.axhline(decile_lower, c=colors[7], linestyle="--")
 
     if annotate:
         # Plot the text annotations on the chart
         ax.annotate(
-            f"$V_{{max}} = {maxV:.2f} u/s$",
+            f"$V_{{max}} =$ {maxV:.2f} u/s",
             (maxV_s, maxV_d),
             xytext=(24, 0),
             textcoords="offset points",
@@ -638,20 +675,33 @@ def plot_kinetics(
             va="center",
             c="black",
         )
+
+        f = timple.timedelta.TimedeltaFormatter("%h:%m")
+        lag_label = f.format_data(
+            timple.timedelta.timedelta2num(kinetics["Lag", "Time"])
+        )
         ax.annotate(
-            f"$t_{{lag}} = {lag:.0f}$ s",
-            (lag, decile_lower),
+            f"$t_{{lag}} =$ {lag_label}",
+            (kinetics["Lag", "Time"], kinetics["Lag", "Data"]),
             xytext=(12, 0),
             textcoords="offset points",
             ha="left",
             va="center",
         )
+
+        ss_label = f.format_data(
+            timple.timedelta.timedelta2num(kinetics["Steady State", "Time"])
+        )
         ax.annotate(
-            f"$t_{{steady state}} = {ss_s - lag:.0f}$ s",
-            (lag + (ss_s - lag) / 4, decile_upper),
+            f"$t_{{steady state}} =$ {ss_label}",
+            (
+                kinetics["Steady State", "Time"],
+                kinetics["Steady State", "Data"],
+            ),
             xytext=(0, -12),
             textcoords="offset points",
-            ha="center",
+            ha="left",
+            va="top",
         )
 
     # Velocity
@@ -669,3 +719,18 @@ def plot_kinetics(
         velocity_ax.set_ylim((0, velocity[y].max() * 2))
 
     ax.set_ylim(ax_ylim)
+
+    _plot_timedelta(ax)
+
+
+def plot_kinetics(data: pd.DataFrame, kinetics: pd.DataFrame, **kwargs):
+    g = sns.FacetGrid(
+        data, col="Well", col_wrap=2, sharey=True, height=4, aspect=1.5
+    )
+    g.map_dataframe(
+        plot_kinetics_by_well,
+        kinetics=kinetics,
+        show_fit=True,
+        show_velocity=False,
+        annotate=True,
+    )
