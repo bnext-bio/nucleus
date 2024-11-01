@@ -15,20 +15,36 @@ import re
 import os.path
 from pathlib import Path
 import logging
-from typing import Union, Optional
+from typing import Union, Optional, NamedTuple
 
 import numpy as np
 import pandas as pd
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 import seaborn as sns
+import timple
+import timple.timedelta
+import scipy.optimize
+import functools
 
 logger = logging.getLogger(__name__)
 
 DataFile = Union[str, Path, io.StringIO]
 
 
-def load_platereader_data(data_file: DataFile, platemap_file: Optional[DataFile] = None) -> pd.DataFrame:
+class PlateReaderData(NamedTuple):
+    """
+    A named tuple representing plate reader data and associated plate map information.
+    """
+
+    data: pd.DataFrame
+    platemap: Optional[pd.DataFrame] = None
+
+
+_timple = timple.Timple()
+
+
+def load_platereader_data(
+    data_file: DataFile, platemap_file: Optional[DataFile] = None
+) -> Union[PlateReaderData, pd.DataFrame]:
     """
     Load plate reader data from a file and return a DataFrame.
 
@@ -61,7 +77,14 @@ def load_platereader_data(data_file: DataFile, platemap_file: Optional[DataFile]
         data_file (str): Path to the plate reader data file.
 
     Returns:
-        pd.DataFrame: DataFrame containing the plate reader data in a structured format.
+        If a platemap is provided, a PlateReaderData named tuple containing the data and platemap DataFrames. Otherwise,
+        just the data. If a platemap_file is provided, the returned platemap is guaranteed to be not None.
+
+        platemap_file is not None:
+            PlateReaderData: A named tuple containing the plate reader data and platemap DataFrames: (data, platemap)
+        platemap_file is None:
+            pd.DataFrame: DataFrame containing the plate reader data in a structured format.
+
 
     """
     filename = os.path.basename(data_file).lower()
@@ -75,9 +98,11 @@ def load_platereader_data(data_file: DataFile, platemap_file: Optional[DataFile]
     else:
         raise ValueError(f"Unsupported plate reader data file: {data_file}")
 
+    platemap = None
     if platemap_file is not None:
         platemap = read_platemap(platemap_file)
         data = data.merge(platemap, on="Well")
+        return PlateReaderData(data=data, platemap=platemap)
 
     return data
 
@@ -92,13 +117,19 @@ def read_platemap(platemap_file: DataFile) -> pd.DataFrame:
         elif extension == ".xlsx":
             platemap = pd.read_excel(platemap_file)
         else:
-            raise ValueError(f"Unsupported platemap file, use csv or xlsx: {platemap_file}")
+            raise ValueError(
+                f"Unsupported platemap file, use csv or xlsx: {platemap_file}"
+            )
 
     # Remove unnamed columns from the plate map.
-    platemap = platemap[[col for col in platemap.columns if not col.startswith("Unnamed:")]]
+    platemap = platemap[
+        [col for col in platemap.columns if not col.startswith("Unnamed:")]
+    ]
 
     platemap = platemap.convert_dtypes()
-    platemap["Well"] = platemap["Well"].str.replace(":", "")  # Normalize well by removing : if it exists
+    platemap["Well"] = platemap["Well"].str.replace(
+        ":", ""
+    )  # Normalize well by removing : if it exists
     return platemap
 
 
@@ -156,11 +187,15 @@ def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
 
     # get header DataFrame
     header = data[: procidx.start()]
-    header = pd.read_csv(io.StringIO(header), delimiter=sep, header=0, names=["key", "value"])
+    header = pd.read_csv(
+        io.StringIO(header), delimiter=sep, header=0, names=["key", "value"]
+    )
 
     # get procedure DataFrame
     procedure = data[procidx.end() : layoutidx.start()]
-    procedure = pd.read_csv(io.StringIO(procedure), skipinitialspace=True, names=range(4))
+    procedure = pd.read_csv(
+        io.StringIO(procedure), skipinitialspace=True, names=range(4)
+    )
     procedure = procedure.replace(np.nan, "")
 
     # get Cytation plate map from data_file as DataFrame
@@ -177,8 +212,16 @@ def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
     for readidx in re.finditer(r"^(Read\s)?\d+,\d+.*\n", data, re.MULTILINE):
         # for each iteration, extract string from start idx to end icx
         read = data[readidx.end() :]
-        read = read[: re.search(r"(^(Read\s)?\d+,\d+|^Blank Read\s\d|Results|\Z)", read[1:], re.MULTILINE).start()]
-        read = pd.read_csv(io.StringIO(read), sep=sep, engine="python").convert_dtypes()
+        read = read[
+            : re.search(
+                r"(^(Read\s)?\d+,\d+|^Blank Read\s\d|Results|\Z)",
+                read[1:],
+                re.MULTILINE,
+            ).start()
+        ]
+        read = pd.read_csv(
+            io.StringIO(read), sep=sep, engine="python"
+        ).convert_dtypes()
         reads[data[readidx.start() : readidx.end()].strip()] = read
 
     # create a DataFrame for each read and process, then concatenate into a large DataFrame
@@ -203,10 +246,21 @@ def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
     data = pd.concat(read_dataframes)
 
     # add time column to data DataFrame
-    data["Time"] = pd.to_timedelta(data["Time"]).astype("timedelta64[s]")
+    data["Time"] = pd.to_timedelta(data["Time"])
     data["Seconds"] = data["Time"].map(lambda x: x.total_seconds())
 
-    return data[["Well", "Row", "Column", "Time", "Seconds", "Temperature (C)", "Read", "Data"]]
+    return data[
+        [
+            "Well",
+            "Row",
+            "Column",
+            "Time",
+            "Seconds",
+            "Temperature (C)",
+            "Read",
+            "Data",
+        ]
+    ]
 
 
 def read_envision(data_file: DataFile) -> pd.DataFrame:
@@ -214,11 +268,15 @@ def read_envision(data_file: DataFile) -> pd.DataFrame:
     data = pd.read_csv(data_file).convert_dtypes()
 
     # massage Row, Column, and Well information
-    data["Row"] = data["Well ID"].apply(lambda s: s[0]).astype(pd.StringDtype())
+    data["Row"] = (
+        data["Well ID"].apply(lambda s: s[0]).astype(pd.StringDtype())
+    )
     data["Column"] = data["Well ID"].apply(lambda s: str(int(s[1:])))
-    data["Well"] = data.apply(lambda well: f"{well['Row']}:{well['Column']}", axis=1)
+    data["Well"] = data.apply(
+        lambda well: f"{well['Row']}:{well['Column']}", axis=1
+    )
 
-    data["Time"] = pd.to_timedelta(data["Time [hhh:mm:ss.sss]"]).astype("timedelta64[s]")
+    data["Time"] = pd.to_timedelta(data["Time [hhh:mm:ss.sss]"])
     data["Seconds"] = data["Time"].map(lambda x: x.total_seconds())
 
     data["Temperature (C)"] = data["Temperature current[°C]"]
@@ -229,19 +287,385 @@ def read_envision(data_file: DataFile) -> pd.DataFrame:
 
     data["Excitation (nm)"] = data["Exc WL[nm]"]
     data["Emission (nm)"] = data["Ems WL Channel 1[nm]"]
-    data["Wavelength (nm)"] = data["Excitation (nm)"] + "," + data["Emission (nm)"]
+    data["Wavelength (nm)"] = (
+        data["Excitation (nm)"] + "," + data["Emission (nm)"]
+    )
 
-    return data[["Well", "Row", "Column", "Time", "Seconds", "Temperature (C)", "Read", "Data"]]
+    return data[
+        [
+            "Well",
+            "Row",
+            "Column",
+            "Time",
+            "Seconds",
+            "Temperature (C)",
+            "Read",
+            "Data",
+        ]
+    ]
+
+
+def plot_setup() -> None:
+    _timple.enable()
 
 
 def _plot_timedelta(g: sns.FacetGrid) -> sns.FacetGrid:
     for ax in g.axes.flat:
-        ax.xaxis.set_major_locator(mpl.dates.AutoDateLocator())
-        ax.xaxis.set_major_formatter(mpl.dates.DateFormatter("%H:%M:%S"))
+        # ax.xaxis.set_major_locator(timple.timedelta.AutoTimedeltaLocator(minticks=3))
+        ax.xaxis.set_major_formatter(
+            timple.timedelta.TimedeltaFormatter("%h:%m")
+        )
+
+    g.set_xlabels("Time (hours)")
+    # g.figure.autofmt_xdate()
 
 
 def plot_plate(data: pd.DataFrame) -> sns.FacetGrid:
-    g = sns.relplot(data=data, x="Time", y="Data", row="Row", col="Column", kind="line")
+    g = sns.relplot(
+        data=data, x="Time", y="Data", row="Row", col="Column", kind="line"
+    )
     _plot_timedelta(g)
 
+    g.set_ylabels("Fluorescence (RFU)")
+    g.set_titles("{row_name}{col_name}")
+
     return g
+
+
+def plot_curves_by_name(
+    data: pd.DataFrame, by_experiment=True
+) -> sns.FacetGrid:
+    """
+    Produce a basic plot of timeseries curves, coloring curves by the `Name` of the sample.
+
+    If there are multiple different `Read`s in the data (e.g., GFP, RFP), then a subplot will be
+    produced for each read. If there are multiple experiments, each experiment will be plotted separately.
+
+    Args:
+        data (pd.DataFrame): DataFrame containing plate reader data.
+        by_experiment (bool, optional): If True, then each experiment will be plotted in a separate subplot.
+
+    Returns:
+        sns.FacetGrid: Seaborn FacetGrid object containing the plot.
+    """
+    kwargs = {}
+    if "Experiment" in data.columns and by_experiment:
+        kwargs["row"] = "Experiment"
+
+    g = plot_curves(
+        data=data, x="Time", y="Data", hue="Name", col="Read", **kwargs
+    )
+
+    return g
+
+
+def plot_curves(
+    data: pd.DataFrame,
+    x="Time",
+    y="Data",
+    hue="Name",
+    labels=(None, "Fluorescence (RFU)"),
+    **kwargs,
+) -> sns.FacetGrid:
+    """
+    Plot timeseries curves from a plate reader dataset, allowing selection of the parameters to
+    use for plotting and to divide the data into multiple subplots.
+
+    This function is a thin wrapper around Seaborn `relplot`, providing sensible defaults while
+    also allowing for the use of any `relplot` parameter.
+
+    Args:
+        data (pd.DataFrame): DataFrame containing plate reader data.
+        x (str, optional): Column name to use for x-axis. Defaults to "Time".
+        y (str, optional): Column name to use for y-axis. Defaults to "Data".
+        hue (str, optional): Column name to use for color coding. Defaults to "Name".
+        labels (tuple, optional): Labels for the x and y axes. Defaults to (None, "Fluorescence (RFU)").
+                                  If None, use the default label (the name of the field, or a formatted time label).
+        **kwargs: Additional keyword arguments passed to `sns.relplot`.
+
+    Returns:
+        sns.FacetGrid: A FacetGrid object containing the plotted data.
+
+    """
+    g = sns.relplot(data=data, x=x, y=y, hue=hue, kind="line", **kwargs)
+    _plot_timedelta(g)
+
+    x_label, y_label = labels
+    if x_label:
+        g.set_xlabels(x_label)
+    if y_label:
+        g.set_ylabels(y_label)
+
+    # Set simple row and column titles, if we're faceting on row or column.
+    # The join means the punctuation only gets added if we have both.
+    row_title = "{row_name}" if "row" in kwargs else ""
+    col_title = "{col_name}" if "col" in kwargs else ""
+    g.set_titles(": ".join(filter(None, [row_title, col_title])))
+
+    return g
+
+
+###
+# Kinetics Analysis
+# TODO: Perhaps split this out into a submodule.
+###
+
+
+def find_steady_state_for_well(well):
+    well = well.sort_values("Time")
+    pct_change = well["Data"].rolling(window=3).mean().pct_change()
+    idx_maxV = pct_change.idxmax()
+
+    ss_idx = pct_change.loc[idx_maxV:].abs().idxmin()
+    ss_time = well.loc[ss_idx, "Time"]
+    ss_level = well.loc[ss_idx, "Data"]
+
+    return pd.Series(
+        {"Time_steadystate": ss_time, "Data_steadystate": ss_level}
+    )
+
+
+def find_steady_state(
+    data: pd.DataFrame, window_size=10, threshold=0.01
+) -> pd.DataFrame:
+    """
+    Find the steady state of the "Data" column in the provided data DataFrame.
+
+    Args:
+        data (pd.DataFrame): Input DataFrame containing 'Well', 'Time', and 'Data' columns.
+        window_size (int): Size of the rolling window for calculating the rate of change.
+        threshold (float): Threshold for determining steady state.
+
+    Returns:
+        pd.DataFrame: DataFrame with 'Well', 'SteadyStateTime', and 'SteadyStateLevel' columns.
+    """
+
+    result = data.groupby(["Well", "Read"]).apply(find_steady_state_for_well)
+    return result
+
+
+def kinetic_analysis_per_well(
+    data: pd.DataFrame, data_column="Data"
+) -> pd.DataFrame:
+    def sigmoid(x, L, k, x0):
+        return L / (1 + np.exp(-k * (x - x0)))
+
+    steadystate = find_steady_state_for_well(data)
+
+    data = data.loc[data["Time"] <= steadystate["Time_steadystate"]]
+    time = data["Time"].dt.total_seconds()
+
+    # make initial guesses for parameters
+    L_initial = np.max(data[data_column])
+    x0_initial = np.max(time) / 4
+    k_initial = (
+        np.log(L_initial * 1.1 / data[data_column] - 1) / (time - x0_initial)
+    ).dropna().mean() * -1.0
+    p0 = [L_initial, k_initial, x0_initial]
+
+    # attempt fitting
+    try:
+        params, _ = scipy.optimize.curve_fit(
+            sigmoid, time, data[data_column], p0=p0
+        )
+    except Exception as e:
+        print(f"Failed to solve: {e}")
+
+        return None
+
+    # Get the fitted curve
+    # x_fit = data["Seconds"]
+    # y_fit = sigmoid(x_fit, *params)
+
+    # calculate velocities and velocity params
+    v = data[data_column].diff() / data["Seconds"].diff()
+    maxV = v.max()
+    maxV_d = data.loc[v.idxmax(), data_column]
+    maxV_time = data.loc[v.idxmax(), "Time"]
+
+    # calculate lag time
+    lag = -maxV_d / maxV + maxV_time.total_seconds()
+
+    # decile_upper = data[data_column].quantile(0.95)
+    # decile_lower = data[data_column].quantile(0.05)
+
+    # growth_s = (decile_upper - maxV_d) / maxV + maxV_time.total_seconds()
+
+    # ss_time = data.loc[(data[data_column] > decile_upper).idxmax(), "Time"]
+    # ss_d = data.loc[
+    #     (data[data_column] > decile_upper).idxmax() :, data_column
+    # ].mean()
+
+    # kinetics = {
+    #     # f"{data_column}_fit_d": y_fit,
+    #     f"{data_column}_maxV": maxV,
+    #     f"{data_column}_t_maxV": t_maxV,
+    #     f"{data_column}_maxV_d": maxV_d,
+    #     f"{data_column}_lag_s": lag,
+    #     f"{data_column}_growth_s": growth_s,
+    #     f"{data_column}_ss_s": ss_s,
+    #     f"{data_column}_ss_d": ss_d,
+    #     f"{data_column}_low_d": decile_lower,
+    #     f"{data_column}_high_d": decile_upper,
+    # }
+
+    kinetics = {
+        # f"{data_column}_fit_d": y_fit,
+        ("Velocity", "Time"): maxV_time,
+        ("Velocity", data_column): maxV_d,
+        ("Velocity", "Max"): maxV,
+        ("Lag", "Time"): pd.to_timedelta(lag, unit="s"),
+        # f"{data_column}_growth_s": growth_s,
+        ("Steady State", "Time"): steadystate["Time_steadystate"],
+        ("Steady State", data_column): steadystate["Data_steadystate"],
+    }
+
+    return pd.Series(kinetics)
+    # return kinetics
+
+
+def kinetic_analysis(data: pd.DataFrame, data_column="Data") -> pd.DataFrame:
+    kinetics = data.groupby(["Well", "Read"]).apply(
+        functools.partial(kinetic_analysis_per_well, data_column=data_column)
+    )
+    return kinetics
+
+
+def kinetic_analysis_summary(
+    data: pd.DataFrame,
+    data_column="Data",
+    time_cutoff: int = 12000,
+    label_order: list[str] = None,
+    norm_label: str = None,
+):
+    def per_well_cleanup(df):
+        cols = df.columns
+        return df[["Well"] + list(cols[27:])].aggregate(lambda x: x.iloc[0])
+
+    tk = kinetic_analysis(
+        data=data, data_column=data_column, time_cutoff=time_cutoff
+    )
+    out = tk.groupby("Well").apply(per_well_cleanup).reset_index(drop=True)
+
+    if label_order:
+        out = out.set_index("Well").reindex(label_order).reset_index()
+
+    # normalize max value (calculated by kinetics) if norm_label given
+    if norm_label:
+        norm = out[out["Well"] == norm_label][f"{data_column}_high_d"].values
+        out["Normalized [%]"] = out[f"{data_column}_high_d"] / norm
+
+    return out
+
+
+def plot_kinetics(
+    data: pd.DataFrame,
+    x: str = "Time",
+    y: str = "Data",
+    show_fit: bool = False,
+    show_velocity: bool = False,
+    annotate: bool = False,
+    **kwargs,
+):
+    """
+    Typical usage:
+
+    > tk = kinetic_analysis(data=data, data_column="BackgroundSubtracted")
+    > g = sns.FacetGrid(tk, col="Well", col_wrap=2, sharey=False, height=4, aspect=1.5)
+    > g.map_dataframe(plot_kinetics, show_fit=True, show_velocity=True)
+    """
+    colors = sns.color_palette("Set2")
+
+    summary = data.iloc[0]
+
+    ax = sns.scatterplot(data=data, x=x, y=y, alpha=0.5)
+
+    ax_ylim = (
+        ax.get_ylim()
+    )  # Use this to run lines to bounds later, then restore them before returning.
+
+    if show_fit:
+        sns.lineplot(data=data, x=x, y=y, linestyle="--", c="red", alpha=0.5)
+
+    # Max Velocity
+    maxV_x = np.linspace(data[x].min(), data[x].max(), 100)
+    maxV_y = (
+        summary[f"{y}_maxV"] * (maxV_x - summary[f"{y}_maxV_s"])
+        + summary[f"{y}_maxV_d"]
+    )
+
+    sns.lineplot(
+        x=maxV_x[(maxV_y > 0) & (maxV_y < data[y].max())],
+        y=maxV_y[(maxV_y > 0) & (maxV_y < data[y].max())],
+        linestyle="--",
+        c="r",
+        ax=ax,
+    )
+
+    maxV = summary[f"{y}_maxV"]
+    maxV_s = summary[f"{y}_maxV_s"]
+    maxV_d = summary[f"{y}_maxV_d"]
+
+    # Lag Time
+    lag = summary[f"{y}_lag_s"]
+    decile_upper = summary[f"{y}_high_d"]
+    decile_lower = summary[f"{y}_low_d"]
+    ax.vlines(
+        lag,
+        ymin=ax_ylim[0],
+        ymax=decile_lower,
+        colors=colors[2],
+        linestyle="--",
+    )
+
+    # Time to Steady State
+    ss_s = summary[f"{y}_ss_s"]
+    ax.axvline(ss_s, c=colors[3], linestyle="--")
+
+    # Range
+    ax.axhline(decile_upper, c=colors[7], linestyle="--")
+    ax.axhline(decile_lower, c=colors[7], linestyle="--")
+
+    if annotate:
+        # Plot the text annotations on the chart
+        ax.annotate(
+            f"$V_{{max}} = {maxV:.2f} u/s$",
+            (maxV_s, maxV_d),
+            xytext=(24, 0),
+            textcoords="offset points",
+            arrowprops={"arrowstyle": "->"},
+            ha="left",
+            va="center",
+            c="black",
+        )
+        ax.annotate(
+            f"$t_{{lag}} = {lag:.0f}$ s",
+            (lag, decile_lower),
+            xytext=(12, 0),
+            textcoords="offset points",
+            ha="left",
+            va="center",
+        )
+        ax.annotate(
+            f"$t_{{steady state}} = {ss_s - lag:.0f}$ s",
+            (lag + (ss_s - lag) / 4, decile_upper),
+            xytext=(0, -12),
+            textcoords="offset points",
+            ha="center",
+        )
+
+    # Velocity
+    if show_velocity:
+        # Show a velocity sparkline over the plot
+        velocity = (
+            data.transform({y: "diff", x: lambda x: x}).rolling(5).mean()
+        )
+        velocity[y] = velocity[y]
+        # velocity_ax = ax.secondary_yaxis(location="right",
+        #                                  functions=(lambda x: pd.Series(x).rolling(5).mean().values, lambda x: x))
+        velocity_ax = ax.twinx()
+        sns.lineplot(data=velocity, x=x, y=y, alpha=0.5, ax=velocity_ax)
+        velocity_ax.set_ylabel("$V (u/s)$")
+        velocity_ax.set_ylim((0, velocity[y].max() * 2))
+
+    ax.set_ylim(ax_ylim)

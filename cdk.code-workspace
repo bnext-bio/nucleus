@@ -6,12 +6,13 @@
 	],
 	"settings": {
 		"python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+		"python.testing.cwd": "${workspaceFolder}",
 		"python.testing.pytestEnabled": true,
 		"flake8.importStrategy": "fromEnvironment",
-		"flake8.args": ["--config=.flake8"],
 		"black-formatter.importStrategy": "fromEnvironment",
 		"editor.defaultFormatter": "ms-python.black-formatter",
 		"editor.formatOnSave": true,
+		"editor.rulers": [120],
 		"[python]": {
 			"editor.codeActionsOnSave": {
 				"source.organizeImports": "explicit"
@@ -30,7 +31,11 @@
 		],
 		"[yaml]": {
 			"editor.defaultFormatter": "esbenp.prettier-vscode"
-		}
+		},
+		"flake8.enabled": true,
+		"black-formatter.args": [
+			"--line-length 120"
+		]
 	},
 	"extensions": {
 		"recommendations": [

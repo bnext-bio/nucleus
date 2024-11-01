@@ -7,7 +7,7 @@ readme = "README.md"
 homepage = "https://nucleus.bnext.bio/"
 repository = "https://github.com/bnext-bio/bnext/"
 packages = [
-    { include = "cdk", from = "src" },
+    { include = "cdk", from = "src" }
 ]
 
 [tool.poetry.dependencies]
@@ -29,6 +29,15 @@ flake8 = "^7.1.1"
 black = "^24.10.0"
 pre-commit = "^4.0.0"
 ipykernel = "^6.29.5"
+toml-cli = "^0.7.0"
+flake8-pyproject = "^1.2.3"
+
+[tool.flake8]
+max-line-length = 120
+extend-ignore = ["E203", "E501"]
+per-file-ignores = [
+  "__init__.py:F401"
+]
 
 [tool.black]
 line-length = 79
