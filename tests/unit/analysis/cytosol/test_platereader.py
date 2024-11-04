@@ -91,7 +91,7 @@ def test_platereader_time_is_timedelta(platereader_data):
     data = platereader_data
     print(data.dtypes)
     print(data["Time"].dtype)
-    assert data["Time"].dtype == "timedelta64[ms]"
+    assert data["Time"].dtype == "timedelta64[ns]"
 
 
 @pytest.fixture(
@@ -119,7 +119,6 @@ def test_read_platemap(platemap_data_files):
     from cdk.analysis.cytosol.platereader import read_platemap
 
     platemap = read_platemap(platemap_data_files)
-    print(platemap)
     assert platemap.shape == (16, 5)
 
 
@@ -134,6 +133,18 @@ def test_read_platemap_normalizes_wells():
 
     platemap = read_platemap(PLATEMAP_CSV_DATA_PATH)
     assert not platemap["Well"].str.contains(":").any()
+
+@pytest.fixture()
+def platemap_data(platemap_data_files):
+    from cdk.analysis.cytosol.platereader import read_platemap
+
+    return read_platemap(platemap_data_files)
+
+
+def test_platemap_does_not_have_Float64_columns(platemap_data):
+    import pandas as pd
+    assert (pd.Float64Dtype() not in platemap_data.dtypes.values)
+    # assert not any(col.dtype == pd.Float64Dtype() for col in data.columns)
 
 
 def test_load_platereader_data_loads_platemap(

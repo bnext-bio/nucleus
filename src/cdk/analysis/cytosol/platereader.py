@@ -16,6 +16,7 @@ import os.path
 from pathlib import Path
 import logging
 from typing import Union, Optional, NamedTuple
+from enum import Enum, auto
 
 import numpy as np
 import pandas as pd
@@ -33,6 +34,12 @@ import warnings
 log = logging.getLogger(__name__)
 
 DataFile = Union[str, Path, io.StringIO]
+
+
+class SteadyStateMethod(Enum):
+    LOWEST_VELOCITY = auto(),
+    MAXIMUM_VALUE = auto(),
+    VELOCITY_INTERCEPT = auto()
 
 
 class PlateReaderData(NamedTuple):
@@ -131,7 +138,11 @@ def read_platemap(platemap_file: DataFile) -> pd.DataFrame:
         [col for col in platemap.columns if not col.startswith("Unnamed:")]
     ]
 
-    platemap = platemap.convert_dtypes()
+    # Needed to make sure times are correctly converted, but we don't convert
+    # floats because they get upcast to a pandas Float64Dtype() class which
+    # messes up plotting.
+    platemap = platemap.convert_dtypes(convert_floating=False)
+    
     platemap["Well"] = platemap["Well"].str.replace(
         ":", ""
     )  # Normalize well by removing : if it exists
@@ -226,7 +237,7 @@ def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
         ]
         read = pd.read_csv(
             io.StringIO(read), sep=sep, engine="python"
-        ).convert_dtypes()
+        ).convert_dtypes(convert_floating=False)
         reads[data[readidx.start() : readidx.end()].strip()] = read
 
     # create a DataFrame for each read and process, then concatenate into a large DataFrame
@@ -312,6 +323,7 @@ def read_envision(data_file: DataFile) -> pd.DataFrame:
 
 def plot_setup() -> None:
     _timple.enable()
+    pd.set_option('display.float_format', '{:.2f}'.format)
 
 
 def _plot_timedelta(plot: sns.FacetGrid | mpl.axes.Axes) -> sns.FacetGrid:
@@ -597,7 +609,7 @@ def plot_kinetics_by_well(
     """
     colors = sns.color_palette("Set2")
 
-    ax = sns.scatterplot(data=data, x=x, y=y, c=colors[2], alpha=0.5)
+    ax = sns.scatterplot(data=data, x=x, y=y, color=colors[2], alpha=0.5)
 
     well = data["Well"].iloc[0]
     read = data["Read"].iloc[0]
@@ -618,7 +630,7 @@ def plot_kinetics_by_well(
             x=data["Time"],
             y=_sigmoid(data["Time"].dt.total_seconds(), L, k, x0),
             linestyle="--",
-            c=colors[3],
+            color=colors[3],
             # alpha=0.5,
             ax=ax,
         )
@@ -636,7 +648,7 @@ def plot_kinetics_by_well(
         x=data["Time"].loc[(maxV_y > 0) & (maxV_y < data[y].max())],
         y=maxV_y[(maxV_y > 0) & (maxV_y < data[y].max())],
         linestyle="--",
-        c=colors[1],
+        color=colors[1],
         ax=ax,
     )
 
@@ -656,7 +668,6 @@ def plot_kinetics_by_well(
 
     # Time to Steady State
     ss_s = kinetics["Steady State", "Time"]
-    print(ss_s)
     ax.axvline(ss_s, c=colors[3], linestyle="--")
 
     # # Range
@@ -734,3 +745,30 @@ def plot_kinetics(data: pd.DataFrame, kinetics: pd.DataFrame, **kwargs):
         show_velocity=False,
         annotate=True,
     )
+
+
+def plot_steadystate(data: pd.DataFrame, hue="Experiment", **kwargs):
+    steady_state = find_steady_state(data).reset_index()
+    data_with_steady_state = data.merge(steady_state, on="Well", how="left")
+    g = sns.catplot(
+        data=data_with_steady_state,
+        x="Name",
+        y="Data_steadystate",
+        hue=hue,
+        kind="bar",
+        col="Experiment",
+        col_wrap=2,
+        height=4,
+        aspect=1.5,
+        sharex=False,
+        **kwargs
+    )
+
+    g.set_xticklabels(rotation=90)
+    g.set_ylabels("Steady State Fluorescence (RFU)")
+    return g
+
+
+def export():
+    # TODO: Write me
+    pass
