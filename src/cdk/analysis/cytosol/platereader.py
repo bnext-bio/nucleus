@@ -101,9 +101,10 @@ def load_platereader_data(
     """
     filename = os.path.basename(data_file).lower()
 
-    if filename.startswith("cytation"):
+    # TODO: Fix format detection to be case-insensitive 
+    if "cytation" in filename.lower():
         data = read_cytation(data_file)
-    elif filename.startswith("envision"):
+    elif "envision" in filename.lower():
         data = read_envision(data_file)
     # elif filename_lower.startswith("glomax"):
     #     return read_glomax(os.path.dirname(data_file))
@@ -289,7 +290,7 @@ def read_envision(data_file: DataFile) -> pd.DataFrame:
     )
     data["Column"] = data["Well ID"].apply(lambda s: str(int(s[1:])))
     data["Well"] = data.apply(
-        lambda well: f"{well['Row']}:{well['Column']}", axis=1
+        lambda well: f"{well['Row']}{well['Column']}", axis=1
     )
 
     data["Time"] = pd.to_timedelta(data["Time [hhh:mm:ss.sss]"])
@@ -372,10 +373,10 @@ def plot_curves_by_name(
     """
     kwargs = {}
     if "Experiment" in data.columns and by_experiment:
-        kwargs["row"] = "Experiment"
+        kwargs["col"] = "Experiment"
 
     g = plot_curves(
-        data=data, x="Time", y="Data", hue="Name", col="Read", **kwargs
+        data=data, x="Time", y="Data", hue="Name", row="Read", **kwargs
     )
 
     return g
@@ -420,9 +421,13 @@ def plot_curves(
 
     # Set simple row and column titles, if we're faceting on row or column.
     # The join means the punctuation only gets added if we have both.
-    row_title = "{row_name}" if "row" in kwargs else ""
-    col_title = "{col_name}" if "col" in kwargs else ""
-    g.set_titles(": ".join(filter(None, [row_title, col_title])))
+    var_len = max(
+        [len(kwargs[var]) for var in ["row", "col"] if var in kwargs] + [0]
+    )
+    log.debug(f"{var_len=}")
+    row_title = f"{{row_var:>{var_len}}}: {{row_name}}" if "row" in kwargs else ""
+    col_title = f"{{col_var:>{var_len}}}: {{col_name}}" if "col" in kwargs else ""
+    g.set_titles("\n".join(filter(None, [row_title, col_title])))
 
     return g
 
@@ -736,7 +741,7 @@ def plot_kinetics_by_well(
 
 def plot_kinetics(data: pd.DataFrame, kinetics: pd.DataFrame, **kwargs):
     g = sns.FacetGrid(
-        data, col="Well", col_wrap=2, sharey=True, height=4, aspect=1.5
+        data, col="Name", col_wrap=3, sharey=True, height=4, aspect=1.5
     )
     g.map_dataframe(
         plot_kinetics_by_well,
@@ -745,6 +750,7 @@ def plot_kinetics(data: pd.DataFrame, kinetics: pd.DataFrame, **kwargs):
         show_velocity=False,
         annotate=True,
     )
+    g.set_ylabels("Fluorescence (RFU)")
 
 
 def plot_steadystate(data: pd.DataFrame, hue="Experiment", **kwargs):
