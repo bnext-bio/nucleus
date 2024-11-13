@@ -142,7 +142,7 @@ def read_platemap(platemap_file: DataFile) -> pd.DataFrame:
     # Needed to make sure times are correctly converted, but we don't convert
     # floats because they get upcast to a pandas Float64Dtype() class which
     # messes up plotting.
-    platemap = platemap.convert_dtypes(convert_floating=False)
+    # platemap = platemap.convert_dtypes(convert_floating=False)
     
     platemap["Well"] = platemap["Well"].str.replace(
         ":", ""
