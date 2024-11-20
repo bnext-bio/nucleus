@@ -1,0 +1,128 @@
+LOCUS       tT7                     2337 bp    DNA     circular SYN 31-JUL-2024
+DEFINITION  MoClo: T7 terminator..
+ACCESSION   tT7
+VERSION     tT7
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    95..118
+                     /label="BB seq FOR"
+     misc_feature    269..296
+                     /label="upstream anneal"
+     misc_feature    297..316
+                     /label="20bp random sequence"
+     misc_feature    complement(317..343)
+                     /label="downstream anneal"
+     misc_feature    complement(477..505)
+                     /label="pOpen ori anneal REV"
+     CDS             complement(483..1343)
+                     /label="AmpR"
+     misc_feature    complement(502..523)
+                     /label="BB seq REV"
+     promoter        complement(1344..1448)
+                     /label="AmpR promoter"
+     misc_feature    1449..1463
+                     /label="AarI"
+     primer_bind     1464..1480
+                     /label="M13 fwd"
+     terminator      1481..1512
+                     /label="tonB terminator"
+     misc_feature    complement(1509..1528)
+                     /label="SLiCE-rev"
+     misc_feature    1528
+                     /label="BioBrick prefix"
+     misc_feature    1533..1552
+                     /label="Barcode A"
+     misc_feature    1553..1570
+                     /label="Barcode Cut (I-SceI)"
+     misc_feature    1571..1590
+                     /label="Barcode B"
+     misc_feature    1533..1590
+                     /label="Barcode"
+     misc_feature    1591..1610
+                     /label="Dialout Forward [80]"
+     source          1611..1621
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     source          1611..1617
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     source          1618..1621
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    1611..1621
+                     /label="MCL0-TERM-CDS-T"
+                     /label="MCL0-UTR-PU"
+                     /label="MCL0PU"
+     regulatory      1622..1668
+                     /label="T7 Terminator"
+     source          1669..1679
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     misc_feature    1669..1679
+                     /label="MCL0-TERM-T-V"
+                     /label="MCL0-UTR-U-SP"
+                     /label="MCL0PU"
+     misc_feature    1830..1849
+                     /label="Dialout Reverse [0]"
+     misc_feature    1850..1869
+                     /label="Terminator Spacer"
+     misc_feature    1533..1869
+                     /label="MCL0-tT7"
+     misc_feature    1873..1876
+                     /label="BioBrick suffix"
+     misc_feature    1873..1891
+                     /label="SLiCE-for"
+     primer_bind     complement(1892..1910)
+                     /label="T7 Reverse"
+     terminator      1906..1953
+                     /label="T7 terminator"
+     primer_bind     complement(1954..1974)
+                     /label="M13 rev"
+     misc_feature    1975..1989
+                     /label="AarI"
+     misc_feature    1990..2040
+                     /label="spacer"
+ORIGIN
+        1 taactatcgt cttgagtcca acccggtaag acacgactta tcgccactgg cagcagccac
+       61 tggtaacagg attagcagag cgaggtatgt aggcggtgct acagagttct tgaagtggtg
+      121 gcctaactac ggctacacta gaagaacagt atttggtatc tgcgctctgc tgaagccagt
+      181 taccttcgga aaaagagttg gtagctcttg atccggcaaa caaaccaccg ctggtagcgg
+      241 tggttttttt gtttgcaagc agcagattac gcgcagaaaa aaaggatctc aagaaggcct
+      301 actattagca acaacgatcc tttgatcttt tctacggggt ctgacgctca gtggaacgaa
+      361 aactcacgtt aagggatttt ggtcatgaga ttatcaaaaa ggatcttcac ctagatcctt
+      421 ttaaattaaa aatgaagttt taaatcaatc taaagtatat atgagtaaac ttggtctgac
+      481 agttaccaat gcttaatcag tgaggcacct atctcagcga tctgtctatt tcgttcatcc
+      541 atagttgcct gactccccgt cgtgtagata actacgatac gggagggctt accatctggc
+      601 cccagtgctg caatgatacc gcgagaacca cgctcaccgg ctccagattt atcagcaata
+      661 aaccagccag ccggaagggc cgagcgcaga agtggtcctg caactttatc cgcctccatc
+      721 cagtctatta attgttgccg ggaagctaga gtaagtagtt cgccagttaa tagtttgcgc
+      781 aacgttgttg ccattgctac aggcatcgtg gtgtcacgct cgtcgtttgg tatggcttca
+      841 ttcagctccg gttcccaacg atcaaggcga gttacatgat cccccatgtt gtgcaaaaaa
+      901 gcggttagct ccttcggtcc tccgatcgtt gtcagaagta agttggccgc agtgttatca
+      961 ctcatggtta tggcagcact gcataattct cttactgtca tgccatccgt aagatgcttt
+     1021 tctgtgactg gtgagtactc aaccaagtca ttctgagaat agtgtatgcg gcgaccgagt
+     1081 tgctcttgcc cggcgtcaat acgggataat accgcgccac atagcagaac tttaaaagtg
+     1141 ctcatcattg gaaaacgttc ttcggggcga aaactctcaa ggatcttacc gctgttgaga
+     1201 tccagttcga tgtaacccac tcgtgcaccc aactgatctt cagcatcttt tactttcacc
+     1261 agcgtttctg ggtgagcaaa aacaggaagg caaaatgccg caaaaaaggg aataagggcg
+     1321 acacggaaat gttgaatact catactcttc ctttttcaat attattgaag catttatcag
+     1381 ggttattgtc tcatgagcgg atacatattt gaatgtattt agaaaaataa acaaataggg
+     1441 gttccgcgca cctgcaccag tcagtaaaac gacggccagt agtcaaaagc ctccgaccgg
+     1501 aggcttttga cttggttcag gtggagtggg aggtatagag ttgcataacg tttagggata
+     1561 acagggtaat agagcgtagg cagcgcgtac atcctagaaa aggcgaaggc ggtctctgct
+     1621 ttagcataac cccttggggc ctctaaacgg gtcttgaggg gttttttgcg ctagagaccc
+     1681 ctggcgagag ctttggcagt aaccccatat gggctccata tcccacacaa cccgaggttg
+     1741 gaaggcagtg aatttcagac cggcgcgcaa gatcccgccc catgacggtc acgctgcgcc
+     1801 cgaggatctg aggaggatcc actggggtca aacacgtggc aaacattcct ctgggggatg
+     1861 aatcatggtg ctgaggtgtc aatcgtcgga gccgctgagc aataactagc ataacccctt
+     1921 ggggcctcta aacgggtctt gaggggtttt ttgcatggtc atagctgttt cctgagagct
+     1981 tggcaggtga tgacacacat taacaaattt cgtgaggagt ctccagaaga atgccattaa
+     2041 tttccatagg ctccgccccc ctgacgagca tcacaaaaat cgacgctcaa gtcagaggtg
+     2101 gcgaaacccg acaggactat aaagatacca ggcgtttccc cctggaagct ccctcgtgcg
+     2161 ctctcctgtt ccgaccctgc cgcttaccgg atacctgtcc gcctttctcc cttcgggaag
+     2221 cgtggcgctt tctcatagct cacgctgtag gtatctcagt tcggtgtagg tcgttcgctc
+     2281 caagctgggc tgtgtgcacg aaccccccgt tcagcccgac cgctgcgcct tatccgg
+//

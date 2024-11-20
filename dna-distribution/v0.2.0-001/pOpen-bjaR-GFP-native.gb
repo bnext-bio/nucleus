@@ -1,0 +1,209 @@
+LOCUS       pOpen-bjaR-GFP-native   3877 bp    DNA     linear   SYN 13-JUN-2024
+DEFINITION  pBjaR-GFP / bjaR composite insert, native sequence. Optimized bjaR
+            protein from Smith, et al (2023). Expresses the bjaR activator, and
+            expresses GFP when induced with IV-HSL. pOpen shuttle plasmid.
+ACCESSION   pOpen-bjaR-GFP-native
+VERSION     pOpen-bjaR-GFP-native
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     homology        1..4
+                     /label="CGCT"
+                     /color="#f7e8f7"
+                     /ApEinfo_fwdcolor="#f7e8f7"
+     misc_feature    5..23
+                     /label="SLiCE-for"
+     primer_bind     5..23
+                     /label="pOpen-Vector-Fwd"
+     misc_feature    5..8
+                     /label="BioBrick suffix"
+     primer_bind     complement(24..42)
+                     /label="T7 Reverse"
+     terminator      38..85
+                     /label="T7 terminator"
+     primer_bind     complement(86..106)
+                     /label="M13 rev"
+     primer_bind     86..106
+                     /label="pOpen-Vector-Fwd-2"
+                     /note="Forward excluding pOpen 3' terminator"
+     misc_feature    107..121
+                     /label="AarI"
+     misc_feature    122..172
+                     /label="spacer"
+     primer_bind     complement(153..172)
+                     /label="pOpen-spacer-full-rev"
+     primer_bind     173..188
+                     /label="pOpen-ori-fwd"
+     misc_feature    564..587
+                     /label="BB seq FOR"
+     misc_feature    738..765
+                     /label="upstream anneal"
+     misc_feature    766..785
+                     /label="20bp random sequence"
+     misc_feature    complement(786..812)
+                     /label="downstream anneal"
+     misc_feature    complement(946..974)
+                     /label="pOpen ori anneal REV"
+     CDS             complement(952..1812)
+                     /label="AmpR"
+     misc_feature    complement(971..992)
+                     /label="BB seq REV"
+     promoter        complement(1813..1917)
+                     /label="AmpR promoter"
+     misc_feature    1918..1932
+                     /label="AarI"
+     primer_bind     1933..1949
+                     /label="M13 fwd"
+     terminator      1950..1981
+                     /label="tonB terminator"
+     misc_feature    complement(1978..1997)
+                     /label="SLiCE-rev"
+     primer_bind     complement(1978..1997)
+                     /label="pOpen SLiCE Rev"
+     misc_feature    1997
+                     /label="BioBrick prefix"
+     misc_feature    5..1997
+                     /source="pOpen-MCL1Entry-ccdB"
+                     /indicates_part=True
+                     /note="From pOpen-MCL1Entry-ccdB"
+                     /color="white"
+                     /ApEinfo_fwdcolor="white"
+     homology        1998..2001
+                     /label="GGAG"
+                     /color="#f7e8f7"
+                     /ApEinfo_fwdcolor="#f7e8f7"
+     source          2002..3857
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     regulatory      2002..2055
+                     /label="pBjaR"
+                     /regulatory_class="promoter"
+     regulatory      2002..2021
+                     /label="BjaR Operator"
+                     /regulatory_class="transcriptional_cis_regulatory_region"
+     regulatory      2022..2055
+                     /label="Promoter"
+                     /regulatory_class="promoter"
+     regulatory      2064..2076
+                     /label="B0032"
+                     /regulatory_class="ribosome_binding_site"
+     CDS             2083..2796
+                     /codon_start=1
+                     /product="S65T variant of Aequorea victoria green
+                     fluorescent protein (Heim et al., 1995)"
+                     /label="GFP (S65T)"
+                     /note="excitable with blue light"
+                     /translation="MRKGEELFTGVVPILVELDGDVNGHKFSVSGEGEGDATYGKLTLK
+                     FICTTGKLPVPWPTLVTTFGYGVQCFARYPDHMKQHDFFKSAMPEGYVQERTIFFKDDG
+                     NYKTRAEVKFEGDTLVNRIELKGIDFKEDGNILGHKLEYNYNSHNVYIMADKQKNGIKV
+                     NFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLE
+                     FVTAAGITHGMDELYK"
+     regulatory      2811..2923
+                     /label="J61048"
+                     /regulatory_class="terminator"
+     promoter        2932..2966
+                     /label="﻿BBa_J23100"
+                     /note="Anderson constitutive promoter
+                     (https://parts.igem.org/Promoters/Catalog/Anderson).
+                     Measured strength relative to BBa_J223100: 1.0 "
+                     /citation=[1]
+     regulatory      2975..2985
+                     /label="B0033"
+                     /regulatory_class="ribosome_binding_site"
+     CDS             2992..3720
+                     /codon_start=1
+                     /label="bjaR"
+                     /translation="MSAVDYGREALDFIEGLGVYRKVPDAMNALEAAFGRFGFETIIVT
+                     GLPNPDQRFAQMVLAKRWPAGWFNLYTQNNYDRFDPVVRLCRQSVNPFEWSEAPYDAEL
+                     EPRAAEVMNRAGDFRMSRGFIVPIHGLTGYEAAVSLGGVHLDLNPRSKPALHLMAMYGF
+                     DHIRRLLEPTPYPSTRLTPREREVISWASQGKSAWEIGEILHITQRTAEEHLATAARKL
+                     GAVNRTHAVALAIRHKIINP"
+     regulatory      3729..3857
+                     /label="B0015"
+                     /regulatory_class="terminator"
+     terminator      3737..3808
+                     /label="rrnB T1 terminator"
+                     /note="transcription terminator T1 from the E. coli rrnB
+                     gene"
+     terminator      3824..3851
+                     /label="T7Te terminator"
+                     /note="phage T7 early transcription terminator"
+     misc_feature    3858..3877
+                     /label="Terminator Spacer"
+     misc_feature    2002..3877
+                     /label="bjaR-GFP-native"
+     misc_feature    2002..3877
+                     /source="bjaR-GFP-native"
+                     /indicates_part=True
+                     /note="From bjaR-GFP-native"
+                     /color="white"
+                     /ApEinfo_fwdcolor="white"
+ORIGIN
+        1 cgctgaggtg tcaatcgtcg gagccgctga gcaataacta gcataacccc ttggggcctc
+       61 taaacgggtc ttgaggggtt ttttgcatgg tcatagctgt ttcctgagag cttggcaggt
+      121 gatgacacac attaacaaat ttcgtgagga gtctccagaa gaatgccatt aatttccata
+      181 ggctccgccc ccctgacgag catcacaaaa atcgacgctc aagtcagagg tggcgaaacc
+      241 cgacaggact ataaagatac caggcgtttc cccctggaag ctccctcgtg cgctctcctg
+      301 ttccgaccct gccgcttacc ggatacctgt ccgcctttct cccttcggga agcgtggcgc
+      361 tttctcatag ctcacgctgt aggtatctca gttcggtgta ggtcgttcgc tccaagctgg
+      421 gctgtgtgca cgaacccccc gttcagcccg accgctgcgc cttatccggt aactatcgtc
+      481 ttgagtccaa cccggtaaga cacgacttat cgccactggc agcagccact ggtaacagga
+      541 ttagcagagc gaggtatgta ggcggtgcta cagagttctt gaagtggtgg cctaactacg
+      601 gctacactag aagaacagta tttggtatct gcgctctgct gaagccagtt accttcggaa
+      661 aaagagttgg tagctcttga tccggcaaac aaaccaccgc tggtagcggt ggtttttttg
+      721 tttgcaagca gcagattacg cgcagaaaaa aaggatctca agaaggccta ctattagcaa
+      781 caacgatcct ttgatctttt ctacggggtc tgacgctcag tggaacgaaa actcacgtta
+      841 agggattttg gtcatgagat tatcaaaaag gatcttcacc tagatccttt taaattaaaa
+      901 atgaagtttt aaatcaatct aaagtatata tgagtaaact tggtctgaca gttaccaatg
+      961 cttaatcagt gaggcaccta tctcagcgat ctgtctattt cgttcatcca tagttgcctg
+     1021 actccccgtc gtgtagataa ctacgatacg ggagggctta ccatctggcc ccagtgctgc
+     1081 aatgataccg cgagaaccac gctcaccggc tccagattta tcagcaataa accagccagc
+     1141 cggaagggcc gagcgcagaa gtggtcctgc aactttatcc gcctccatcc agtctattaa
+     1201 ttgttgccgg gaagctagag taagtagttc gccagttaat agtttgcgca acgttgttgc
+     1261 cattgctaca ggcatcgtgg tgtcacgctc gtcgtttggt atggcttcat tcagctccgg
+     1321 ttcccaacga tcaaggcgag ttacatgatc ccccatgttg tgcaaaaaag cggttagctc
+     1381 cttcggtcct ccgatcgttg tcagaagtaa gttggccgca gtgttatcac tcatggttat
+     1441 ggcagcactg cataattctc ttactgtcat gccatccgta agatgctttt ctgtgactgg
+     1501 tgagtactca accaagtcat tctgagaata gtgtatgcgg cgaccgagtt gctcttgccc
+     1561 ggcgtcaata cgggataata ccgcgccaca tagcagaact ttaaaagtgc tcatcattgg
+     1621 aaaacgttct tcggggcgaa aactctcaag gatcttaccg ctgttgagat ccagttcgat
+     1681 gtaacccact cgtgcaccca actgatcttc agcatctttt actttcacca gcgtttctgg
+     1741 gtgagcaaaa acaggaaggc aaaatgccgc aaaaaaggga ataagggcga cacggaaatg
+     1801 ttgaatactc atactcttcc tttttcaata ttattgaagc atttatcagg gttattgtct
+     1861 catgagcgga tacatatttg aatgtattta gaaaaataaa caaatagggg ttccgcgcac
+     1921 ctgcaccagt cagtaaaacg acggccagta gtcaaaagcc tccgaccgga ggcttttgac
+     1981 ttggttcagg tggagtggga gtactgggaa atttcccaat attacgcaag aaaatggttt
+     2041 gttatagtcg aatattacta gagtcacaca ggaaagtact agatgcgtaa aggagaagaa
+     2101 cttttcactg gagttgtccc aattcttgtt gaattagatg gtgatgttaa tgggcacaaa
+     2161 ttttctgtca gtggagaggg tgaaggtgat gcaacatacg gaaaacttac ccttaaattt
+     2221 atttgcacta ctggaaaact acctgttcca tggccaacac ttgtcactac tttcggttat
+     2281 ggtgttcaat gctttgcgag atacccagat catatgaaac agcatgactt tttcaagagt
+     2341 gccatgcccg aaggttatgt acaggaaaga actatatttt tcaaagatga cgggaactac
+     2401 aagacacgtg ctgaagtcaa gtttgaaggt gatacccttg ttaatagaat cgagttaaaa
+     2461 ggtattgatt ttaaagaaga tggaaacatt cttggacaca aattggaata caactataac
+     2521 tcacacaatg tatacatcat ggcagacaaa caaaagaatg gaatcaaagt taacttcaaa
+     2581 attagacaca acattgaaga tggaagcgtt caactagcag accattatca acaaaatact
+     2641 ccaattggcg atggccctgt ccttttacca gacaaccatt acctgtccac acaatctgcc
+     2701 ctttcgaaag atcccaacga aaagagagac cacatggtcc ttcttgagtt tgtaacagct
+     2761 gctgggatta cacatggcat ggatgaacta tacaaataat aatactagag ccggcttatc
+     2821 ggtcagtttc acctgattta cgtaaaaacc cgcttcggcg ggtttttgct tttggagggg
+     2881 cagaaagatg aatgactgtc cacgacgcta tacccaaaag aaatactaga gttgacggct
+     2941 agctcagtcc taggtacagt gctagctact agagtcacac aggactacta gatgtccgca
+     3001 gtagattatg ggcgtgaagc cctggacttt atcgagggtt tgggcgtata tcgtaaagtc
+     3061 cctgatgcga tgaacgctct cgaagcggca ttcggtcgct ttggctttga gacaatcatc
+     3121 gtgactgggc tgcccaaccc ggatcagcgt tttgcacaaa tggtactcgc taaacgttgg
+     3181 ccggcgggtt ggtttaatct gtatacgcaa aacaattatg accgttttga tcccgtcgtc
+     3241 cgcttgtgcc gtcagagcgt gaatccgttc gagtggagtg aagcaccgta tgacgctgaa
+     3301 ttagaaccac gcgccgccga agtcatgaat cgtgcaggcg acttccgtat gtcccgtggt
+     3361 tttatcgtgc cgatccatgg actgacagga tatgaagcgg ctgttagtct gggaggcgtt
+     3421 catttagatc tgaacccgcg ttccaaaccg gctctgcacc tgatggcaat gtacggtttc
+     3481 gaccacattc gtcgcctgct ggaaccgacc ccatatcctt cgacgcgcct tactccgcgc
+     3541 gaacgcgaag ttatttcctg ggctagccag ggaaaatctg cgtgggaaat tggtgaaatc
+     3601 ctgcatatca cccagcgcac cgccgaggag cacttagcga ccgcggcacg taaacttggt
+     3661 gcggtcaatc gtacccatgc cgtcgcgctg gccatccgtc acaaaattat caacccctaa
+     3721 tactagagcc aggcatcaaa taaaacgaaa ggctcagtcg aaagactggg cctttcgttt
+     3781 tatctgttgt ttgtcggtga acgctctcta ctagagtcac actggctcac cttcgggtgg
+     3841 gcctttctgc gtttatacgt agactctaga ttgggcc
+//

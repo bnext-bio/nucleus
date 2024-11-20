@@ -1,0 +1,157 @@
+LOCUS       pOpen-pT7-bjaI          2752 bp    DNA     linear   SYN 13-JUN-2024
+DEFINITION  pT7-bjaI, expresses the BjaI enzyme to produce IV-HSL. pOpen shuttle
+            plasmid.
+ACCESSION   pOpen-pT7-bjaI
+VERSION     pOpen-pT7-bjaI
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     homology        1..4
+                     /label="CGCT"
+                     /color="#f7e8f7"
+                     /ApEinfo_fwdcolor="#f7e8f7"
+     misc_feature    5..23
+                     /label="SLiCE-for"
+     primer_bind     5..23
+                     /label="pOpen-Vector-Fwd"
+     misc_feature    5..8
+                     /label="BioBrick suffix"
+     primer_bind     complement(24..42)
+                     /label="T7 Reverse"
+     terminator      38..85
+                     /label="T7 terminator"
+     primer_bind     complement(86..106)
+                     /label="M13 rev"
+     primer_bind     86..106
+                     /label="pOpen-Vector-Fwd-2"
+                     /note="Forward excluding pOpen 3' terminator"
+     misc_feature    107..121
+                     /label="AarI"
+     misc_feature    122..172
+                     /label="spacer"
+     primer_bind     complement(153..172)
+                     /label="pOpen-spacer-full-rev"
+     primer_bind     173..188
+                     /label="pOpen-ori-fwd"
+     misc_feature    564..587
+                     /label="BB seq FOR"
+     misc_feature    738..765
+                     /label="upstream anneal"
+     misc_feature    766..785
+                     /label="20bp random sequence"
+     misc_feature    complement(786..812)
+                     /label="downstream anneal"
+     misc_feature    complement(946..974)
+                     /label="pOpen ori anneal REV"
+     CDS             complement(952..1812)
+                     /label="AmpR"
+     misc_feature    complement(971..992)
+                     /label="BB seq REV"
+     promoter        complement(1813..1917)
+                     /label="AmpR promoter"
+     misc_feature    1918..1932
+                     /label="AarI"
+     primer_bind     1933..1949
+                     /label="M13 fwd"
+     terminator      1950..1981
+                     /label="tonB terminator"
+     misc_feature    complement(1978..1997)
+                     /label="SLiCE-rev"
+     primer_bind     complement(1978..1997)
+                     /label="pOpen SLiCE Rev"
+     misc_feature    1997
+                     /label="BioBrick prefix"
+     misc_feature    5..1997
+                     /source="pOpen-MCL1Entry-ccdB"
+                     /indicates_part=True
+                     /note="From pOpen-MCL1Entry-ccdB"
+                     /color="white"
+                     /ApEinfo_fwdcolor="white"
+     homology        1998..2001
+                     /label="GGAG"
+                     /color="#f7e8f7"
+                     /ApEinfo_fwdcolor="#f7e8f7"
+     primer_bind     2002..2021
+                     /label="pT7"
+     source          2022..2057
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     misc_feature    2022..2049
+                     /label="UTR1"
+     misc_feature    2050..2057
+                     /label="MC0U-SP"
+                     /label="CDS Prefix"
+     misc_feature    2050..2055
+                     /label="BsaI_Bind"
+     source          2058..2714
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     CDS             2058..2714
+                     /codon_start=1
+                     /label="bjaI"
+                     /translation="MIHAISAVNRHLYEDVLEQHFRLRHDIFVEERHWETLRRPDGREV
+                     DSYDDEDTVYLLALEGRRVVGGHRLYPTTKPSMMSEVFPHLAAVRGCPSDPLIWEWSRY
+                     FVVRDRRDGALNLQLMAAVQEFCLDQGIAQVSAIMETWWLPRFHEAGFVVTPLGLPALV
+                     ENAWTMAATVDIRRQTLDVLHDRIGMPSIVQQDGPRLDAVARANLCGLAAAQRKSA"
+     misc_feature    2715..2732
+                     /label="CDS Suffix"
+     misc_feature    2733..2752
+                     /label="Terminator Spacer"
+     misc_feature    2002..2752
+                     /label="pT7-bjaI"
+     misc_feature    2002..2752
+                     /source="pT7-bjaI"
+                     /indicates_part=True
+                     /note="From pT7-bjaI"
+                     /color="white"
+                     /ApEinfo_fwdcolor="white"
+ORIGIN
+        1 cgctgaggtg tcaatcgtcg gagccgctga gcaataacta gcataacccc ttggggcctc
+       61 taaacgggtc ttgaggggtt ttttgcatgg tcatagctgt ttcctgagag cttggcaggt
+      121 gatgacacac attaacaaat ttcgtgagga gtctccagaa gaatgccatt aatttccata
+      181 ggctccgccc ccctgacgag catcacaaaa atcgacgctc aagtcagagg tggcgaaacc
+      241 cgacaggact ataaagatac caggcgtttc cccctggaag ctccctcgtg cgctctcctg
+      301 ttccgaccct gccgcttacc ggatacctgt ccgcctttct cccttcggga agcgtggcgc
+      361 tttctcatag ctcacgctgt aggtatctca gttcggtgta ggtcgttcgc tccaagctgg
+      421 gctgtgtgca cgaacccccc gttcagcccg accgctgcgc cttatccggt aactatcgtc
+      481 ttgagtccaa cccggtaaga cacgacttat cgccactggc agcagccact ggtaacagga
+      541 ttagcagagc gaggtatgta ggcggtgcta cagagttctt gaagtggtgg cctaactacg
+      601 gctacactag aagaacagta tttggtatct gcgctctgct gaagccagtt accttcggaa
+      661 aaagagttgg tagctcttga tccggcaaac aaaccaccgc tggtagcggt ggtttttttg
+      721 tttgcaagca gcagattacg cgcagaaaaa aaggatctca agaaggccta ctattagcaa
+      781 caacgatcct ttgatctttt ctacggggtc tgacgctcag tggaacgaaa actcacgtta
+      841 agggattttg gtcatgagat tatcaaaaag gatcttcacc tagatccttt taaattaaaa
+      901 atgaagtttt aaatcaatct aaagtatata tgagtaaact tggtctgaca gttaccaatg
+      961 cttaatcagt gaggcaccta tctcagcgat ctgtctattt cgttcatcca tagttgcctg
+     1021 actccccgtc gtgtagataa ctacgatacg ggagggctta ccatctggcc ccagtgctgc
+     1081 aatgataccg cgagaaccac gctcaccggc tccagattta tcagcaataa accagccagc
+     1141 cggaagggcc gagcgcagaa gtggtcctgc aactttatcc gcctccatcc agtctattaa
+     1201 ttgttgccgg gaagctagag taagtagttc gccagttaat agtttgcgca acgttgttgc
+     1261 cattgctaca ggcatcgtgg tgtcacgctc gtcgtttggt atggcttcat tcagctccgg
+     1321 ttcccaacga tcaaggcgag ttacatgatc ccccatgttg tgcaaaaaag cggttagctc
+     1381 cttcggtcct ccgatcgttg tcagaagtaa gttggccgca gtgttatcac tcatggttat
+     1441 ggcagcactg cataattctc ttactgtcat gccatccgta agatgctttt ctgtgactgg
+     1501 tgagtactca accaagtcat tctgagaata gtgtatgcgg cgaccgagtt gctcttgccc
+     1561 ggcgtcaata cgggataata ccgcgccaca tagcagaact ttaaaagtgc tcatcattgg
+     1621 aaaacgttct tcggggcgaa aactctcaag gatcttaccg ctgttgagat ccagttcgat
+     1681 gtaacccact cgtgcaccca actgatcttc agcatctttt actttcacca gcgtttctgg
+     1741 gtgagcaaaa acaggaaggc aaaatgccgc aaaaaaggga ataagggcga cacggaaatg
+     1801 ttgaatactc atactcttcc tttttcaata ttattgaagc atttatcagg gttattgtct
+     1861 catgagcgga tacatatttg aatgtattta gaaaaataaa caaatagggg ttccgcgcac
+     1921 ctgcaccagt cagtaaaacg acggccagta gtcaaaagcc tccgaccgga ggcttttgac
+     1981 ttggttcagg tggagtggga gtaatacgac tcactatagg gaataatttt gtttaacttt
+     2041 aagaaggagg gtctctaatg attcacgcaa tttccgcggt caatcgccac ttatacgagg
+     2101 acgtactcga gcagcatttc cggctgcgtc atgacatctt tgtcgaggag cggcactggg
+     2161 aaacgctgcg caggccggat ggccgcgagg tcgattccta tgacgacgag gataccgtct
+     2221 atctgcttgc gctggaggga cggcgcgtcg tcggcggcca ccggctctac cccacgacca
+     2281 agccctcgat gatgagcgag gtgttcccgc atctggcggc ggttcgcggc tgcccctcgg
+     2341 atccgctgat ctgggaatgg tcgcgctact tcgtcgtccg cgatcgccgc gacggcgcgc
+     2401 tcaatctgca actgatggcg gcggtgcagg agttctgcct cgaccaggga atcgcccagg
+     2461 tcagcgcgat catggaaacc tggtggttgc cgcgcttcca cgaggccggc ttcgtcgtga
+     2521 cgccgctcgg cctgccggct ctggtcgaga acgcctggac catggcggcc accgtcgaca
+     2581 ttcgtcgcca gacgctcgat gtcctgcatg atcgcatcgg catgccttcc atcgtgcaac
+     2641 aggacggccc gcgtctggac gccgtcgccc gtgccaacct ttgcggcctc gctgccgcgc
+     2701 aacgaaagag cgcctgaaga gcttagagac cgcgtagact ctagattggg cc
+//
