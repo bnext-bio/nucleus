@@ -37,8 +37,8 @@ DataFile = Union[str, Path, io.StringIO]
 
 
 class SteadyStateMethod(Enum):
-    LOWEST_VELOCITY = auto(),
-    MAXIMUM_VALUE = auto(),
+    LOWEST_VELOCITY = (auto(),)
+    MAXIMUM_VALUE = (auto(),)
     VELOCITY_INTERCEPT = auto()
 
 
@@ -322,9 +322,50 @@ def read_envision(data_file: DataFile) -> pd.DataFrame:
     ]
 
 
+def blank_data(data: pd.DataFrame, blank_type="Blank"):
+    """
+    Blank data from plate reader measurements.
+
+    Adjusts plate reader data by subtracting the value of one or more blanks at each timepoint, for each read channel.
+    By default, the data will be blanked against the mean value of all wells of type "Blank".
+
+    This function adjusts the main "Data" column in the dataframe provided, so that blanked values can be easily
+    used in subsequent processing. The original (unblanked) data is available in a new 'Data_unblanked' column. The
+    blank value calculated for each row of the data is present in 'Data_blank'.
+
+    Args:
+        data (pd.DataFrame): Input DataFrame containing 'Well', 'Time', 'Data', and 'Type' columns.
+        blank_type (str, optional): Value in the 'Type' column to use as blank. Defaults to "Blank".
+
+    Returns:
+        pd.DataFrame: DataFrame with blanked 'Data' values and an additional 'Data_unblanked' column.
+
+    """
+    blank = (
+        data[data["Type"] == blank_type]
+        .groupby(["Time", "Read"])["Data"]
+        .mean()
+    )
+    data = data.merge(
+        blank, on=["Time", "Read"], suffixes=("", "_blank"), how="left"
+    )
+
+    # Check to make sure we don't have missing blanks for certain Time/Read combinations in the source data.
+    # The most likely way this could happen is if the platereader "Time" isn't aligned well-to-well.
+    if data["Data_blank"].isna().any():
+        log.warning(
+            "Not all data has a blank value; blanked data will contain NaNs."
+        )
+
+    data["Data_unblanked"] = data["Data"].copy()
+    data["Data"] = data["Data"] - data["Data_blank"]
+
+    return data
+
+
 def plot_setup() -> None:
     _timple.enable()
-    pd.set_option('display.float_format', '{:.2f}'.format)
+    pd.set_option("display.float_format", "{:.2f}".format)
 
 
 def _plot_timedelta(plot: sns.FacetGrid | mpl.axes.Axes) -> sns.FacetGrid:
@@ -767,7 +808,7 @@ def plot_steadystate(data: pd.DataFrame, hue="Experiment", **kwargs):
         height=4,
         aspect=1.5,
         sharex=False,
-        **kwargs
+        **kwargs,
     )
 
     g.set_xticklabels(rotation=90)

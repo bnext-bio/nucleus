@@ -12,6 +12,7 @@ ENVISION_KINETIC_DATA_PATH = (
 
 DNA_SWEEP_DATA_PATH = "tests/test_data/cytation_dna_sweep.txt"
 DNA_SWEEP_PLATEMAP_PATH = "tests/test_data/platemap.csv"
+SYNTHETIC_DATA_PATH = "tests/test_data/platereader-test-data-blanks.csv"
 
 
 def test_read_envision():
@@ -134,6 +135,7 @@ def test_read_platemap_normalizes_wells():
     platemap = read_platemap(PLATEMAP_CSV_DATA_PATH)
     assert not platemap["Well"].str.contains(":").any()
 
+
 @pytest.fixture()
 def platemap_data(platemap_data_files):
     from cdk.analysis.cytosol.platereader import read_platemap
@@ -143,7 +145,8 @@ def platemap_data(platemap_data_files):
 
 def test_platemap_does_not_have_Float64_columns(platemap_data):
     import pandas as pd
-    assert (pd.Float64Dtype() not in platemap_data.dtypes.values)
+
+    assert pd.Float64Dtype() not in platemap_data.dtypes.values
     # assert not any(col.dtype == pd.Float64Dtype() for col in data.columns)
 
 
@@ -182,3 +185,46 @@ def test_plot_plate(dna_sweep_data):
 
     g = plot_plate(dna_sweep_data)
     assert g.axes.shape[0] > 0 and g.axes.shape[1] > 0
+
+
+@pytest.fixture
+def synthetic_data():
+    import pandas as pd
+
+    return pd.read_csv(SYNTHETIC_DATA_PATH)
+
+
+def test_blank_data_preserves_unblanked_data(synthetic_data):
+    import cdk.analysis.cytosol.platereader as pr
+
+    data = pr.blank_data(synthetic_data)
+    assert "Data_unblanked" in data.columns
+
+
+def test_blank_data_adds_blank_column(synthetic_data):
+    import cdk.analysis.cytosol.platereader as pr
+
+    data = pr.blank_data(synthetic_data)
+    assert "Data_blank" in data.columns
+
+
+# def test_blank_data_blanks(synthetic_data):
+#     import cdk.analysis.cytosol.platereader as pr
+
+#     data = pr.blank_data(synthetic_data)
+#     assert "Data_blank" in data.columns
+
+
+def test_blank_data_blanks_data(synthetic_data):
+    import pandas as pd
+    import cdk.analysis.cytosol.platereader as pr
+
+    data = pr.blank_data(synthetic_data.copy())
+
+    # We know that in the synthetic dataset, the GFP blank has a constant mean of 100, and the RFP blank has a constant
+    # mean of 150.
+    data.loc[data["Read"] == "GFP", "Data"] += 100
+    data.loc[data["Read"] == "RFP", "Data"] += 150
+
+    # Use assert series equal because direct comparison can fail due to floating point errors.
+    pd.testing.assert_series_equal(synthetic_data["Data"], data["Data"])
