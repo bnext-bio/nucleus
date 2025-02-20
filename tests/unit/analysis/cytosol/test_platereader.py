@@ -3,7 +3,9 @@ import pytest
 PLATEMAP_CSV_DATA_PATH = "tests/test_data/platemap.csv"
 PLATEMAP_XLSX_DATA_PATH = "tests/test_data/platemap.xlsx"
 
-BIOTEK_SYNERGY_KINETIC_DATA_PATH = "tests/test_data/biotek_synergy_fluorescence_kinetics.txt"
+BIOTEK_SYNERGY_KINETIC_DATA_PATH = (
+    "tests/test_data/biotek_synergy_fluorescence_kinetics.txt"
+)
 CYTATION_KINETIC_DATA_PATH = (
     "tests/test_data/cytation_fluorescence_kinetics.txt"
 )
@@ -25,17 +27,22 @@ def test_read_envision():
 
     assert isinstance(data, pd.DataFrame)
 
-@pytest.fixture(params=[BIOTEK_SYNERGY_KINETIC_DATA_PATH, CYTATION_KINETIC_DATA_PATH])
+
+@pytest.fixture(
+    params=[BIOTEK_SYNERGY_KINETIC_DATA_PATH, CYTATION_KINETIC_DATA_PATH]
+)
 def biotek_data_path(request):
     return request.param
+
 
 def test_read_biotek(biotek_data_path):
     from cdk.analysis.cytosol.platereader import read_cytation
     import pandas as pd
-    
+
     data = read_cytation(biotek_data_path)
     assert isinstance(data, pd.DataFrame)
-    
+
+
 def test_read_cytation():
     import pandas as pd
     from cdk.analysis.cytosol.platereader import read_cytation

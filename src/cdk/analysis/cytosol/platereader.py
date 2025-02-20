@@ -55,7 +55,9 @@ _timple = timple.Timple()
 
 
 def load_platereader_data(
-    data_file: DataFile, platemap_file: Optional[DataFile] = None, platereader: Optional[str] = None
+    data_file: DataFile,
+    platemap_file: Optional[DataFile] = None,
+    platereader: Optional[str] = None,
 ) -> Union[PlateReaderData, pd.DataFrame]:
     """
     Load plate reader data from a file and return a DataFrame.
@@ -230,9 +232,13 @@ def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
     # iterate over data string to find individual reads
     reads = dict()
 
-    sep = r"(?:Read\s\d+:)?(?:\s\d{3}(?:/\d+)?,\d{3}(?:/\d+)?(?:\[\d\])?)?" + sep
+    sep = (
+        r"(?:Read\s\d+:)?(?:\s\d{3}(?:/\d+)?,\d{3}(?:/\d+)?(?:\[\d\])?)?" + sep
+    )
 
-    for readidx in re.finditer(r"^(Read\s)?\d+(/\d+)?,\d+(/\d+)?.*\n", data, re.MULTILINE):
+    for readidx in re.finditer(
+        r"^(Read\s)?\d+(/\d+)?,\d+(/\d+)?.*\n", data, re.MULTILINE
+    ):
         # for each iteration, extract string from start idx to end icx
         read = data[readidx.end() :]
         read = read[
@@ -258,7 +264,7 @@ def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
         r = r.melt(id_vars=["Time", "T°"], var_name="Well", value_name="Data")
         r["Row"] = r["Well"].str.extract(r"([A-Z]+)")
         r["Column"] = r["Well"].str.extract(r"(\d+)").astype(int)
-        r["Temperature (C)"] = r["T°"] #.str.extract(r"(\d+)").astype(float)
+        r["Temperature (C)"] = r["T°"]  # .str.extract(r"(\d+)").astype(float)
         r["Data"] = r["Data"].replace("OVRFLW", np.inf)
         r["Data"] = r["Data"].astype(float)
         r["Read"] = name
@@ -472,8 +478,12 @@ def plot_curves(
         [len(kwargs[var]) for var in ["row", "col"] if var in kwargs] + [0]
     )
     log.debug(f"{var_len=}")
-    row_title = f"{{row_var:>{var_len}}}: {{row_name}}" if "row" in kwargs else ""
-    col_title = f"{{col_var:>{var_len}}}: {{col_name}}" if "col" in kwargs else ""
+    row_title = (
+        f"{{row_var:>{var_len}}}: {{row_name}}" if "row" in kwargs else ""
+    )
+    col_title = (
+        f"{{col_var:>{var_len}}}: {{col_name}}" if "col" in kwargs else ""
+    )
     g.set_titles("\n".join(filter(None, [row_title, col_title])))
 
     return g
@@ -770,7 +780,7 @@ def plot_kinetics_by_well(
 
     # Velocity
     if show_velocity:
-        #TODO: This is currently broken due to rolling calculation and its effect on bounds.
+        # TODO: This is currently broken due to rolling calculation and its effect on bounds.
         # Show a velocity sparkline over the plot
         velocity = (
             data.transform({y: "diff", x: lambda x: x}).rolling(5).mean()
