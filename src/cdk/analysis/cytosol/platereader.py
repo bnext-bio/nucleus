@@ -609,7 +609,7 @@ def kinetic_analysis_per_well(
 
 
 def kinetic_analysis(data: pd.DataFrame, data_column="Data") -> pd.DataFrame:
-    kinetics = data.groupby(["Well", "Read"]).apply(
+    kinetics = data.groupby(["Well", "Name", "Read"], sort=False).apply(
         functools.partial(kinetic_analysis_per_well, data_column=data_column)
     )
     return kinetics
@@ -664,15 +664,16 @@ def plot_kinetics_by_well(
     ax = sns.scatterplot(data=data, x=x, y=y, color=colors[2], alpha=0.5)
 
     well = data["Well"].iloc[0]
+    name = data["Name"].iloc[0]
     read = data["Read"].iloc[0]
-    kinetics = kinetics.loc[well, read]
+    kinetics = kinetics.loc[well, name, read]
     if (kinetics.isna()).any():
         log.info(f"Kinetics information not available for {well}.")
         return
 
-    ax_ylim = (
-        ax.get_ylim()
-    )  # Use this to run lines to bounds later, then restore them before returning.
+    # ax_ylim = (
+    #     ax.get_ylim()
+    # )  # Use this to run lines to bounds later, then restore them before returning.
 
     if show_fit:
         L = kinetics["Fit", "L"]
@@ -769,6 +770,7 @@ def plot_kinetics_by_well(
 
     # Velocity
     if show_velocity:
+        #TODO: This is currently broken due to rolling calculation and its effect on bounds.
         # Show a velocity sparkline over the plot
         velocity = (
             data.transform({y: "diff", x: lambda x: x}).rolling(5).mean()
@@ -781,7 +783,7 @@ def plot_kinetics_by_well(
         velocity_ax.set_ylabel("$V (u/s)$")
         velocity_ax.set_ylim((0, velocity[y].max() * 2))
 
-    ax.set_ylim(ax_ylim)
+    # ax.set_ylim(ax_ylim)
 
     _plot_timedelta(ax)
 
