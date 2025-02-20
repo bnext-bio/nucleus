@@ -55,7 +55,7 @@ _timple = timple.Timple()
 
 
 def load_platereader_data(
-    data_file: DataFile, platemap_file: Optional[DataFile] = None
+    data_file: DataFile, platemap_file: Optional[DataFile] = None, platereader: Optional[str] = None
 ) -> Union[PlateReaderData, pd.DataFrame]:
     """
     Load plate reader data from a file and return a DataFrame.
@@ -99,12 +99,15 @@ def load_platereader_data(
 
 
     """
-    filename = os.path.basename(data_file).lower()
+    if platereader is None:
+        platereader = os.path.basename(data_file).lower()
 
-    # TODO: Fix format detection to be case-insensitive 
-    if "cytation" in filename.lower():
+    # TODO: Clean this up to use a proper platereader enum and not janky string parsing.
+    if "cytation" in platereader.lower():
         data = read_cytation(data_file)
-    elif "envision" in filename.lower():
+    if "biotek" in platereader.lower():
+        data = read_cytation(data_file)
+    elif "envision" in platereader.lower():
         data = read_envision(data_file)
     # elif filename_lower.startswith("glomax"):
     #     return read_glomax(os.path.dirname(data_file))
@@ -127,6 +130,9 @@ def read_platemap(platemap_file: DataFile) -> pd.DataFrame:
         extension = os.path.splitext(platemap_file)[1].lower()
         if extension == ".csv":
             platemap = pd.read_csv(platemap_file)
+        elif extension == ".tsv":
+            platemap = pd.read_table(platemap_file)
+            # TODO: create test for this
         elif extension == ".xlsx":
             platemap = pd.read_excel(platemap_file)
         else:
@@ -200,7 +206,7 @@ def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
     # extract indices for Proc Details, Layout
     procidx = re.search(r"Procedure Details", data)
     layoutidx = re.search(r"Layout", data)
-    readidx = re.search(r"^(Read\s)?\d+,\d+", data, re.MULTILINE)
+    readidx = re.search(r"^(Read\s)?\d+(/\d+)?,\d+(/\d+)?", data, re.MULTILINE)
 
     # get header DataFrame
     header = data[: procidx.start()]
@@ -224,9 +230,9 @@ def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
     # iterate over data string to find individual reads
     reads = dict()
 
-    sep = r"(?:Read\s\d+:)?(?:\s\d{3},\d{3}(?:\[\d\])?)?" + sep
+    sep = r"(?:Read\s\d+:)?(?:\s\d{3}(?:/\d+)?,\d{3}(?:/\d+)?(?:\[\d\])?)?" + sep
 
-    for readidx in re.finditer(r"^(Read\s)?\d+,\d+.*\n", data, re.MULTILINE):
+    for readidx in re.finditer(r"^(Read\s)?\d+(/\d+)?,\d+(/\d+)?.*\n", data, re.MULTILINE):
         # for each iteration, extract string from start idx to end icx
         read = data[readidx.end() :]
         read = read[
@@ -252,7 +258,7 @@ def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
         r = r.melt(id_vars=["Time", "T°"], var_name="Well", value_name="Data")
         r["Row"] = r["Well"].str.extract(r"([A-Z]+)")
         r["Column"] = r["Well"].str.extract(r"(\d+)").astype(int)
-        r["Temperature (C)"] = r["T°"].str.extract(r"(\d+)").astype(float)
+        r["Temperature (C)"] = r["T°"] #.str.extract(r"(\d+)").astype(float)
         r["Data"] = r["Data"].replace("OVRFLW", np.inf)
         r["Data"] = r["Data"].astype(float)
         r["Read"] = name
@@ -753,17 +759,22 @@ def plot_kinetics(data: pd.DataFrame, kinetics: pd.DataFrame, **kwargs):
     g.set_ylabels("Fluorescence (RFU)")
 
 
-def plot_steadystate(data: pd.DataFrame, hue="Experiment", **kwargs):
+def plot_steadystate(data: pd.DataFrame, **kwargs):
     steady_state = find_steady_state(data).reset_index()
     data_with_steady_state = data.merge(steady_state, on="Well", how="left")
+    
+    exp = "Experiment" if "Experiment" in data.columns else None
+    col = exp if exp is not None else None
+    col_wrap = 2 if col is not None else None
+    
     g = sns.catplot(
         data=data_with_steady_state,
         x="Name",
         y="Data_steadystate",
-        hue=hue,
+        hue=exp,
         kind="bar",
-        col="Experiment",
-        col_wrap=2,
+        col=col,
+        col_wrap=col_wrap,
         height=4,
         aspect=1.5,
         sharex=False,
