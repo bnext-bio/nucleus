@@ -35,13 +35,8 @@
 		"black-formatter.args": [
 			"--line-length 120"
 		],
-		// "terminal.integrated.defaultProfile.osx": "poetry",
-		// "terminal.integrated.profiles.osx": {
-		// 	"poetry": {
-		// 		"path": "bash",
-		// 		"args": ["-c", "source ${workspaceFolder}/.venv/bin/activate && exec bash"]
-		// 	}
-		// }
+		"files.trimTrailingWhitespace": true,
+		"files.trimFinalNewlines": true
 	},
 	"extensions": {
 		"recommendations": [
