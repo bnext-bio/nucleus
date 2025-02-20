@@ -105,7 +105,7 @@ def load_platereader_data(
     # TODO: Clean this up to use a proper platereader enum and not janky string parsing.
     if "cytation" in platereader.lower():
         data = read_cytation(data_file)
-    if "biotek" in platereader.lower():
+    elif "biotek" in platereader.lower():
         data = read_cytation(data_file)
     elif "envision" in platereader.lower():
         data = read_envision(data_file)
@@ -149,7 +149,7 @@ def read_platemap(platemap_file: DataFile) -> pd.DataFrame:
     # floats because they get upcast to a pandas Float64Dtype() class which
     # messes up plotting.
     # platemap = platemap.convert_dtypes(convert_floating=False)
-    
+
     platemap["Well"] = platemap["Well"].str.replace(
         ":", ""
     )  # Normalize well by removing : if it exists
@@ -805,11 +805,11 @@ def plot_kinetics(data: pd.DataFrame, kinetics: pd.DataFrame, **kwargs):
 def plot_steadystate(data: pd.DataFrame, **kwargs):
     steady_state = find_steady_state(data).reset_index()
     data_with_steady_state = data.merge(steady_state, on="Well", how="left")
-    
+
     exp = "Experiment" if "Experiment" in data.columns else None
     col = exp if exp is not None else None
     col_wrap = 2 if col is not None else None
-    
+
     g = sns.catplot(
         data=data_with_steady_state,
         x="Name",
