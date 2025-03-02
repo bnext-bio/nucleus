@@ -647,7 +647,7 @@ def kinetic_analysis_summary(
     # normalize max value (calculated by kinetics) if norm_label given
     if norm_label:
         norm = out[out["Well"] == norm_label][f"{data_column}_high_d"].values
-        out["Normalized [%]"] = out[f"{data_column}_high_d"] / norm
+        out["Normalized (%)"] = out[f"{data_column}_high_d"] / norm
 
     return out
 
