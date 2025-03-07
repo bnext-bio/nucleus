@@ -1,0 +1,50 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+		"python.testing.cwd": "${workspaceFolder}",
+		"python.testing.pytestEnabled": true,
+		"flake8.importStrategy": "fromEnvironment",
+		"black-formatter.importStrategy": "fromEnvironment",
+		"editor.defaultFormatter": "ms-python.black-formatter",
+		"editor.formatOnSave": true,
+		"editor.rulers": [120],
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.black-formatter",
+			"editor.formatOnSave": true
+		},
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true
+		},
+		"python.testing.pytestArgs": [
+			"-s"
+		],
+		"[yaml]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"flake8.enabled": true,
+		"black-formatter.args": [
+			"--line-length 120"
+		],
+		"files.trimTrailingWhitespace": true,
+		"files.trimFinalNewlines": true
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-python.python",
+			"ms-python.vscode-pylance",
+			"ms-python.black-formatter",
+			"ms-python.flake8",
+			"GitHub.remotehub"
+		]
+	}
+}

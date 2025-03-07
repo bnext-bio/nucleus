@@ -1,0 +1,91 @@
+[tool.poetry]
+name = "cdk"
+version = "0.1.0"
+description = "Cell Developer Kit for building synthetic cells and cytosols."
+license = "proprietary"
+authors = [ 
+  "Anton Jackson-Smith <anton@bnext.bio>",
+]
+maintainers = [
+  "Anton Jackson-Smith <anton@bnext.bio>",
+]
+readme = "README.md"
+homepage = "https://bnext.bio/"
+repository = "https://github.com/bnext-bio/bnext/"
+packages = [
+    { include = "cdk", from = "src" }
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+  "Private :: Do Not Upload",
+]
+keywords = [
+  "synthetic biology",
+  "synthetic cell",
+  "syncell",
+  "cellfree"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^2.1.2"
+pandas = "^2.2.3"
+seaborn = "^0.13.2"
+matplotlib = "^3.9.2"
+tqdm = "^4.66.5"
+rich = "^13.9.2"
+openpyxl = "^3.1.5"
+timple = "^0.1.8"
+jinja2 = "^3.1.4"
+scipy = "^1.14.1"
+hvplot = "^0.11.1"
+jupyter-bokeh = "^4.0.5"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+flake8 = "^7.1.1"
+black = "^24.10.0"
+pre-commit = "^4.0.0"
+ipykernel = "^6.29.5"
+toml-cli = "^0.7.0"
+flake8-pyproject = "^1.2.3"
+
+[tool.flake8]
+max-line-length = 120
+extend-ignore = ["E203", "E501", "W503", ]
+per-file-ignores = [
+  "__init__.py:F401"
+]
+
+[tool.black]
+line-length = 79
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra"
+testpaths = [
+    "tests",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
