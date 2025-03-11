@@ -1,0 +1,45 @@
+LOCUS       bjaI         660 bp DNA     linear   SYN 12-JUN-2024
+DEFINITION  bjaI.
+ACCESSION   SB0
+VERSION     .
+KEYWORDS    .
+SOURCE      synthetic DNA construct
+  ORGANISM  synthetic DNA construct
+REFERENCE   1  (bases 1 to 660)
+  AUTHORS   Smith JM, Hartmann D, Booth MJ.
+  TITLE     Engineering cellular communication between light-activated synthetic
+            cells and bacteria.
+  JOURNAL   Nat Chem Biol 2023 Sep;19:1138-1146
+  PUBMED    37414974
+REFERENCE   2  (bases 1 to 660)
+  AUTHORS   
+  TITLE     Direct Submission
+  JOURNAL   Exported Jun 12, 2024 from SnapGene 7.2.1
+            https://www.snapgene.com
+COMMENT     SGRef: number: 1; type: "Journal Article"; doi: 
+            "10.1038/s41589-023-01374-7"; journalName: "Nat Chem Biol"; date: 
+            "2023-09"; volume: "19"; pages: "1138-1146"
+FEATURES             Location/Qualifiers
+     source          1..660
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     CDS             1..660
+                     /codon_start=1
+                     /label=bjaI
+                     /translation="MIHAISAVNRHLYEDVLEQHFRLRHDIFVEERHWETLRRPDGREV
+                     DSYDDEDTVYLLALEGRRVVGGHRLYPTTKPSMMSEVFPHLAAVRGCPSDPLIWEWSRY
+                     FVVRDRRDGALNLQLMAAVQEFCLDQGIAQVSAIMETWWLPRFHEAGFVVTPLGLPALV
+                     ENAWTMAATVDIRRQTLDVLHDRIGMPSIVQQDGPRLDAVARANLCGLAAAQRKSA"
+ORIGIN
+        1 atgattcacg caatttccgc ggtcaatcgc cacttatacg aggacgtact cgagcagcat
+       61 ttccggctgc gtcatgacat ctttgtcgag gagcggcact gggaaacgct gcgcaggccg
+      121 gatggccgcg aggtcgattc ctatgacgac gaggataccg tctatctgct tgcgctggag
+      181 ggacggcgcg tcgtcggcgg ccaccggctc taccccacga ccaagccctc gatgatgagc
+      241 gaggtgttcc cgcatctggc ggcggttcgc ggctgcccct cggatccgct gatctgggaa
+      301 tggtcgcgct acttcgtcgt ccgcgatcgc cgcgacggcg cgctcaatct gcaactgatg
+      361 gcggcggtgc aggagttctg cctcgaccag ggaatcgccc aggtcagcgc gatcatggaa
+      421 acctggtggt tgccgcgctt ccacgaggcc ggcttcgtcg tgacgccgct cggcctgccg
+      481 gctctggtcg agaacgcctg gaccatggcg gccaccgtcg acattcgtcg ccagacgctc
+      541 gatgtcctgc atgatcgcat cggcatgcct tccatcgtgc aacaggacgg cccgcgtctg
+      601 gacgccgtcg cccgtgccaa cctttgcggc ctcgctgccg cgcaacgaaa gagcgcctga
+//

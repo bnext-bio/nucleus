@@ -1,0 +1,63 @@
+LOCUS       pPURE-bjaI         946 bp DNA     linear   SYN 13-JUN-2024
+DEFINITION  pPURE-bjaI.
+ACCESSION   SB0
+VERSION     .
+KEYWORDS    .
+SOURCE      synthetic DNA construct
+  ORGANISM  synthetic DNA construct
+REFERENCE   1  (bases 1 to 946)
+  AUTHORS   Smith JM, Hartmann D, Booth MJ.
+  TITLE     Engineering cellular communication between light-activated synthetic
+            cells and bacteria.
+  JOURNAL   Nat Chem Biol 2023 Sep;19:1138-1146
+  PUBMED    37414974
+REFERENCE   2  (bases 1 to 946)
+  AUTHORS   
+  TITLE     Direct Submission
+  JOURNAL   Exported Jun 13, 2024 from SnapGene 7.2.1
+            https://www.snapgene.com
+COMMENT     SGRef: number: 1; type: "Journal Article"; doi: 
+            "10.1038/s41589-023-01374-7"; journalName: "Nat Chem Biol"; date: 
+            "2023-09"; volume: "19"; pages: "1138-1146"
+FEATURES             Location/Qualifiers
+     source          1..946
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     promoter        6..24
+                     /label=T7 promoter
+                     /note="promoter for bacteriophage T7 RNA polymerase"
+     RBS             39..59
+                     /note="efficient ribosome binding site from bacteriophage 
+                     T7 gene 10 (Olins and Rangwala, 1989)"
+     CDS             68..730
+                     /codon_start=1
+                     /label=bjaI
+                     /translation="MIHAISAVNRHLYEDVLEQHFRLRHDIFVEERHWETLRRPDGREV
+                     DSYDDEDTVYLLALEGRRVVGGHRLYPTTKPSMMSEVFPHLAAVRGCPSDPLIWEWSRY
+                     FVVRDRRDGALNLQLMAAVQEFCLDQGIAQVSAIMETWWLPRFHEAGFVVTPLGLPALV
+                     ENAWTMAATVDIRRQTLDVLHDRIGMPSIVQQDGPRLDAVARANLCGLAAAQRKSA*"
+     misc_feature    313
+                     /label=C->G
+                     /note="Eliminate internal BbsI restriction site"
+     terminator      879..926
+                     /label=T7 terminator
+                     /note="transcription terminator for bacteriophage T7 RNA 
+                     polymerase"
+ORIGIN
+        1 gaaattaata cgactcacta tagggtctag aaataatttt gtttaacttt aagaaggagg
+       61 tatacatatg attcacgcaa tttccgcggt caatcgccac ttatacgagg acgtactcga
+      121 gcagcatttc cggctgcgtc atgacatctt tgtcgaggag cggcactggg agacgctgcg
+      181 caggccggat ggccgcgagg tcgattccta tgacgacgag gataccgtct atctgcttgc
+      241 gctggaggga cggcgcgtcg tcggcggcca ccggctctac cccacgacca agccctcgat
+      301 gatgagcgag gtgttcccgc atctggcggc ggttcgcggc tgcccctcgg atccgctgat
+      361 ctgggaatgg tcgcgctact tcgtcgtccg cgatcgccgc gacggcgcgc tcaacctgca
+      421 actgatggcg gcggtgcagg agttctgcct cgaccaggga atcgcgcagg tcagcgcgat
+      481 catggaaacc tggtggttgc cgcgcttcca cgaggccggc ttcgtcgtga cgccgctcgg
+      541 cctgccggct ctggtcgaga acgcctggac catggcggcc accgtcgaca ttcgtcgcca
+      601 gacgctcgat gtcctgcatg atcgcatcgg catgccttcc atcgtgcaac aggacggccc
+      661 gcgtctggac gccgtcgccc gtgccaacct ttgcggcctc gctgccgcgc aacgaaagag
+      721 cgcctgatga ggatcccggg aattctcgag taaggttaac ctgcaggagg cctttaatta
+      781 aggtggtgcg gccgcgctag cggtcccggg ggatcgatcc ggctgctaac aaagcccgaa
+      841 aggaagctga gttggctgct gccaccgctg agcaataact agcataaccc cttggggcct
+      901 ctaaacgggt cttgaggggt tttttgctga aaggaggaac tatatc
+//

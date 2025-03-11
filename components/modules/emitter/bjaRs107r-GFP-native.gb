@@ -1,0 +1,112 @@
+LOCUS       bjaRs107r-GFP-na        1856 bp DNA     linear   SYN 12-JUN-2024
+DEFINITION  bjaR-GFP-native.
+ACCESSION   SB0
+VERSION     .
+KEYWORDS    .
+SOURCE      synthetic DNA construct
+  ORGANISM  synthetic DNA construct
+REFERENCE   1  (bases 931 to 965)
+  AUTHORS   Smith JM, Hartmann D, Booth MJ.
+  TITLE     Engineering cellular communication between light-activated synthetic
+            cells and bacteria.
+  JOURNAL   Nat Chem Biol 2023 Sep;19:1138-1146
+  PUBMED    37414974
+REFERENCE   2  (bases 1 to 1856)
+  AUTHORS   
+  TITLE     Direct Submission
+  JOURNAL   Exported Jun 12, 2024 from SnapGene 7.2.1
+            https://www.snapgene.com
+COMMENT     SGRef: number: 1; type: "Journal Article"; doi: 
+            "10.1038/s41589-023-01374-7"; journalName: "Nat Chem Biol"; date: 
+            "2023-09"; volume: "19"; pages: "1138-1146"
+FEATURES             Location/Qualifiers
+     source          1..1856
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     regulatory      1..54
+                     /label=pBjaR
+                     /regulatory_class="promoter"
+     regulatory      1..20
+                     /label=BjaR Operator
+                     /regulatory_class="transcriptional_cis_regulatory_region"
+     regulatory      21..54
+                     /label=Promoter
+                     /regulatory_class="promoter"
+     regulatory      63..75
+                     /label=B0032
+                     /regulatory_class="ribosome_binding_site"
+     CDS             82..795
+                     /codon_start=1
+                     /product="S65T variant of Aequorea victoria green 
+                     fluorescent protein (Heim et al., 1995)"
+                     /label=GFP (S65T)
+                     /note="excitable with blue light"
+                     /translation="MRKGEELFTGVVPILVELDGDVNGHKFSVSGEGEGDATYGKLTLK
+                     FICTTGKLPVPWPTLVTTFGYGVQCFARYPDHMKQHDFFKSAMPEGYVQERTIFFKDDG
+                     NYKTRAEVKFEGDTLVNRIELKGIDFKEDGNILGHKLEYNYNSHNVYIMADKQKNGIKV
+                     NFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLE
+                     FVTAAGITHGMDELYK"
+     regulatory      810..922
+                     /label=J61048
+                     /regulatory_class="terminator"
+     promoter        931..965
+                     /label=﻿BBa_J23100
+                     /note="Anderson constitutive promoter 
+                     (https://parts.igem.org/Promoters/Catalog/Anderson). 
+                     Measured strength relative to BBa_J223100: 1.0
+                     "
+                     /citation=[1]
+     regulatory      974..984
+                     /label=B0033
+                     /regulatory_class="ribosome_binding_site"
+     CDS             991..1719
+                     /codon_start=1
+                     /label=bjaR
+                     /translation="MSAVDYGREALDFIEGLGVYRKVPDAMNALEAAFGRFGFETIIVT
+                     GLPNPDQRFAQMVLAKRWPAGWFNLYTQNNYDRFDPVVRLCRQSVNPFEWSEAPYDAEL
+                     EPRAAEVMNRAGDFRMSRGFIVPIHGLTGYEAAVSLGGVHLDLNPRSKPALHLMAMYGF
+                     DHIRRLLEPTPYPSTRLTPREREVISWASQGKSAWEIGEILHITQRTAEEHLATAARKL
+                     GAVNRTHAVALAIRHKIINP"
+     regulatory      1728..1856
+                     /label=B0015
+                     /regulatory_class="terminator"
+     terminator      1736..1807
+                     /label=rrnB T1 terminator
+                     /note="transcription terminator T1 from the E. coli rrnB 
+                     gene"
+     terminator      1823..1850
+                     /label=T7Te terminator
+                     /note="phage T7 early transcription terminator"
+ORIGIN
+        1 tactgggaaa tttcccaata ttacgcaaga aaatggtttg ttatagtcga atattactag
+       61 agtcacacag gaaagtacta gatgcgtaaa ggagaagaac ttttcactgg agttgtccca
+      121 attcttgttg aattagatgg tgatgttaat gggcacaaat tttctgtcag tggagagggt
+      181 gaaggtgatg caacatacgg aaaacttacc cttaaattta tttgcactac tggaaaacta
+      241 cctgttccat ggccaacact tgtcactact ttcggttatg gtgttcaatg ctttgcgaga
+      301 tacccagatc atatgaaaca gcatgacttt ttcaagagtg ccatgcccga aggttatgta
+      361 caggaaagaa ctatattttt caaagatgac gggaactaca agacacgtgc tgaagtcaag
+      421 tttgaaggtg atacccttgt taatagaatc gagttaaaag gtattgattt taaagaagat
+      481 ggaaacattc ttggacacaa attggaatac aactataact cacacaatgt atacatcatg
+      541 gcagacaaac aaaagaatgg aatcaaagtt aacttcaaaa ttagacacaa cattgaagat
+      601 ggaagcgttc aactagcaga ccattatcaa caaaatactc caattggcga tggccctgtc
+      661 cttttaccag acaaccatta cctgtccaca caatctgccc tttcgaaaga tcccaacgaa
+      721 aagagagacc acatggtcct tcttgagttt gtaacagctg ctgggattac acatggcatg
+      781 gatgaactat acaaataata atactagagc cggcttatcg gtcagtttca cctgatttac
+      841 gtaaaaaccc gcttcggcgg gtttttgctt ttggaggggc agaaagatga atgactgtcc
+      901 acgacgctat acccaaaaga aatactagag ttgacggcta gctcagtcct aggtacagtg
+      961 ctagctacta gagtcacaca ggactactag atgtccgcag tagattatgg gcgtgaagcc
+     1021 ctggacttta tcgagggttt gggcgtatat cgtaaagtcc ctgatgcgat gaacgctctc
+     1081 gaagcggcat tcggtcgctt tggctttgag acaatcatcg tgactgggct gcccaacccg
+     1141 gatcagcgtt ttgcacaaat ggtactcgct aaacgttggc cggcgggttg gtttaatctg
+     1201 tatacgcaaa acaattatga ccgttttgat cccgtcgtcc gcttgtgccg tcagagcgtg
+     1261 aatccgttcg agtggagtga agcaccgtat gacgctgaat tagaaccacg cgccgccgaa
+     1321 gtcatgaatc gtgcaggcga cttccgtatg tcccgtggtt ttatcgtgcc gatccatgga
+     1381 ctgacaggat atgaagcggc tgttagtctg ggaggcgttc atttagatct gaacccgcgt
+     1441 tccaaaccgg ctctgcacct gatggcaatg tacggtttcg accacattcg tcgcctgctg
+     1501 gaaccgaccc catatccttc gacgcgcctt actccgcgcg aacgcgaagt tatttcctgg
+     1561 gctagccagg gaaaatctgc gtgggaaatt ggtgaaatcc tgcatatcac ccagcgcacc
+     1621 gccgaggagc acttagcgac cgcggcacgt aaacttggtg cggtcaatcg tacccatgcc
+     1681 gtcgcgctgg ccatccgtca caaaattatc aacccctaat actagagcca ggcatcaaat
+     1741 aaaacgaaag gctcagtcga aagactgggc ctttcgtttt atctgttgtt tgtcggtgaa
+     1801 cgctctctac tagagtcaca ctggctcacc ttcgggtggg cctttctgcg tttata
+//
