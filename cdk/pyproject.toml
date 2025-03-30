@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "cdk"
-version = "0.1.0"
+name = "nucleus-cdk"
+version = "0.3.0a1"
 description = "Cell Developer Kit for building synthetic cells and cytosols."
-license = "proprietary"
+license = "MIT"
 authors = [ 
   "Anton Jackson-Smith <anton@bnext.bio>",
 ]
@@ -10,8 +10,8 @@ maintainers = [
   "Anton Jackson-Smith <anton@bnext.bio>",
 ]
 readme = "README.md"
-homepage = "https://bnext.bio/"
-repository = "https://github.com/bnext-bio/bnext/"
+homepage = "https://nucleus.bnext.bio/"
+repository = "https://github.com/bnext-bio/nucleus/"
 packages = [
     { include = "cdk", from = "src" }
 ]
@@ -21,17 +21,18 @@ classifiers = [
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python",
   "Topic :: Scientific/Engineering :: Bio-Informatics",
-  "Private :: Do Not Upload",
 ]
 keywords = [
   "synthetic biology",
   "synthetic cell",
   "syncell",
-  "cellfree"
+  "cellfree",
+  "nucleus",
+  "cell developer kit"
 ]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 numpy = "^2.1.2"
 pandas = "^2.2.3"
 seaborn = "^0.13.2"

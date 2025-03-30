@@ -1,13 +1,11 @@
-# CDK: b.next Cell Developer Kit
-*Internal use only*
-
-The CDK is a set of tools and libraries for building synthetic cells, the operations stack for synthetic cell engineering. This package is the core library, modular code that can be used in specific experiments or in other applications.
+# CDK: Nucleus Cell Developer Kit
+The Nucleus Cell Developer Kit (CDK) is a set of tools and libraries for building synthetic cells, the stack for synthetic cell engineering. This package is the core library, modular code that can be used in specific experiments or in other applications.
 
 ## Features
-Currently, the CDK contains our core analysis functionality: plate reader and liposome analysis.
+Currently, the CDK contains our core analysis functionality: plate reader and liposome analysis. In particular, the plate reader code is designed to allow for easy analysis of kinetic timeseries of PURE experiments from Agilent/Biotek and Revvity Envision plate readers. The liposome analysis code is under heavy development, and the code included here is somewhat out of date---please contact us for more information.
 
 ## Installation
-*TBD*
+`pip install nucleus-cdk`
 
 ## Development
 ### Install poetry
