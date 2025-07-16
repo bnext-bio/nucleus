@@ -1,6 +1,8 @@
 # CDK: Nucleus Cell Developer Kit
 The Nucleus Cell Developer Kit (CDK) is a set of tools and libraries for building synthetic cells, the stack for synthetic cell engineering. This package is the core library, modular code that can be used in specific experiments or in other applications.
 
+Nucleus is an open-source project for building and working with synthetic cells. For more information, please check out the [Nucleus documentation](https://nucleus.bnext.bio/).
+
 ## Features
 Currently, the CDK contains our core analysis functionality: plate reader and liposome analysis. In particular, the plate reader code is designed to allow for easy analysis of kinetic timeseries of PURE experiments from Agilent/Biotek and Revvity Envision plate readers. The liposome analysis code is under heavy development, and the code included here is somewhat out of date---please contact us for more information.
 
