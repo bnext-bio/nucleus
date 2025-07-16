@@ -1,0 +1,22 @@
+LOCUS       bjaO          20 bp DNA     linear   UNA 12-JUN-2024
+DEFINITION  natural linear DNA
+ACCESSION   .
+VERSION     .
+KEYWORDS    .
+SOURCE      natural DNA sequence
+  ORGANISM  unspecified
+REFERENCE   1  (bases 1 to 20)
+  AUTHORS   
+  TITLE     Direct Submission
+  JOURNAL   Exported Jun 12, 2024 from SnapGene 7.2.1
+            https://www.snapgene.com
+FEATURES             Location/Qualifiers
+     source          1..20
+                     /mol_type="genomic DNA"
+                     /organism="unspecified"
+     regulatory      1..20
+                     /label=BjaR Operator
+                     /regulatory_class="transcriptional_cis_regulatory_region"
+ORIGIN
+        1 tactgggaaa tttcccaata
+//

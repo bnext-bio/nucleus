@@ -1,0 +1,118 @@
+LOCUS       pT7-tetO-tetO-bj         908 bp    DNA     linear   SYN 10-MAR-2025
+DEFINITION  Responder Cell ""train"" operator (linear DNA).
+ACCESSION   .
+VERSION     .
+KEYWORDS    .
+SOURCE      synthetic DNA construct
+  ORGANISM  PCR product
+REFERENCE   1  (bases 1 to 908)
+  AUTHORS   Bnext Bio
+  TITLE     Direct Submission
+  JOURNAL   Exported Mar 10, 2025 from SnapGene 8.0.2
+            https://www.snapgene.com
+FEATURES             Location/Qualifiers
+     source          1..908
+                     /mol_type="other DNA"
+                     /organism="PCR product"
+     primer_bind     1..60
+                     /label=pT7-tetO-tetO-F
+     primer_bind     2..96
+                     /label=pT7-bjaI UTR1 F
+     primer_bind     complement(2..18)
+                     /label=pT7-bjaI pT7 R
+     misc_feature    2..5
+                     /label=GGAG
+                     /label=nonstandard type: homology
+                     /note="/color=#f7e8f7"
+     misc_feature    2..5
+                     /label=GGAG
+                     /label=nonstandard type: homology
+                     /note="/color=#f7e8f7"
+     misc_feature    6..802
+                     /label=From pT7-bjaI
+                     /note="From pT7-bjaI"
+                     /note="/color=white"
+                     /note="/indicates_part=True"
+                     /note="/source=pT7-bjaI"
+     misc_feature    6..802
+                     /label=pT7-bjaI
+     primer_bind     6..52
+                     /label=pT7
+     misc_feature    6..18
+                     /label=From pT7-bjaI
+                     /note="From pT7-bjaI"
+                     /note="/color=white"
+                     /note="/indicates_part=True"
+                     /note="/source=pT7-bjaI"
+     misc_feature    6..18
+                     /label=pT7-bjaI
+     primer_bind     6..18
+                     /label=pT7
+     protein_bind    53..71
+                     /gene="tetO"
+                     /label=tet operator
+                     /bound_moiety="tetracycline repressor TetR"
+                     /note="bacterial operator O2 for the tetR and tetA genes"
+     misc_feature    72..99
+                     /label=UTR1
+     misc_feature    100..107
+                     /label=MC0U-SP
+                     /label=CDS Prefix
+     misc_feature    100..105
+                     /label=BsaI_Bind
+     CDS             108..764
+                     /codon_start=1
+                     /label=bjaI
+                     /translation="MIHAISAVNRHLYEDVLEQHFRLRHDIFVEERHWETLRRPDGREV
+                     DSYDDEDTVYLLALEGRRVVGGHRLYPTTKPSMMSEVFPHLAAVRGCPSDPLIWEWSRY
+                     FVVRDRRDGALNLQLMAAVQEFCLDQGIAQVSAIMETWWLPRFHEAGFVVTPLGLPALV
+                     ENAWTMAATVDIRRQTLDVLHDRIGMPSIVQQDGPRLDAVARANLCGLAAAQRKSA"
+     misc_feature    765..782
+                     /label=CDS Suffix
+     misc_feature    783..802
+                     /label=Terminator Spacer
+     misc_feature    803..806
+                     /label=CGCT
+                     /label=nonstandard type: homology
+                     /note="/color=#f7e8f7"
+     misc_feature    807..908
+                     /label=From pOpen-MCL1Entry-ccdB
+                     /note="From pOpen-MCL1Entry-ccdB"
+                     /note="/color=white"
+                     /note="/indicates_part=True"
+                     /note="/source=pOpen-MCL1Entry-ccdB"
+     primer_bind     807..825
+                     /label=pOpen-Vector-Fwd
+     misc_feature    807..825
+                     /label=SLiCE-for
+     misc_feature    807..810
+                     /label=BioBrick suffix
+     primer_bind     complement(826..844)
+                     /label=T7 Reverse
+     terminator      840..887
+                     /label=T7 terminator
+     primer_bind     888..908
+                     /label=pOpen-Vector-Fwd-2
+                     /note="Forward excluding pOpen 3' terminator"
+     primer_bind     complement(888..908)
+                     /label=M13 rev
+     primer_bind     complement(888..908)
+                     /label=M13 R
+ORIGIN
+        1 aggagtaata cgactcacta tagggtccct atcagtgata gagattgaca ggtccctatc
+       61 agtgatagag aaataatttt gtttaacttt aagaaggagg gtctctaatg attcacgcaa
+      121 tttccgcggt caatcgccac ttatacgagg acgtactcga gcagcatttc cggctgcgtc
+      181 atgacatctt tgtcgaggag cggcactggg aaacgctgcg caggccggat ggccgcgagg
+      241 tcgattccta tgacgacgag gataccgtct atctgcttgc gctggaggga cggcgcgtcg
+      301 tcggcggcca ccggctctac cccacgacca agccctcgat gatgagcgag gtgttcccgc
+      361 atctggcggc ggttcgcggc tgcccctcgg atccgctgat ctgggaatgg tcgcgctact
+      421 tcgtcgtccg cgatcgccgc gacggcgcgc tcaatctgca actgatggcg gcggtgcagg
+      481 agttctgcct cgaccaggga atcgcccagg tcagcgcgat catggaaacc tggtggttgc
+      541 cgcgcttcca cgaggccggc ttcgtcgtga cgccgctcgg cctgccggct ctggtcgaga
+      601 acgcctggac catggcggcc accgtcgaca ttcgtcgcca gacgctcgat gtcctgcatg
+      661 atcgcatcgg catgccttcc atcgtgcaac aggacggccc gcgtctggac gccgtcgccc
+      721 gtgccaacct ttgcggcctc gctgccgcgc aacgaaagag cgcctgaaga gcttagagac
+      781 cgcgtagact ctagattggg cccgctgagg tgtcaatcgt cggagccgct gagcaataac
+      841 tagcataacc ccttggggcc tctaaacggg tcttgagggg ttttttgcat ggtcatagct
+      901 gtttcctg
+//
