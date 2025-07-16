@@ -3,7 +3,7 @@ name = "cdk"
 version = "0.1.0"
 description = "Cell Developer Kit for building synthetic cells and cytosols."
 license = "proprietary"
-authors = [ 
+authors = [
   "Anton Jackson-Smith <anton@bnext.bio>",
 ]
 maintainers = [
@@ -31,7 +31,7 @@ keywords = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 numpy = "^2.1.2"
 pandas = "^2.2.3"
 seaborn = "^0.13.2"
@@ -44,6 +44,8 @@ jinja2 = "^3.1.4"
 scipy = "^1.14.1"
 hvplot = "^0.11.1"
 jupyter-bokeh = "^4.0.5"
+ordered-set = "^4.1.0"
+scikit-learn = "^1.7.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"

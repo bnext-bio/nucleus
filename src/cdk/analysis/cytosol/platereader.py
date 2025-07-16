@@ -10,6 +10,7 @@ Usage:
 *tbd*
 """
 
+import csv
 import io
 import re
 import os.path
@@ -17,9 +18,13 @@ from pathlib import Path
 import logging
 from typing import Union, Optional, NamedTuple
 from enum import Enum, auto
+from ordered_set import OrderedSet
 
 import numpy as np
 import pandas as pd
+from pandas.api import types as ptypes
+from scipy import stats
+import sklearn.metrics
 
 # import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -105,9 +110,11 @@ def load_platereader_data(
         platereader = os.path.basename(data_file).lower()
 
     # TODO: Clean this up to use a proper platereader enum and not janky string parsing.
-    if "cytation" in platereader.lower():
-        data = read_cytation(data_file)
+    if "biotek-cdk" in platereader.lower():
+        data = read_biotek_cdk(data_file)
     elif "biotek" in platereader.lower():
+        data = read_cytation(data_file)
+    elif "cytation" in platereader.lower():
         data = read_cytation(data_file)
     elif "envision" in platereader.lower():
         data = read_envision(data_file)
@@ -119,6 +126,12 @@ def load_platereader_data(
     platemap = None
     if platemap_file is not None:
         platemap = read_platemap(platemap_file)
+        for col in ["Row", "Column"]:
+            if col in platemap:
+                # Remove columns we expect might be duplicated between the platemap and
+                # the data itself.
+                platemap = platemap.drop(col, axis=1)
+
         data = data.merge(platemap, on="Well")
         return PlateReaderData(data=data, platemap=platemap)
 
@@ -196,6 +209,145 @@ def read_platemap(platemap_file: DataFile) -> pd.DataFrame:
 #     data.sort_values(by=["TimeDelta", "Row", "Column"], inplace=True)
 
 #     return data
+
+BIOTEK_CDK_METADATA_SECTIONS = ["CDK", "Plate", "Procedure Summary"]
+
+BIOTEK_CDK_ID_VARS = [
+    "Protocol File Name",
+    "Experiment File Name",
+    "Plate Number",
+    "Plate ID",
+    "Well ID",
+    "Name",
+    "Well",
+    "Conc/Dil type",
+    "Conc/Dil",
+    "Unit",
+    "Time",
+]
+
+BIOTEK_CDK_PLATE_VARS = ["Plate Number", "Plate ID"]
+
+
+def read_biotek_cdk(data_file: DataFile, sep="\t") -> pd.DataFrame:
+    log.debug(f"Reading CDK-formatted BioTek data from {data_file}")
+
+    with open(data_file, "r", encoding="latin1") as file:
+        data_raw = file.read()
+
+    blocks = data_raw.strip().split("\n\n")
+    metadata = dict()
+    dataframes = list()
+    for header, section in zip(blocks[::2], blocks[1::2]):
+        if header in BIOTEK_CDK_METADATA_SECTIONS:
+            header_var = re.sub(r"\s+", "_", header).lower()
+            log.debug(f"Found metadata: {header} -> {header_var}")
+
+            section_metadata = [
+                line.strip() for line in section.split("\n")
+            ]  # Strip whitespace and break into lines
+            section_metadata = [
+                re.sub(r"\t+", "\t", line) for line in section_metadata
+            ]  # Remove duplicated tab spaces
+
+            section_dict = dict()
+            for line in csv.reader(
+                section_metadata, dialect="excel-tab", skipinitialspace=True
+            ):
+                field = re.sub(
+                    r":$", "", line[0]
+                )  # Remove the colon at the end of the field name
+                section_dict[field] = line[1] if len(line) > 1 else None
+
+            # TODO: Setting the metadata this way means we end up returning the last metadata section we saw (not per plate)
+            # Return either a list, one per plate, or split it up some other way
+            # Note: we are currently relying on this behavior to set the Plate ID on a data dataframe lower down.
+            metadata[header_var] = section_dict
+
+            continue
+
+        log.debug(f"Loaded section {header}")
+        data_protocol = header.split(":")[0]
+
+        if data_protocol == "Pierce660":
+            data = pd.read_table(io.StringIO(section))
+
+            for col in data.columns:
+                if col in BIOTEK_CDK_ID_VARS:
+                    data[col] = data[col].ffill()
+
+            data = data.dropna(axis=1, how="all")
+
+            data = data.melt(
+                id_vars=OrderedSet(BIOTEK_CDK_ID_VARS)
+                & OrderedSet(data.columns),
+                value_vars=OrderedSet(data.columns)
+                - OrderedSet(BIOTEK_CDK_ID_VARS),
+                var_name="Read",
+                value_name="Data",
+            ).reset_index()
+
+            # data["Row"] = data["Well"].str.extract(r"[A-Z]+")
+            # data["Column"] = data["Well"].str.extract(r"[0-9]+")
+            data["Type"] = data["Well ID"].str.extract(r"([A-Z]+)")
+            data["Sample"] = data["Well ID"].str.extract(r"([0-9]+)")
+
+            if "Name" not in data:
+                data["Name"] = data["Well ID"]
+        elif data_protocol == "PURE":
+            data = pd.read_table(io.StringIO(section))
+            data = data.drop(columns=data.columns[1])
+            data = data.dropna(axis=1, how="all")  # Remove wells with no data
+
+            # Remove completely empty rows (usually there if the run was prematurely aborted).
+            # We use data.columns[1:] because even if all wells have NaN data, the Time column will still have a time.
+            # We're assuming that 'Time' is the first column.
+            data = data.dropna(axis=0, subset=data.columns[1:], how="all")
+
+            data = data.melt(
+                id_vars=OrderedSet(BIOTEK_CDK_ID_VARS)
+                & OrderedSet(data.columns),
+                value_vars=OrderedSet(data.columns)
+                - OrderedSet(BIOTEK_CDK_ID_VARS),
+                var_name="Well",
+                value_name="Data",
+            ).reset_index(drop=True)
+            log.debug(f"Data loaded with columns: {data.columns}")
+
+            # TODO: Figure out why the plate reader adds asterisks sometimes.
+            def fix_strings(x):
+                if isinstance(x, str):
+                    return x.replace("*", "")
+                return x
+
+            data["Data"] = data["Data"].apply(fix_strings)
+            data["Data"] = pd.to_numeric(data["Data"])
+
+            data["Time"] = pd.to_timedelta(data["Time"])
+
+            data["Row"] = data["Well"].str.extract(r"([A-Z]+)")
+            data["Column"] = data["Well"].str.extract(r"(\d+)").astype(int)
+            data["Read"] = header.split(":")[1]
+
+            if (
+                "Plate Number" in metadata["cdk"]
+                and metadata["cdk"]["Plate Number"] is not None
+            ):
+                data["Plate"] = metadata["cdk"]["Plate Number"]
+
+            if (
+                "Reading Date/Time" in metadata["cdk"]
+                and metadata["cdk"]["Reading Date/Time"] is not None
+            ):
+                data["Clock Time"] = (
+                    pd.to_datetime(metadata["cdk"]["Reading Date/Time"])
+                    + data["Time"]
+                )
+
+        data.attrs["metadata"] = metadata
+        dataframes.append(data)
+
+    return pd.concat(dataframes)
 
 
 def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
@@ -380,7 +532,7 @@ def plot_setup() -> None:
     pd.set_option("display.float_format", "{:.2f}".format)
 
 
-def _plot_timedelta(plot: sns.FacetGrid | mpl.axes.Axes) -> sns.FacetGrid:
+def _plot_timedelta(plot: sns.FacetGrid | mpl.axes.Axes) -> None:
     axes = [plot]
     if isinstance(plot, sns.FacetGrid):
         axes = plot.axes.flatten()
@@ -398,7 +550,13 @@ def _plot_timedelta(plot: sns.FacetGrid | mpl.axes.Axes) -> sns.FacetGrid:
 
 def plot_plate(data: pd.DataFrame) -> sns.FacetGrid:
     g = sns.relplot(
-        data=data, x="Time", y="Data", row="Row", col="Column", kind="line"
+        data=data,
+        x="Time",
+        y="Data",
+        row="Row",
+        col="Column",
+        hue="Read",
+        kind="line",
     )
     _plot_timedelta(g)
 
@@ -425,12 +583,13 @@ def plot_curves_by_name(
         sns.FacetGrid: Seaborn FacetGrid object containing the plot.
     """
     kwargs = {}
-    if "Experiment" in data.columns and by_experiment:
+    if "col" not in kwargs and "Experiment" in data.columns and by_experiment:
         kwargs["col"] = "Experiment"
 
-    g = plot_curves(
-        data=data, x="Time", y="Data", hue="Name", row="Read", **kwargs
-    )
+    if "row" not in kwargs and data["Read"].unique().size > 1:
+        kwargs["row"] = "Read"
+
+    g = plot_curves(data=data, x="Time", y="Data", hue="Name", **kwargs)
 
     return g
 
@@ -463,6 +622,9 @@ def plot_curves(
         sns.FacetGrid: A FacetGrid object containing the plotted data.
 
     """
+    if "row" not in kwargs and "col" in kwargs:
+        kwargs["col_wrap"] = min(data[kwargs["col"]].unique().size, 4)
+
     g = sns.relplot(data=data, x=x, y=y, hue=hue, kind="line", **kwargs)
     _plot_timedelta(g)
 
@@ -497,7 +659,7 @@ def plot_curves(
 
 def find_steady_state_for_well(well):
     well = well.sort_values("Time")
-    pct_change = well["Data"].rolling(window=3).mean().pct_change()
+    pct_change = well["Data"].pct_change()
     idx_maxV = pct_change.idxmax()
 
     ss_idx = pct_change.loc[idx_maxV:].abs().idxmin()
@@ -532,11 +694,18 @@ def _sigmoid(x, L, k, x0):
     return L / (1 + np.exp(-k * (x - x0)))
 
 
+def _data_mean(data):
+    data_mean = data.groupby("Time", as_index=False)["Data"].mean()
+    data_mean["Data"] = data_mean["Data"].rolling(3, min_periods=1).mean()
+
+    return data_mean
+
+
 def kinetic_analysis_per_well(
     data: pd.DataFrame, data_column="Data"
 ) -> pd.DataFrame:
-
-    steadystate = find_steady_state_for_well(data)
+    data_mean = _data_mean(data)
+    steadystate = find_steady_state_for_well(data_mean)
 
     data = data.loc[data["Time"] <= steadystate["Time_steadystate"]]
     time = data["Time"].dt.total_seconds()
@@ -561,16 +730,24 @@ def kinetic_analysis_per_well(
             log.debug(f"Scipy optimize warning: {w}")
         except Exception as e:
             log.warning(f"Failed to solve: {e}")
-
             return None
+    r_squared = sklearn.metrics.r2_score(
+        data[data_column], _sigmoid(time, *params)
+    )
+    log.debug(f"Logistic fit R^2: {r_squared}")
+
     log.debug(f"{data['Well'].iloc[0]} Fitted params: {params}")
 
     # calculate velocities and velocity params
-    v = data[data_column].diff() / data["Time"].dt.total_seconds().diff()
+    v = (
+        data_mean[data_column].diff()
+        / data_mean["Time"].dt.total_seconds().diff()
+    )
+    log.debug(f"V = {v.shape}")
 
     maxV = v.max()
-    maxV_d = data.loc[v.idxmax(), data_column]
-    maxV_time = data.loc[v.idxmax(), "Time"]
+    maxV_d = data_mean.loc[v.idxmax(), data_column]
+    maxV_time = data_mean.loc[v.idxmax(), "Time"]
 
     # calculate lag time
     lag = -maxV_d / maxV + maxV_time.total_seconds()
@@ -612,53 +789,58 @@ def kinetic_analysis_per_well(
         ("Fit", "L"): params[0],
         ("Fit", "k"): params[1],
         ("Fit", "x0"): params[2],
+        ("Fit", "R^2"): r_squared,
     }
 
     return pd.Series(kinetics)
     # return kinetics
 
 
-def kinetic_analysis(data: pd.DataFrame, data_column="Data") -> pd.DataFrame:
-    kinetics = data.groupby(["Well", "Name", "Read"], sort=False).apply(
+def kinetic_analysis(
+    data: pd.DataFrame, group_by=["Name"], data_column="Data"
+) -> pd.DataFrame:
+    if data["Read"].unique().size > 1 and "Read" not in group_by:
+        log.warning(
+            "Kinetic analysis is not grouped on `Read`, but multiple different read types exist in the data. This is probably not what you want."
+        )
+
+    kinetics = data.groupby(group_by, sort=False).apply(
         functools.partial(kinetic_analysis_per_well, data_column=data_column)
     )
     return kinetics
 
 
+def _format_timedelta(time, f="%h:%m"):
+    try:
+        return timple.timedelta.strftimedelta(time, f)
+    except ValueError:
+        return pd.NaT
+
+
 def kinetic_analysis_summary(
     data: pd.DataFrame,
-    data_column="Data",
-    time_cutoff: int = 12000,
-    label_order: list[str] = None,
-    norm_label: str = None,
+    kinetics: pd.DataFrame = None,
+    group_by=["Name"],
+    precision: float = 2,
 ):
-    def per_well_cleanup(df):
-        cols = df.columns
-        return df[["Well"] + list(cols[27:])].aggregate(lambda x: x.iloc[0])
+    if kinetics is None:
+        kinetics = kinetic_analysis(data, group_by=group_by)
 
-    tk = kinetic_analysis(
-        data=data, data_column=data_column, time_cutoff=time_cutoff
+    kinetics_styled = kinetics.style.format(precision=precision).format(
+        _format_timedelta, subset=pd.IndexSlice[:, pd.IndexSlice[:, "Time"]]
     )
-    out = tk.groupby("Well").apply(per_well_cleanup).reset_index(drop=True)
-
-    if label_order:
-        out = out.set_index("Well").reindex(label_order).reset_index()
-
-    # normalize max value (calculated by kinetics) if norm_label given
-    if norm_label:
-        norm = out[out["Well"] == norm_label][f"{data_column}_high_d"].values
-        out["Normalized (%)"] = out[f"{data_column}_high_d"] / norm
-
-    return out
+    return kinetics_styled
 
 
 def plot_kinetics_by_well(
     data: pd.DataFrame,
     kinetics: pd.DataFrame,
+    group_by: list[str],
     x: str = "Time",
     y: str = "Data",
     show_fit: bool = False,
     show_velocity: bool = False,
+    show_mean: bool = False,
     annotate: bool = False,
     **kwargs,
 ):
@@ -669,17 +851,27 @@ def plot_kinetics_by_well(
     > g = sns.FacetGrid(tk, col="Well", col_wrap=2, sharey=False, height=4, aspect=1.5)
     > g.map_dataframe(plot_kinetics, show_fit=True, show_velocity=True)
     """
+
+    log.debug(f"Plotting kinetics for group: {group_by}")
+
     colors = sns.color_palette("Set2")
 
     ax = sns.scatterplot(data=data, x=x, y=y, color=colors[2], alpha=0.5)
 
-    well = data["Well"].iloc[0]
-    name = data["Name"].iloc[0]
-    read = data["Read"].iloc[0]
-    kinetics = kinetics.loc[well, name, read]
-    if (kinetics.isna()).any():
-        log.info(f"Kinetics information not available for {well}.")
+    data_index = data.iloc[0].loc[group_by]
+    kinetics = kinetics.loc[*data_index]
+
+    log.debug(f"Data index: {data_index.values}")
+
+    if kinetics.isna().any():
+        log.info(f"Kinetics information not available for {data_index}.")
         return
+
+    if show_mean:
+        log.debug("Plotting data mean")
+        sns.scatterplot(
+            data=_data_mean(data), x=x, y=y, color=colors[4], alpha=0.5, ax=ax
+        )
 
     # ax_ylim = (
     #     ax.get_ylim()
@@ -798,36 +990,47 @@ def plot_kinetics_by_well(
     _plot_timedelta(ax)
 
 
-def plot_kinetics(data: pd.DataFrame, kinetics: pd.DataFrame, **kwargs):
-    g = sns.FacetGrid(
-        data, col="Name", col_wrap=3, sharey=True, height=4, aspect=1.5
-    )
+def plot_kinetics(
+    data: pd.DataFrame,
+    group_by=["Name", "Read"],
+    kinetics: pd.DataFrame = None,
+    **kwargs,
+):
+    if kinetics is None:
+        kinetics = kinetic_analysis(data, group_by=group_by)
+
+    if "col_wrap" not in kwargs:
+        kwargs["col_wrap"] = 2
+
+    g = sns.FacetGrid(data, col=group_by[0], height=4, aspect=1.5, **kwargs)
     g.map_dataframe(
         plot_kinetics_by_well,
         kinetics=kinetics,
+        group_by=group_by,
         show_fit=True,
         show_velocity=False,
+        show_mean=True,
         annotate=True,
     )
     g.set_ylabels("Fluorescence (RFU)")
 
 
-def plot_steadystate(data: pd.DataFrame, **kwargs):
+def plot_steadystate(data: pd.DataFrame, x="Name", **kwargs):
     steady_state = find_steady_state(data).reset_index()
-    data_with_steady_state = data.merge(steady_state, on="Well", how="left")
+    data_with_steady_state = steady_state.merge(
+        data, on=["Well", "Read"], how="left"
+    )
 
-    exp = "Experiment" if "Experiment" in data.columns else None
-    col = exp if exp is not None else None
-    col_wrap = 2 if col is not None else None
+    # return data_with_steady_state
+
+    if "col_wrap" not in kwargs and "col" in kwargs:
+        kwargs["col_wrap"] = 2
 
     g = sns.catplot(
         data=data_with_steady_state,
-        x="Name",
+        x=x,
         y="Data_steadystate",
-        hue=exp,
         kind="bar",
-        col=col,
-        col_wrap=col_wrap,
         height=4,
         aspect=1.5,
         sharex=False,
@@ -839,6 +1042,237 @@ def plot_steadystate(data: pd.DataFrame, **kwargs):
     return g
 
 
-def export():
-    # TODO: Write me
-    pass
+def compute_standard_curve(
+    data: pd.DataFrame, sc_type="STD", include_mean=True
+):
+    std = data[data["Type"] == sc_type]
+
+    def curve(group):
+        slope, intercept, r_value, p_value, std_err = stats.linregress(
+            group["Conc/Dil"], group["Data"]
+        )
+        return pd.Series(
+            {
+                "slope": slope,
+                "intercept": intercept,
+                "R": r_value,
+                "R^2": r_value**2,
+            }
+        )
+
+    curves = (
+        std.groupby(["Type", "Read"])
+        .apply(curve, include_groups=False)
+        .reset_index()
+    )
+
+    if include_mean:
+        mean = (
+            std.groupby(["Type"])
+            .apply(curve, include_groups=False)
+            .reset_index()
+        )
+        mean["Read"] = "Mean"
+        curves = pd.concat([curves, mean])
+
+    if "Unit" in curves:
+        curves["Unit"] = std["Unit"].iloc[0]
+
+    return curves
+
+
+def compute_concentration(
+    data: pd.DataFrame,
+    sc_type="STD",
+    sample_type="SPL",
+    dilution_col="Conc/Dil",
+    unit_col="Unit",
+):
+    curves = compute_standard_curve(data, sc_type)
+
+    conc = pd.merge(
+        data[data["Type"] == sample_type],
+        curves,
+        on=["Read"],
+        how="left",
+        suffixes=("", "_y"),
+    )
+    conc["Concentration"] = (conc["Data"] - conc["intercept"]) / conc["slope"]
+
+    if dilution_col in data.columns:
+        conc["Original Concentration"] = (
+            conc["Concentration"] * conc[dilution_col]
+        )
+
+    return conc
+
+
+def plot_standard_curve(data: pd.DataFrame, sc_type="STD", **kwargs):
+    curves = compute_standard_curve(data, sc_type)
+
+    x_min = data.loc[data["Type"] == sc_type, "Conc/Dil"].min()
+    x_max = data.loc[data["Type"] == sc_type, "Conc/Dil"].max()
+
+    lines = list()
+    for i, curve in curves.iterrows():
+        x = np.linspace(x_min, x_max)
+        y = x * curve["slope"] + curve["intercept"]
+        df = pd.DataFrame(dict(x=x, y=y))
+        for c in curve.index:
+            df[c] = curve[c]
+        lines.append(df)
+
+    ax = sns.lineplot(
+        data=pd.concat(lines),
+        x="x",
+        y="y",
+        hue="Read",
+        linestyle="--",
+        **kwargs,
+    )
+
+    if ax not in kwargs:
+        kwargs["ax"] = ax
+
+    kwargs["legend"] = False
+    sns.scatterplot(
+        data=data[data["Type"] == sc_type],
+        x="Conc/Dil",
+        y="Data",
+        hue="Read",
+        **kwargs,
+    )
+
+    unit = ""
+    if "Unit" in data:
+        unit = data["Unit"].iloc[0]
+        unit = f"({unit})"
+    ax.set_xlabel(f"Concentration {unit}")
+
+    ax.set_ylabel("Relative Fluorescence Units (RFU)")
+
+    return ax
+
+
+def plot_concentration(
+    data: pd.DataFrame, x="Name", y=None, hue="Read", **kwargs
+):
+    conc = compute_concentration(data)
+
+    y_column = y if y is not None else "Concentration"
+    if "Original Concentration" in conc.columns:
+        y_column = "Original Concentration"
+
+    ax = sns.stripplot(data=conc, x=x, y=y_column, hue=hue, **kwargs)
+
+    means = conc.groupby(["Name"])["Concentration"].mean().reset_index()
+
+    sns.boxplot(
+        data=means,
+        x="Name",
+        y="Concentration",
+        showmeans=True,
+        meanline=True,
+        meanprops={"color": "k", "ls": "--", "lw": 1, "alpha": 0.5},
+        medianprops={"visible": False},
+        whiskerprops={"visible": False},
+        zorder=10,
+        showfliers=False,
+        showbox=False,
+        showcaps=False,
+        fill=False,
+        legend=True,
+        dodge=False,
+        # ax=ax
+    )
+
+    # if "Unit" in conc:
+    #     ax.set_ylabel(f"Concentration ({conc['Unit'].iloc[0]})")
+
+    return ax
+
+
+def export_data(data: pd.DataFrame, output_file: Path):
+    """
+    Exports platereader data to a CSV.
+
+    Args:
+        data (pd.DataFrame): The plate reader data to export.
+        output_file (os.path.Path): The output file.
+
+    Returns:
+        None
+    """
+    data.to_csv(output_file, index=False)
+
+
+def export_kinetics(
+    kinetics: pd.DataFrame, output_file: Path, platemap: pd.DataFrame = None
+):
+    """
+    Exports the kinetics analysis dataframe to a CSV file.
+
+    Args:
+        kinetics (pd.DataFrame): Kinetic results (the output of `kinetics_analysis()`).
+        output_file (os.path.Path): Path to the output CSV file.
+        platemap (pd.Dataframe): Platemap. If this is provided, it will be merged into the kinetics results to provide full labels.
+
+    Returns:
+        None
+    """
+
+    df = kinetics.copy()
+    kinetics_index = kinetics.index.names
+    df.columns = df.columns.map("_".join)
+    df = df.reset_index()
+
+    for i, col in enumerate(df.columns):
+        if ptypes.is_timedelta64_dtype(df[col]):
+            df[col] = df[col].dt.total_seconds()
+            df = df.rename(columns={col: f"{col} (s)"})
+
+    if platemap is not None:
+        df = df.merge(platemap, how="left", on=kinetics_index)
+
+    df.to_csv(output_file, index=False)
+
+
+def merge_plates(data: pd.DataFrame, plates: list[str] = None) -> pd.DataFrame:
+    """Merge multiple plates in a timeseries into one plate, adjusting times.
+
+    Where there is more than one plate in a dataframe (specified by the `Plate` column),
+    merge them together into one continous timeseries. This is useful if, for example, the
+    plate reader was stopped and restarted, so the two plates are really one.
+
+    `Time` offsets after the first plate are adjusted based on read start time of each plate.
+
+    To work, the `data` dataframe needs several columns:
+    + `Plate`
+    + `Clock Time`
+
+    Args:
+        data (pd.DataFrame): the plate reader data
+        plates (list[str]): a list of the plates to merge. By default, all plates will be merged in the order they appear.
+    """
+
+    if plates is None:
+        plates = data["Plate"].unique()
+
+    if len(plates) <= 1:
+        log.warning(f"Data does not have multiple plates to merge: {plates}")
+        return data
+
+    plate_data = [data[data["Plate"] == plates[0]]]
+
+    start_time = data.loc[data["Plate"].isin(plates), "Clock Time"].min()
+    log.debug(f"Start time: {start_time}")
+
+    for plate in plates[1:]:
+        p = data[data["Plate"] == plate].copy()
+        p["Time"] = p["Clock Time"] - start_time
+        plate_data.append(p)
+
+    merged_data = pd.concat(plate_data)
+    merged_data["Plate"] = plates[0]
+
+    return merged_data

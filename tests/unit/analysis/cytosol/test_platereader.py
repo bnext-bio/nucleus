@@ -15,7 +15,8 @@ ENVISION_KINETIC_DATA_PATH = (
 
 DNA_SWEEP_DATA_PATH = "tests/test_data/cytation_dna_sweep.txt"
 DNA_SWEEP_PLATEMAP_PATH = "tests/test_data/platemap.csv"
-SYNTHETIC_DATA_PATH = "tests/test_data/platereader-test-data-blanks.csv"
+SYNTHETIC_DATA_PATH = "tests/test_data/platereader-test-data.csv"
+BIOTEK_CDK_MULTIPLATE_DATA_PATH = "tests/test_data/biotek_cdk_multiplate.txt"
 
 
 def test_read_envision():
@@ -246,3 +247,31 @@ def test_blank_data_blanks_data(synthetic_data):
 
     # Use assert series equal because direct comparison can fail due to floating point errors.
     pd.testing.assert_series_equal(synthetic_data["Data"], data["Data"])
+
+
+def test_multiplate():
+    import cdk.analysis.cytosol.platereader as pr
+    import pandas as pd
+
+    data = pr.read_biotek_cdk(BIOTEK_CDK_MULTIPLATE_DATA_PATH)
+    data_merge = pr.merge_plates(data)
+
+    assert data_merge.iloc[-1]["Time"] == pd.to_timedelta("06:33:07")
+
+
+def test_multiplate_length_correct():
+    import cdk.analysis.cytosol.platereader as pr
+
+    data = pr.read_biotek_cdk(BIOTEK_CDK_MULTIPLATE_DATA_PATH)
+    data_merge = pr.merge_plates(data)
+
+    assert data_merge.shape[0] == 6083
+
+
+def test_multiplate_uses_first_plate_name():
+    import cdk.analysis.cytosol.platereader as pr
+
+    data = pr.read_biotek_cdk(BIOTEK_CDK_MULTIPLATE_DATA_PATH)
+    data_merge = pr.merge_plates(data)
+
+    assert data_merge["Plate"].unique() == "Plate 1"
