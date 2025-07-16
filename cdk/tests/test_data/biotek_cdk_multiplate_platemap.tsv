@@ -1,0 +1,19 @@
+Well	Type	Name	Replicate	Emix	Pmix	[Pmix] (mg/mL)	Energy Mix (uL)	Protein Mix (uL)	Ribosomes (uL)	RNAse I (uL)	DNA (uL)	ddH2O (uL)
+B2	Sample	I -	1	NEB SolA	I -		4	1.2	1.8	0.5	1	1.5
+D3	Sample	I -	2	NEB SolA	I -		4	1.2	1.8	0.5	1	1.5
+F3	Sample	I -	3	NEB SolA	I -		4	1.2	1.8	0.5	1	1.5
+B4	Sample	I +	1	NEB SolA	I -		4	1.2	1.8	0.5	1	1.5
+D4	Sample	I +	2	NEB SolA	I -		4	1.2	1.8	0.5	1	1.5
+F4	Sample	I +	3	NEB SolA	I -		4	1.2	1.8	0.5	1	1.5
+B6	Sample	NEB deltaRibo	1	NEB SolA	NEB deltaRibo		4	1.2	1.8	0.5	1	1.5
+D6	Sample	NEB deltaRibo	2	NEB SolA	NEB deltaRibo		4	1.2	1.8	0.5	1	1.5
+F6	Sample	NEB deltaRibo	3	NEB SolA	NEB deltaRibo		4	1.2	1.8	0.5	1	1.5
+B8	Control	Positive	1	NEB SolA	NEB SolB		4	3		0.5	1	1.5
+D8	Control	Positive	2	NEB SolA	NEB SolB		4	3		0.5	1	1.5
+F8	Control	Positive	3	NEB SolA	NEB SolB		4	3		0.5	1	1.5
+B10	Control	Negative	1	NEB SolA	NEB SolB		4	3		0.5		2.5
+D10	Control	Negative	2	NEB SolA	NEB SolB		4	3		0.5		2.5
+F10	Control	Negative	3	NEB SolA	NEB SolB		4	3		0.5		2.5
+B12	Sample	I + (2)	1	NEB SolA	I -		4	1.2	1.8	0.5	1	1.5
+D12	Sample	I + (2)	2	NEB SolA	I -		4	1.2	1.8	0.5	1	1.5
+F12	Sample	I + (2)	3	NEB SolA	I -		4	1.2	1.8	0.5	1	1.5
