@@ -1,13 +1,15 @@
 [tool.poetry]
 name = "nucleus-cdk"
-version = "0.4.0a1"
+version = "0.5.0rc1"
 description = "Cell Developer Kit for building synthetic cells and cytosols."
 license = "MIT"
 authors = [ 
   "Anton Jackson-Smith <anton@bnext.bio>",
+  "Sharon Newman <sharon@bnext.bio"
 ]
 maintainers = [
   "Anton Jackson-Smith <anton@bnext.bio>",
+  "Sharon Newman <sharon@bnext.bio>"
 ]
 readme = "README.md"
 homepage = "https://nucleus.bnext.bio/"
