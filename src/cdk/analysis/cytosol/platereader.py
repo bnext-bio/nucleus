@@ -870,8 +870,6 @@ def kinetic_analysis_per_well(
                 (STEADY_STATE, TIME_COLUMN_NAME): np.nan,
                 (STEADY_STATE, data_column): np.nan,
                 ("Fit", "params"): [],
-                ("Fit", "R^2"): np.nan,
-                ("Fit", "drift"): np.nan,
                 ('Fit', 'R^2'): np.nan,
                 ("Fit", "drift"): np.nan,
                 ("Fit", 'good_fit'): False
@@ -1001,10 +999,11 @@ def kinetic_analysis_per_well(
 
 def kinetic_analysis(
     data: pd.DataFrame,
-    group_by=["Name", "Read"],
+    group_by=["Name", "Read", "Well"],
     data_column=None,
     fit_function_name=DEFAULT_FIT_FUNCTION_NAME,
 ) -> pd.DataFrame:
+    #TODO: update this to not require group_by anymore. Default to always by "Well"
     if data_column is None:
         data_column = get_active_data_column()
 
@@ -1284,7 +1283,7 @@ def plot_kinetics(
     if "col_wrap" not in kwargs:
         kwargs["col_wrap"] = 3
 
-    # TODO: this just plots first gain without issuing a warning.
+    # TODO: this just plots first groupby value without issuing a warning.
     g = sns.FacetGrid(data, col=group_by[0], height=4, aspect=1.5, **kwargs)
     g.map_dataframe(
         plot_kinetics_by_well,
@@ -1365,7 +1364,7 @@ def plot_steadystate(
             hue=kwargs["hue"] if "hue" in kwargs else None,
             palette=sns.color_palette(
                 desat=0.5
-            ),  # Set palette directly because this plot gets transformed hue data which isn't categorical.
+            ) if "hue" in kwargs else None,  # Set palette directly because this plot gets transformed hue data which isn't categorical.
             size=8,
             linewidth=2,
             marker=".",
@@ -1542,10 +1541,9 @@ def plot_summary(
         ax_c.set_title(experiment)
         ax_c.set_xlabel(TIME_COLUMN_NAME)
         if "_norm" in data_column:
-            ax_c.set_ylabels("Normalized Fluorescence (RFU)")
+            ax_c.set_ylabel("Normalized Fluorescence (RFU)")
         else:
-            ax_c.set_ylabels("Fluorescence (AFU)")
-
+            ax_c.set_ylabel("Fluorescence (AFU)")
 
         # Prepare kinetic summary data
         ys_to_plot = [(STEADY_STATE, data_column), ("Velocity", "Max")]
