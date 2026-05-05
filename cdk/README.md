@@ -6,6 +6,9 @@ Nucleus is an open-source project for building and working with synthetic cells.
 ## Features
 Currently, the CDK contains our core analysis functionality: plate reader and liposome analysis. In particular, the plate reader code is designed to allow for easy analysis of kinetic timeseries of PURE experiments from Agilent/Biotek and Revvity Envision plate readers. The liposome analysis code is under heavy development, and the code included here is somewhat out of date---please contact us for more information.
 
+## Guides
+- [Discovery plate concentration pipeline](docs/discovery_plate_pipeline.md)
+
 ## Installation
 `pip install nucleus-cdk`
 

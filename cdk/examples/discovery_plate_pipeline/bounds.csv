@@ -1,0 +1,5 @@
+Component,Lower Bound,Upper Bound,Unit,,,
+pmix,1.2,2.7,mg/ml,,,
+ribosome,1.2,2.7,uM,,,
+trna,2.5,5.25,ug/ul,,,
+magnesium_acetate,6,18,mM,,,

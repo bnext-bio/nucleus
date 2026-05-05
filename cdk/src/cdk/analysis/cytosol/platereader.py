@@ -3,6 +3,7 @@ Plate Reader Module
 
 This module provides support for loading and analyzing data from various plate readers. Currently supported are:
 + BioTek Cytation 5
++ BioTek Synergy H1
 + Revvity Envision Nexus
 + Promega Glomax Discover
 
@@ -27,7 +28,6 @@ from scipy import stats
 import sklearn.metrics
 import math
 from itertools import combinations
-import re
 
 import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -43,10 +43,18 @@ READ_COLUMN_NAME = "Read"
 DEFAULT_FIT_FUNCTION_NAME = "sigmoid_drift"
 STEADY_STATE = "Steady State"
 
+TEMPERATURE_COLUMN_NAME = "Temperature"
+
 # Track which column downstream functions should use by default
 ACTIVE_DATA_COLUMN_NAME = DATA_COLUMN_NAME
 
+# Sample types to include in kinetic analysis by default
+DEFAULT_ANALYSIS_COLUMNS = ["Sample", "Control", "Positive Control"]
+
 log = logging.getLogger(__name__)
+
+# Matches BioTek read headers: "490,520", "485/20,528/20", "Read 1:485,520", "GFP/mScarlett:485,520"
+_BIOTEK_READ_HEADER = r"(?:Read\s\d+:)?(?:[\w/]+:)?\d+(?:/\d+)?,\d+(?:/\d+)?"
 
 DataFile = Union[str, Path, io.StringIO]
 
@@ -133,6 +141,8 @@ def load_platereader_data(
         data = read_cytation(data_file)
     elif "cytation" in platereader.lower():
         data = read_cytation(data_file)
+    elif "synergy" in platereader.lower():
+        data = read_cytation(data_file)
     elif "envision" in platereader.lower():
         data = read_envision(data_file)
     # elif filename_lower.startswith("glomax"):
@@ -149,7 +159,9 @@ def load_platereader_data(
                 # the data itself.
                 platemap = platemap.drop(col, axis=1)
 
+        attrs = data.attrs
         data = data.merge(platemap, on="Well")
+        data.attrs = attrs
         return PlateReaderData(data=data, platemap=platemap)
 
     return data
@@ -248,7 +260,7 @@ def read_biotek_cdk(data_file: DataFile, sep="\t") -> pd.DataFrame:
         data = None
 
         if data_protocol == "Pierce660" or data_protocol == "Endpoint":
-            data = pd.read_table(io.StringIO(section))
+            data = pd.read_table(io.StringIO(section), na_values=["#N/A",])  # TODO: check other na values
 
             for col in data.columns:
                 if col in BIOTEK_CDK_ID_VARS:
@@ -275,8 +287,20 @@ def read_biotek_cdk(data_file: DataFile, sep="\t") -> pd.DataFrame:
                 if "Well ID" in data:
                     data["Name"] = data["Well ID"]
         elif data_protocol == "PURE":
-            data = pd.read_table(io.StringIO(section))
-            data = data.drop(columns=data.columns[1])
+            data = pd.read_table(io.StringIO(section), na_values=["#N/A",])  # TODO: check other na values (OVERFLW?)
+
+            if data is None or data.empty:
+                log.warning(
+                    f"No data loaded: section {header} contains no data"
+                )
+                continue
+
+            # If the temperature is recorded, it will be in a format "T° {Read Type}"
+            if data.columns[1].startswith("T°"):
+                # Rename to standard temperature column name
+                data.rename(columns={data.columns[1]: TEMPERATURE_COLUMN_NAME}, inplace=True)
+            else:
+                data = data.drop(columns=data.columns[1])
             data = data.dropna(axis=1, how="all")  # Remove wells with no data
 
             # Remove completely empty rows (usually there if the run was prematurely aborted).
@@ -285,15 +309,21 @@ def read_biotek_cdk(data_file: DataFile, sep="\t") -> pd.DataFrame:
             data = data.dropna(axis=0, subset=data.columns[1:], how="all")
 
             data = data.melt(
-                id_vars=OrderedSet(BIOTEK_CDK_ID_VARS)
+                id_vars=(OrderedSet(BIOTEK_CDK_ID_VARS) | OrderedSet([TEMPERATURE_COLUMN_NAME,]))
                 & OrderedSet(data.columns),
                 value_vars=OrderedSet(data.columns)
-                - OrderedSet(BIOTEK_CDK_ID_VARS),
+                - (OrderedSet(BIOTEK_CDK_ID_VARS) | OrderedSet([TEMPERATURE_COLUMN_NAME,])),
                 var_name="Well",
                 value_name=DATA_COLUMN_NAME,
             ).reset_index(drop=True)
             log.debug(f"Data loaded with columns: {data.columns}")
 
+            if data is None or data.empty:
+                log.warning(
+                    f"No data loaded: section potentially unrecognized: {header}"
+                )
+                continue
+            
             # TODO: Figure out why the plate reader adds asterisks sometimes.
             def fix_strings(x):
                 if isinstance(x, str):
@@ -325,17 +355,28 @@ def read_biotek_cdk(data_file: DataFile, sep="\t") -> pd.DataFrame:
                     pd.to_datetime(metadata["cdk"]["Reading Date/Time"])
                     + data[TIME_COLUMN_NAME]
                 )
-
-        if data is None:
+            
+            if (
+                "Reader Type" in metadata["cdk"]
+                and metadata["cdk"]["Reader Type"] is not None
+            ):
+                data["Reader"] = metadata["cdk"]["Reader Type"]
+        else:
             log.warning(
-                f"No data loaded: section potentially unrecognized: {data_protocol}"
+                f"Unrecognized protocol: {data_protocol}, skipping"
             )
             continue
 
         data.attrs["metadata"] = metadata
+        log.debug(f"Loaded metadata: {metadata}")
+
         dataframes.append(data)
 
-    return pd.concat(dataframes)
+    all_data = pd.concat(dataframes)
+    all_data.attrs["metadata"] = dataframes[0].attrs["metadata"]
+    log.debug(f"Dataframe attributes: {all_data.attrs}")
+
+    return all_data
 
 
 def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
@@ -348,7 +389,7 @@ def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
     # extract indices for Proc Details, Layout
     procidx = re.search(r"Procedure Details", data)
     layoutidx = re.search(r"Layout", data)
-    readidx = re.search(r"^(Read\s)?\d+(/\d+)?,\d+(/\d+)?", data, re.MULTILINE)
+    readidx = re.search(r"^" + _BIOTEK_READ_HEADER, data, re.MULTILINE)
 
     # get header DataFrame
     header = data[: procidx.start()]
@@ -373,17 +414,17 @@ def read_cytation(data_file: DataFile, sep="\t") -> pd.DataFrame:
     reads = dict()
 
     sep = (
-        r"(?:Read\s\d+:)?(?:\s\d{3}(?:/\d+)?,\d{3}(?:/\d+)?(?:\[\d\])?)?" + sep
+        r"(?:Read\s\d+:)?(?:\s(?:[\w/]+:)?\d{3}(?:/\d+)?,\d{3}(?:/\d+)?(?:\[\d\])?)?" + sep
     )
 
     for readidx in re.finditer(
-        r"^(Read\s)?\d+(/\d+)?,\d+(/\d+)?.*\n", data, re.MULTILINE
+        r"^" + _BIOTEK_READ_HEADER + r".*\n", data, re.MULTILINE
     ):
         # for each iteration, extract string from start idx to end icx
         read = data[readidx.end() :]
         read = read[
             : re.search(
-                r"(^(Read\s)?\d+,\d+|^Blank Read\s\d|Results|\Z)",
+                r"(^(?:Read\s|[\w/]+:)?\d+,\d+|^Blank Read\s\d|Results|\Z)",
                 read[1:],
                 re.MULTILINE,
             ).start()
@@ -636,8 +677,8 @@ def plot_curves(
             "Multiple different read types exist in the data. But plotting is not grouped by \"Read\". "
             "Defaulted to plotting all Read types \n"
             "In the future, either explicitly add col=\"Read\", or provide a dataset with only one read type \n"
-            "You can set one read type by setting data= data[data.Read == \"<YOUR DESIRED GAIN>\"], "
-            f"where <> is replaced by one of the following:  {data.READ_COLUMN_NAME.unique()} "
+            "You can set one read type by calling: data = select_one_read(data, <read>)"
+            f"where <> is replaced by one of the following:  {data[READ_COLUMN_NAME].unique()} "
         )
         kwargs["col"] = READ_COLUMN_NAME
 
@@ -672,6 +713,15 @@ def plot_curves(
     return g
 
 
+def select_one_read(data: pd.DataFrame, read: str ):
+    """
+
+    :param data:
+    :param read:
+    :return: dataframe with only values that match read
+    """
+    return data[data[READ_COLUMN_NAME] == read]
+
 ###
 # Kinetics Analysis
 # TODO: Perhaps split this out into a submodule.
@@ -700,8 +750,8 @@ def estimate_steady_state_for_well(well, window=3, data_col=None):
 
     return pd.Series(
         {
-            f"{TIME_COLUMN_NAME}_steadystate": ss_time,
-            f"{data_col}_steadystate": ss_level,
+            (STEADY_STATE, TIME_COLUMN_NAME): ss_time,
+            (STEADY_STATE, data_col): ss_level,
         }
     )
 
@@ -712,6 +762,7 @@ def find_steady_state(
     window=3,
     data_column=None,
     fit_function_name=DEFAULT_FIT_FUNCTION_NAME,
+    include_types=None,
 ) -> pd.DataFrame:
     """
     Find the steady state of the ACTIVE_DATA_COLUMN_NAME column in the provided data DataFrame.
@@ -741,19 +792,20 @@ def find_steady_state(
         )
     else:
         kinetics_fits = kinetic_analysis(
-            data, group_by=group_by, fit_function_name=fit_function_name, data_column=data_column
+            data, group_by=group_by, fit_function_name=fit_function_name, data_column=data_column, 
+            include_types=include_types
         )
         result = kinetics_fits.loc[
             :, [(STEADY_STATE, TIME_COLUMN_NAME), (STEADY_STATE, data_column)]
         ]
         # Keep labels the same as the old method ("Time_steadystate" and "Data_steadystate")
         # TODO: eventually make this all be the same column names as from kinetics
-        result[f"{TIME_COLUMN_NAME}_steadystate"] = kinetics_fits.loc[
-            :, (STEADY_STATE, TIME_COLUMN_NAME)
-        ]
-        result[f"{data_column}_steadystate"] = kinetics_fits.loc[
-            :, (STEADY_STATE, data_column)
-        ]
+        # result[f"{TIME_COLUMN_NAME}_steadystate"] = kinetics_fits.loc[
+        #     :, (STEADY_STATE, TIME_COLUMN_NAME)
+        # ]
+        # result[f"{data_column}_steadystate"] = kinetics_fits.loc[
+        #     :, (STEADY_STATE, data_column)
+        # ]
     return result
 
 
@@ -882,7 +934,7 @@ def kinetic_analysis_per_well(
     if fit_function_name == "sigmoid":
         data = data.loc[
             data[TIME_COLUMN_NAME]
-            <= steadystate[f"{TIME_COLUMN_NAME}_steadystate"]
+            <= steadystate[(STEADY_STATE, TIME_COLUMN_NAME)]
         ]
     time = data[TIME_COLUMN_NAME].dt.total_seconds()/3600.0
 
@@ -925,9 +977,6 @@ def kinetic_analysis_per_well(
     with warnings.catch_warnings():
         warnings.simplefilter("error", scipy.optimize.OptimizeWarning)
         try:
-            # params, _ = scipy.optimize.curve_fit(
-            #     fit_function, time, data[data_column], p0=p0
-            # )
             fit_results = scipy.optimize.minimize(l2_loss_sigmoid, x0=p0,
                                              args=(time, data[data_column],
                                                    fit_function_name),
@@ -958,21 +1007,28 @@ def kinetic_analysis_per_well(
     maxV_time = pd.to_timedelta(params[2], unit="h") #data_mean.loc[v.idxmax(), TIME_COLUMN_NAME]
 
     # calculate lag time
-    lag = -maxV_d / maxV + maxV_time.total_seconds()/3600.0
-    lag_data = fit_function(lag, *params)
+    # if k == 0 => maxV == 0, then the sigmoidal fit has a flat slope, so lag is infinite
+
+    # Potential errors: division by zero, overflow in casting to timedelta
+    try:
+        lag = -maxV_d / maxV + maxV_time.total_seconds()/3600.0
+        lag_data = fit_function(lag, *params)
+        lag_time = pd.to_timedelta(lag, unit="h")
+    except Exception as e:
+        log.warning(f"Failed to calculate lag for group {group_keys}: {e}\n Slope of sigmoid is likely close to zero.")
+        lag_data = np.nan
+        lag_time = pd.NaT
 
     kinetics = {
         # f"{data_column}_fit_d": y_fit,
         ("Velocity", TIME_COLUMN_NAME): maxV_time,
         ("Velocity", data_column): maxV_d,
         ("Velocity", "Max"): maxV,  # max slope, but not k which is just steepness. #maxV,
-        ("Lag", TIME_COLUMN_NAME): pd.to_timedelta(lag, unit="h"),
+        ("Lag", TIME_COLUMN_NAME): lag_time,
         ("Lag", data_column): lag_data,
         # f"{data_column}_growth_s": growth_s,
-        (STEADY_STATE, TIME_COLUMN_NAME): steadystate[
-            f"{TIME_COLUMN_NAME}_steadystate"
-        ],
-        (STEADY_STATE, data_column): steadystate[f"{data_column}_steadystate"],
+        (STEADY_STATE, TIME_COLUMN_NAME): steadystate[(STEADY_STATE, TIME_COLUMN_NAME)],
+        (STEADY_STATE, data_column): steadystate[(STEADY_STATE, data_column)],
         ("Fit", "params"): params,
         ("Fit", "R^2"): r_squared,
         ("Fit", "drift"): 0,
@@ -987,9 +1043,13 @@ def kinetic_analysis_per_well(
         alpha = 0.95
         kinetics[STEADY_STATE, data_column] = params[0] * alpha
         t_alpha = logistic_time_to_fraction(*params[0:3], alpha=alpha)
-        kinetics[STEADY_STATE, TIME_COLUMN_NAME] = pd.to_timedelta(
-            t_alpha, unit="h"
-        )
+        try:
+            kinetics[STEADY_STATE, TIME_COLUMN_NAME] = pd.to_timedelta(
+                t_alpha, unit="h"
+            )
+        except Exception as e:
+            log.warning(f"Failed to calculate steady state time for group {group_keys}: {e}\n Slope of sigmoid is likely close to zero.")
+            kinetics[STEADY_STATE, TIME_COLUMN_NAME] = pd.NaT
         kinetics["Fit", "drift"] = params[3]
         # kinetics["Lag", TIME_COLUMN_NAME]= pd.to_timedelta(params[2], unit="s")
         # kinetics["Lag", data_column] = _sigmoid_drift(params[2],*params)
@@ -1001,9 +1061,11 @@ def kinetic_analysis(
     data: pd.DataFrame,
     group_by=["Name", "Read", "Well"],
     data_column=None,
+    include_types=None,  # only analyze these types; default value set in DEFAULT_ANALYSIS_COLUMNS above
+    suppress_type_warning=False,
     fit_function_name=DEFAULT_FIT_FUNCTION_NAME,
 ) -> pd.DataFrame:
-    #TODO: update this to not require group_by anymore. Default to always by "Well"
+    print("Calculating Kinetics")
     if data_column is None:
         data_column = get_active_data_column()
 
@@ -1015,21 +1077,24 @@ def kinetic_analysis(
             "Kinetic analysis is not grouped on `Read`, but multiple different read types exist in the data. This is probably not what you want."
         )
 
-    group_by_with_wells = group_by.copy()
     if "Well" not in group_by:  # kinetics should be calculated per well, THEN averaged
-        # print(f"WARNING: \"Well\" not explicit in group_by ({group_by}). Calculating individual replicate fits first, then averaging")
-        group_by_with_wells += ["Well"]
-        kinetics = kinetic_analysis(
-            data,
-            group_by=group_by_with_wells,
-            fit_function_name=fit_function_name,
-            data_column=data_column,
+        log.warning(f"WARNING: \"Well\" not explicit in group_by ({group_by}). Adding to group_by. If averages across Wells are desired, call get_average_kinetics(kinetics)")
+        group_by += ["Well"]
+
+    # Check if 'Type' column exists; some older platemaps do not have it
+    if "Type" not in data.columns and not suppress_type_warning:
+        log.warning(
+            "`Type` column not found in data. All data will be used for kinetic analysis."
         )
-        if "Well" not in group_by:
-            print("PROVIDING AVERAGED KINETICS")
-            return get_average_kinetics(kinetics.reset_index(), group_by=group_by, data_column=data_column)
+    else:
+        if include_types is None:
+            if not suppress_type_warning:
+                log.warning(f"WARNING: Analysis will be performed on Types {DEFAULT_ANALYSIS_COLUMNS} only. Set `include_types` parameter to a list of desired analysis types.")
+            include_types = DEFAULT_ANALYSIS_COLUMNS
+        data = data[data.Type.isin(include_types)]
 
     # Use apply with a lambda to pass group_keys explicitly
+    # Only calculate kinetics for specified types (default: "Sample" and "Control")
     kinetics = data.groupby(group_by, sort=False).apply(
         lambda g: kinetic_analysis_per_well(
             g,
@@ -1103,11 +1168,18 @@ def plot_kinetics_by_well(
 
     # TODO: This silently just plots the first group_by
     data_index = data.iloc[0].loc[group_by]
-    kinetics = kinetics.loc[*data_index]
+    
+    # Check if the kinetics data contains the requested index
+    try:
+        kinetics = kinetics.loc[*data_index]
+    except KeyError as e:
+        warning_text = data_index if type(data_index) is not pd.Series and data_index.empty() else data_index.iloc[0]
+        log.warning(f"Kinetics information not available for '{warning_text}'. Check that the types in `include_types` are included in the kinetics data or set `kinetics = None`. \n KeyError: {e}")
+        return
 
     log.debug(f"Data index: {data_index.values}")
 
-    if kinetics.isna().any():
+    if any(kinetics.isna()):
         log.info(f"Kinetics information not available for {data_index}.")
         return
 
@@ -1121,10 +1193,6 @@ def plot_kinetics_by_well(
             alpha=0.5,
             ax=ax,
         )
-
-    # ax_ylim = (
-    #     ax.get_ylim()
-    # )  # Use this to run lines to bounds later, then restore them before returning.
 
     if show_fit:
         params = kinetics["Fit", "params"]
@@ -1192,7 +1260,7 @@ def plot_kinetics_by_well(
             timple.timedelta.timedelta2num(kinetics["Lag", x])
         )
         ax.annotate(
-            f"$t_{{lag}} =$ {lag_label} h",
+            f"$\\tau_{{lag}} =$ {lag_label} h",
             (kinetics["Lag", x], kinetics["Lag", y]),
             xytext=(12, 0),
             textcoords="offset points",
@@ -1206,7 +1274,7 @@ def plot_kinetics_by_well(
             )
         )
         ax.annotate(
-            f"$t_{{steady state}} =$ {ss_label} h",
+            f"$\\tau_{{ss}} =$ {ss_label} h",
             (
                 min(kinetics[STEADY_STATE, x], max(data[x])),
                 kinetics[STEADY_STATE, y],
@@ -1237,6 +1305,7 @@ def plot_kinetics_by_well(
     _plot_timedelta(ax)
 
 def get_average_kinetics(kinetics, group_by, data_column=None, time=TIME_COLUMN_NAME):
+    kinetics = kinetics.reset_index()
     if data_column is None:
         data_column = get_active_data_column()
 
@@ -1254,16 +1323,18 @@ def get_average_kinetics(kinetics, group_by, data_column=None, time=TIME_COLUMN_
         ('Fit', 'drift')
     ]
     avg_df = kinetics.groupby(group_by)[cols_to_avg].mean() #.reset_index()
+    avg_df["Fit", 'good_fit'] = kinetics.groupby(group_by)[[("Fit", 'good_fit')]].agg(lambda x:x.value_counts().index[0])
     return avg_df
 
 def plot_kinetics(
     data: pd.DataFrame,
     group_by=["Name", READ_COLUMN_NAME],
+    include_types=None,  # only analyze these types
     kinetics: pd.DataFrame = None,
     show_data: bool = True,
     show_fit: bool = True,
     show_velocity: bool = False,
-    show_mean: bool = True,
+    show_mean: bool = False,
     annotate: bool = True,
     fit_function_name: str = DEFAULT_FIT_FUNCTION_NAME,
     data_column: str = None,
@@ -1272,18 +1343,37 @@ def plot_kinetics(
     if data_column is None:
         data_column = get_active_data_column()
 
-    if kinetics is None: #TODO: force that the group_bys are the same if input is provided.
+    # Check if 'Type' column exists; some older platemaps do not have it
+    if "Type" not in data.columns:
+        log.warning(
+            "`Type` column not found in data. All data will be used for kinetic analysis."
+        )
+    else:
+        if include_types is None:
+            log.warning(f"WARNING: Analysis will be performed on types {DEFAULT_ANALYSIS_COLUMNS} only. Set `include_types` parameter to a list of desired analysis types.")
+            include_types = DEFAULT_ANALYSIS_COLUMNS
+        data = data[data.Type.isin(include_types)]  # Filter data to only include specified types
+
+    if kinetics is None:
         kinetics = kinetic_analysis(
             data,
             group_by=group_by,
+            include_types=include_types,
+            suppress_type_warning=True,
             fit_function_name=fit_function_name,
             data_column=data_column,
         )
+    else:
+        group_by = kinetics.index.names
 
     if "col_wrap" not in kwargs:
         kwargs["col_wrap"] = 3
 
-    # TODO: this just plots first groupby value without issuing a warning.
+    if "Well" in group_by:
+        group_by = group_by.copy()
+        group_by.remove("Well")
+        kinetics = get_average_kinetics(kinetics, group_by=group_by, data_column=data_column)
+
     g = sns.FacetGrid(data, col=group_by[0], height=4, aspect=1.5, **kwargs)
     g.map_dataframe(
         plot_kinetics_by_well,
@@ -1301,7 +1391,7 @@ def plot_kinetics(
         g.set_ylabels("Normalized Fluorescence (RFU)")
     else:
         g.set_ylabels("Fluorescence (AFU)")
-    return g, kinetics
+    return g
 
 
 def plot_steadystate(
@@ -1322,21 +1412,11 @@ def plot_steadystate(
             "Well",
             READ_COLUMN_NAME,
             x,
-        ],  # if we put in x here, no need to merge as below.m
+        ],
         fit_function_name=fit_function_name,
         data_column = data_column
     ).reset_index()
-    ss_name = f"{data_column}_steadystate"
-
-    # Merge in the original data to get access to all the platemap columns,
-    # but drop duplicates so we don't have the full table with every single data point, but
-    # rather one row per Well (which will have the steady state for that well attached).
-    # data_with_steady_state = steady_state.merge(
-    #     data, on=["Well", GAIN_COLUMN_NAME], how="left"
-    # )
-    # data_with_steady_state = data_with_steady_state.drop_duplicates(
-    #     subset=["Well", GAIN_COLUMN_NAME]
-    # )
+    ss_name = (STEADY_STATE, data_column)
 
     if "sharex" not in kwargs:
         kwargs["sharex"] = False
@@ -1381,7 +1461,7 @@ def plot_steadystate(
 
     return g
 
-def get_avg_ctrl(ctrls, min_to_avg = 60, time_int = 5):
+def get_avg_ctrl(ctrls, min_to_avg = 60, time_int = 5, num_pts = None):
     """
     Compute the average control intensity over the final portion of the time trace.
 
@@ -1406,10 +1486,11 @@ def get_avg_ctrl(ctrls, min_to_avg = 60, time_int = 5):
     -----
     This function assumes rows are evenly spaced in time.
     """
-    num_pts = round(min_to_avg / time_int)
-    return np.mean(ctrls[::-num_pts]["Data"])
+    if num_pts is None:
+        num_pts = round(min_to_avg / time_int)
+    return np.mean(ctrls.iloc[-num_pts:]["Data"])
 
-def split_data_ctrls(df, ctrl_names = 'HPTS (10 uM)'):
+def get_data_ctrls(df, ctrl_names = 'HPTS (10 uM)'):
     """
     Split a DataFrame into control rows and non-control rows.
 
@@ -1428,13 +1509,16 @@ def split_data_ctrls(df, ctrl_names = 'HPTS (10 uM)'):
         All rows matching the control names.
     """
     ctrls = df[df.Name.isin([ctrl_names])]
-    data = df[~df.Name.isin([ctrl_names])]
-    return data, ctrls
+    # data = df[~df.Name.isin([ctrl_names])]
+    return ctrls
 
-def normalize_data_to_controls(data:pd.DataFrame,
+def normalize_data_to_controls(data : pd.DataFrame,
                                ctrl_name: str = 'HPTS (10 uM)',
                                output_col: str = "data_normalized",
-                               set_active: bool = True) -> pd.DataFrame:
+                               set_active: bool = True,
+                               min_to_avg : float = 60,  # TODO: should this be a timedelta object?
+                               time_int : float = 5,  # TODO: does this need to be specified? can we infer it from `data`?
+                               num_pts : int | None = None) -> pd.DataFrame:
     """
     Normalize experimental data to control intensities.
 
@@ -1450,6 +1534,16 @@ def normalize_data_to_controls(data:pd.DataFrame,
         Full dataset with a "Data" column and at least "Name" and "Read".
     ctrl_name : str, optional
         Name of the control sample used for normalization.
+    output_col : str, optional
+        Name of the new column to store normalized data. Default is "data_normalized".
+    set_active : bool, optional
+        Whether to set the active data column to the new normalized column. Default is True.
+    min_to_avg : int, optional
+        Number of minutes from the end of the trace to include in the average control intensity. Default is 60 minutes.
+    time_int : int, optional
+        Time interval (in minutes) between measurements, used to determine how many points to average. Default is 5 minutes.
+    num_pts : int, optional
+        Explicit number of points to average for control intensity. If provided, overrides min_to_avg and time_int.
 
     Returns
     -------
@@ -1462,10 +1556,16 @@ def normalize_data_to_controls(data:pd.DataFrame,
     After normalization, pass ``data_column='data_norm'`` to downstream plotting/
     analysis functions to use normalized data.
     """
-    data, ctrls = split_data_ctrls(data, ctrl_names=ctrl_name)
+    if ctrl_name not in data.Name.unique():
+        log.warning(f"Control name '{ctrl_name}' not found in data. No normalization applied.")
+        return data
 
-    ctrl_avgs = ctrls.groupby(["Name", "Read"]).apply(get_avg_ctrl, include_groups=False).rename(
-        "ctrl_ints").reset_index()
+    ctrls = get_data_ctrls(data, ctrl_names=ctrl_name)
+    data = data.drop(columns="ctrl_ints", errors='ignore') # if we re-run this function, we have to reset columns
+
+    ctrl_avgs = ctrls.groupby(["Name", "Read"]).apply(
+        lambda x: get_avg_ctrl(x, min_to_avg=min_to_avg, time_int=time_int, num_pts=num_pts),
+        include_groups=False).rename("ctrl_ints").reset_index()
     df_merge = data.merge(ctrl_avgs[["Read", "ctrl_ints"]], on=["Read"], how="left")
     df_merge[output_col] = df_merge["Data"] / df_merge["ctrl_ints"]
 
@@ -1478,13 +1578,34 @@ def normalize_data_to_controls(data:pd.DataFrame,
     return df_merge
 
 ##### PLOTTING METHODS ####
+# Helper function to plot bar plots with strip plots overlaid
+def plot_fit_params(kinetics, x, y, hue, ax, label=""):
+    ax_ss = sns.barplot(
+        data=kinetics,
+        x=x,
+        y=y,
+        hue=hue,
+        ax=ax,
+    )
+    palette = {True: "#1f77b4", False: "#ff7f0e"}
+    sns.stripplot(x=x, y=y, data=kinetics, ax=ax, hue=("Fit", "good_fit"), palette=palette)
+    ax_ss.tick_params(axis="x", labelsize="x-small", rotation=90)
+    ax_ss.set_xlabel(x)
+    ax_ss.set_ylabel(y)
+    ax_ss.set_title(f"{y}, {label}")
 
 def plot_summary(
     data: pd.DataFrame,
     experiment_split="Name",
-    show_plot=True,
+    show_plot=False,
     data_column=None,
+    kinetics = None,
+    ys_to_plot = None,
+    drop_experiment = None,
+    plot_time_series=True,
     fit_function_name=DEFAULT_FIT_FUNCTION_NAME,
+    group_by = None,
+    include_types=None,
 ):
     """
     Generate a summary visualization of plate reader data across experiments.
@@ -1499,7 +1620,12 @@ def plot_summary(
         experiment_split (str): Column name used to split lines and bars by group (default "Name").
         show_plot (bool): Whether to show plot explicitly
         data_col (str): Column in `data` to plot as y-axis (default ACTIVE_DATA_COLUMN_NAME).
+        kinetics (pd.DataFrame): kinetics information that was already pre-calculated
+        ys_to_plot (list): List of column names to plot (default None).
+        drop_experiment (list, str): List or str of experiment_split names to not plot (default None).
+        plot_time_series (bool): Whether to plot time series (default True).
         fit_function_name (str): Fit type for kinetics ("sigmoid" or "sigmoid_drift").
+        group_by (list): List of column names to group by for kinetics analysis if running (default None).
 
     Returns:
         None: Plots are displayed and optionally arranged in subplots.
@@ -1507,76 +1633,84 @@ def plot_summary(
     if data_column is None:
         data_column = get_active_data_column()
 
+    if drop_experiment is not None: #rm any experiments to not plot
+        print(f'drop_experiment {drop_experiment}')
+        if type(drop_experiment) is str:
+            drop_experiment = [drop_experiment]
+        data = data[~data[experiment_split].isin(drop_experiment)]
+        if kinetics is not None:
+            kinetics = kinetics.reset_index()
+            kinetics = kinetics[~kinetics[experiment_split].isin(drop_experiment)]
+    #
+
     # --- Identify experiments ---
     experiments = [("Experiment", data)]
     if "Experiment" in data:
         experiments = list()
         for experiment in data["Experiment"].unique():
-            experiments.append(
-                (experiment, data[data["Experiment"] == experiment])
-            )
+            if pd.isna(experiment):
+                experiments.append(
+                    (experiment, data[data["Experiment"].isna()])
+                )
+            else:
+                experiments.append(
+                    (experiment, data[data["Experiment"] == experiment])
+                )
 
     exp_count = len(experiments)
 
-    # --- Configure number of columns based on fit type ---
-    ncols = {"sigmoid_drift": 4, "sigmoid": 3}
+    # --- Determine different values to plot ---
+    if ys_to_plot is None:
+        # Prepare kinetic summary data
+        ys_to_plot = [(STEADY_STATE, data_column), ("Velocity", "Max")]
+        if fit_function_name == "sigmoid_drift":
+            ys_to_plot.append(("Fit", "drift"))
+    elif type(ys_to_plot) is not list:
+        ys_to_plot = [ys_to_plot]
+
+    # --- Configure number of columns ---
     fig, axes = plt.subplots(
         exp_count,
-        ncols[fit_function_name],
+        len(ys_to_plot)+int(plot_time_series),
         figsize=(15, 5 * exp_count),
         squeeze=False,
     )
 
     # --- Loop over each experiment and create plots ---
     for i, (experiment, df) in enumerate(experiments):
-        ax_c = sns.lineplot(
-            data=df,
-            x=TIME_COLUMN_NAME,
-            y=data_column,
-            hue=experiment_split,
-            legend=False,
-            ax=axes[i, 0],
-        )
-        _plot_timedelta(axes[i, 0])
-        ax_c.set_title(experiment)
-        ax_c.set_xlabel(TIME_COLUMN_NAME)
-        if "_norm" in data_column:
-            ax_c.set_ylabel("Normalized Fluorescence (RFU)")
-        else:
-            ax_c.set_ylabel("Fluorescence (AFU)")
-
-        # Prepare kinetic summary data
-        ys_to_plot = [(STEADY_STATE, data_column), ("Velocity", "Max")]
-        if fit_function_name == "sigmoid_drift":
-            ys_to_plot.append(("Fit", "drift"))
-
-        ss = kinetic_analysis(
-            df,
-            group_by=[experiment_split, "Well", READ_COLUMN_NAME],
-            fit_function_name=fit_function_name,
-            data_column=data_column,
-        )
-
-        # Helper function to plot bar plots with strip plots overlaid
-        def plot_fit_params(ss, x, y, hue, ax, label=""):
-            ax_ss = sns.barplot(
-                data=ss,
-                x=x,
-                y=y,
-                hue=hue,
-                ax=ax,
+        if plot_time_series:
+            ax_c = sns.lineplot(
+                data=df,
+                x=TIME_COLUMN_NAME,
+                y=data_column,
+                hue=experiment_split,
+                legend=False,
+                ax=axes[i, 0],
             )
-            palette = {True: "#1f77b4", False: "#ff7f0e"}
-            sns.stripplot(x=x, y=y, data=ss, ax=ax, hue=("Fit", "good_fit"), palette=palette)
-            ax_ss.tick_params(axis="x", labelsize="x-small", rotation=90)
-            ax_ss.set_xlabel(x)
-            ax_ss.set_ylabel(y)
-            ax_ss.set_title(f"{y}, {label}")
+            _plot_timedelta(axes[i, 0])
+            ax_c.set_title(experiment)
+            ax_c.set_xlabel(TIME_COLUMN_NAME)
+            if "_norm" in data_column:
+                ax_c.set_ylabel("Normalized Fluorescence (RFU)")
+            else:
+                ax_c.set_ylabel("Fluorescence (AFU)")
+
+        if kinetics is None:
+            if group_by is None:
+                group_by = [experiment_split, "Well", READ_COLUMN_NAME]
+
+            kinetics = kinetic_analysis(
+                df,
+                group_by=group_by,
+                fit_function_name=fit_function_name,
+                data_column=data_column,
+                include_types=include_types,
+            )
 
         # Plot kinetics parameters in remaining columns
-        for ax, cur_y in zip(axes[i, 1:], ys_to_plot):
+        for ax, cur_y in zip(axes[i, int(plot_time_series):], ys_to_plot):
             plot_fit_params(
-                ss=ss,
+                kinetics=kinetics,
                 x=experiment_split,
                 y=cur_y,
                 hue=experiment_split,
@@ -1584,9 +1718,12 @@ def plot_summary(
                 label=fit_function_name,
             )
 
-        if show_plot:
-            plt.tight_layout()
-            plt.show()
+    fig.tight_layout()
+
+    if show_plot:
+        plt.show()
+
+    return fig
 
 def plot_main_effects(data, factors, response_var):
     """
