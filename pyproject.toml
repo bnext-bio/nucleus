@@ -31,7 +31,7 @@ keywords = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 numpy = "^2.1.2"
 pandas = "^2.2.3"
 seaborn = "^0.13.2"
@@ -46,6 +46,10 @@ hvplot = "^0.11.1"
 jupyter-bokeh = "^4.0.5"
 ordered-set = "^4.1.0"
 scikit-learn = "^1.7.0"
+itables = "^2.6.2"
+salib = "^1.5.2"
+statsmodels = "^0.14.6"
+shap = "^0.51.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
@@ -55,6 +59,11 @@ pre-commit = "^4.0.0"
 ipykernel = "^6.29.5"
 toml-cli = "^0.7.0"
 flake8-pyproject = "^1.2.3"
+poetry = "^2.3.2"
+salib = "^1.5.2"
+
+[tool.poetry.requires-plugins]
+poetry-dynamic-versioning = { version = ">=1.0.0,<2.0.0", extras = ["plugin"] }
 
 [tool.flake8]
 max-line-length = 120
@@ -88,6 +97,25 @@ testpaths = [
     "tests",
 ]
 
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "pep440"
+bump = true
+
+[tool.poetry-dynamic-versioning.substitution]
+folders = [
+  { path = "src" }
+]
+
+[tool.poetry-dynamic-versioning.files."src/cdk/_version.py"]
+persistent-substitution = true
+initial-content = """
+  # These version placeholders will be replaced later during substitution.
+  __version__ = "0.0.0"
+  __version_tuple__ = (0, 0, 0)
+"""
+
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"

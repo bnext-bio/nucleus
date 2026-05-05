@@ -1,0 +1,20 @@
+reagent,stock_conc,units,description
+hepes,1500.0,mM,HEPES
+potassium_glutamate,2500.0,mM,Potassium glutamate
+magnesium_acetate,1000.0,mM,Magnesium acetate
+atp,100.0,mM,ATP
+gtp,100.0,mM,GTP
+ctp,50.0,mM,CTP
+utp,50.0,mM,UTP
+creatine_phosphate,1000.0,mM,Creatine phosphate
+tcep,500.0,mM,TCEP
+folinic_acid,5.0,mM,Folinic acid
+spermidine,200.0,mM,Spermidine
+amino_acid_solution,3.25,mM,Amino Acid solution
+trna,35.0,ug/ul,tRNA
+rnas_inh,40000.0,U/ml,RNAse Inhibitor
+dna,92.0,nM,pOpen-deGFP DNA
+ribosome,10.0,uM,nucleus ribosome
+pmix,15.0,mg/ml,nucleus pmix
+water,,x,Water
+master_mix,1.535829,x,Auto-generated base master mix

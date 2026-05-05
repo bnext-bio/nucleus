@@ -1,0 +1,11 @@
+final_rxn_vol_ul = 5.0
+samples_final_concs_file = "bounds_doe_n20.csv"
+#reagents_file = "reagents.csv" # optional override
+pipetting_scalar = 1.1
+min_pipetting_vol_ul = 0.5
+conc_decimals = 3
+vol_decimals = 3
+replicates = 1
+buffer_reagent = "water"
+use_base_master_mix = true
+exclude_from_base_reagents = []

@@ -6,6 +6,9 @@ The CDK is a set of tools and libraries for building synthetic cells, the operat
 ## Features
 Currently, the CDK contains our core analysis functionality: plate reader and liposome analysis.
 
+## Guides
+- [Discovery plate concentration pipeline](docs/discovery_plate_pipeline.md)
+
 ## Installation
 *TBD*
 

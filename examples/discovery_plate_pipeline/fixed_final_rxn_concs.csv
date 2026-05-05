@@ -1,0 +1,14 @@
+reagent,final_conc,units
+hepes,50.0,mM
+potassium_glutamate,100,mM
+atp,2.0,mM
+gtp,2.0,mM
+ctp,1.0,mM
+utp,1.0,mM
+creatine_phosphate,20.0,mM
+tcep,1.0,mM
+folinic_acid,0.02,mM
+spermidine,2.0,mM
+amino_acid_solution,0.3,mM
+dna,3.0,nM
+rnas_inh,2000,U/ml

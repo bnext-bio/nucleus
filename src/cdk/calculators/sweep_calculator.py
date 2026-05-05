@@ -46,6 +46,7 @@ import numpy as np
 # }
 # reaction_volume = 10  # ul
 def check_valid_input_params(REAGENT_INFO, final_pure_concs):
+    # TODO: This isnt amenable to dfs
     # ============================================================================
     # ASSERTION 1: All stock concentrations must be positive
     # ============================================================================
@@ -371,4 +372,81 @@ def generate_smix_and_sweep_tables(smix_reagents_to_mix, smix_fold, smix_final_v
                               final_pure_concs, reagents, warnings=[])
     return smix_table, reaction_conditions
 
+
+def calculate_vol_to_pipette(df, reaction_volume, buffer_name="water", final_conc_col = "final_conc"):
+    """
+       Calculate pipetting volumes for reaction components and assign remaining
+       volume to a buffer reagent (e.g., water).
+
+       Non-buffer volumes are calculated as:
+           reaction_volume * final_conc / stock_conc
+
+       The buffer row receives the remaining volume needed to reach the total
+       reaction volume. Volumes are rounded to 0.01 µL and validated with safety
+       assertions.
+
+       Parameters
+       ----------
+       df : pandas.DataFrame
+           Must contain columns: 'reagent', 'final_conc', 'stock_conc'.
+       reaction_volume : float
+           Total reaction volume in µL (> 0).
+       buffer_name : str, optional
+           Name of buffer reagent. Defaults to "water".
+
+       Returns
+       -------
+       pandas.DataFrame
+           DataFrame with 'vol_to_pipette' column (µL, rounded to 0.01).
+
+       Raises
+       ------
+       AssertionError
+           If inputs are invalid or calculated volumes are inconsistent.
+       """
+    REQUIRED_COLS = {final_conc_col, "stock_conc"}
+    missing = REQUIRED_COLS - set(df.columns)
+    assert not missing, f"Missing required columns: {missing}"
+    assert reaction_volume > 0, "reaction_volume must be > 0 µL"
+    # get reagent names from column or index
+    if "reagent" in df.columns:
+        reagents = df["reagent"]
+    else:
+        assert df.index.name == "reagent" or df.index.dtype == object, (
+            "Expected 'reagent' column or reagent names as index"
+        )
+        reagents = df.index
+
+    # ensure exactly one buffer row
+    buffer_mask = reagents == buffer_name
+    assert buffer_mask.sum() == 1, (
+        f"Expected exactly one '{buffer_name}' row, found {buffer_mask.sum()}"
+    )
+
+    # calculate volumes for non-buffer reagents
+    df["vol_to_pipette"] = reaction_volume * df[final_conc_col] / df["stock_conc"]
+
+    non_buffer_mask = ~buffer_mask
+    non_buffer_vol = df.loc[non_buffer_mask, "vol_to_pipette"].sum(skipna=True)
+
+    # assign remaining volume to buffer
+    buffer_vol = reaction_volume - non_buffer_vol
+    assert buffer_vol >= 0, (
+        f"Calculated {buffer_name} volume is negative ({buffer_vol:.3f} µL). "
+        "Check concentrations or reaction_volume."
+    )
+
+    df.loc[buffer_mask, "vol_to_pipette"] = buffer_vol
+
+    # round to 0.01 µL
+    df["vol_to_pipette"] = df["vol_to_pipette"].round(3)
+
+    # final safety check: total volume matches reaction_volume
+    total_vol = df["vol_to_pipette"].sum()
+    assert abs(total_vol - reaction_volume) <= 0.01, (
+        f"Total volume {total_vol:.2f} µL does not match "
+        f"reaction_volume {reaction_volume:.2f} µL"
+    )
+
+    return df
 # smix_table, reaction_conditions  = generate_smix_and_sweep_tables(smix_reagents_to_mix, smix_fold, smix_final_volume, final_pure_concs, reagents, reaction_volume)
